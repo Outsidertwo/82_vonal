@@ -36,8 +36,9 @@
     "s_JB_FH_HnV": { "state": "open", "_base_angle": 0 },
     "s_JB_FH_HnT_UT": { "state": "closed", "_base_angle": 0 },
 
-    "s_JB_Ut": { "state": "closed", "_base_angle": 0 },
+    "s_JB_Ut": { "state": "open", "_base_angle": 0 },
     "s_JB_Uv": { "state": "closed", "_base_angle": 0 }
   }
 }
+
 
