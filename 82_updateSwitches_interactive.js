@@ -1,84 +1,40 @@
-// === 82-es vonal interaktív szakaszoló kezelő ===
-// fájlok: 82_vonal.svg, 82_switch_states.json, 82_topologia.json
-
-let switchStates = {};
-
 async function loadSwitchData() {
-  try {
-    const [switchResp, topoResp] = await Promise.all([
-      fetch("82_switch_states.json"),
-      fetch("82_topologia.json")
-    ]);
+    try {
+        const response = await fetch('82_switch_states.json');
+        const switches = await response.json();
+        console.log(`Betöltve: ${Object.keys(switches).length} szakaszoló`);
 
-    const switchesData = await switchResp.json();
-    const topoData = await topoResp.json();
+        for (const [id, data] of Object.entries(switches)) {
+            const elem = document.getElementById(id);
+            if (!elem) continue;
 
-    switchStates = switchesData.switch_states || switchesData;
-
-    console.log("Betöltve:", Object.keys(switchStates).length, "szakaszoló");
-
-    updateAllSwitches();
-  } catch (err) {
-    console.error("Betöltési hiba:", err);
-  }
-}
-
-// szakaszoló megjelenítés frissítése (forgatás + szín)
-function updateAllSwitches() {
-  Object.entries(switchStates).forEach(([id, info]) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const angle = info.base_angle || 0;
-    el.setAttribute("transform", `rotate(${angle}, ${info.cx || 0}, ${info.cy || 0})`);
-
-    if (info.state === "closed") {
-      el.style.fill = "#FFD700"; // sárga
-      el.style.opacity = "1.0";
-    } else if (info.state === "open") {
-      el.style.fill = "#808080"; // szürke
-      el.style.opacity = "0.6";
-    } else if (info.state === "fault") {
-      el.style.fill = "#FF0000"; // piros
-      el.style.opacity = "1.0";
+            elem.style.cursor = "pointer";
+            elem.addEventListener('click', () => toggleSwitch(id, elem, data));
+            updateSwitchVisual(elem, data.state);
+        }
+    } catch (err) {
+        console.error('Betöltési hiba:', err);
     }
+}
 
-    // interaktív kattintás hozzáadása (egyszer)
-    if (!el.dataset.listener) {
-      el.addEventListener("click", () => toggleSwitch(id));
-      el.style.cursor = "pointer";
-      el.dataset.listener = "true";
+function updateSwitchVisual(elem, state) {
+    // Csak a színt változtatja, a forgatást NEM piszkálja.
+    if (state === "closed") {
+        elem.style.stroke = "#00FF00";
+        elem.style.fill = "#FFD700";
+    } else if (state === "open") {
+        elem.style.stroke = "#FF0000";
+        elem.style.fill = "#FFAAAA";
+    } else {
+        elem.style.stroke = "#808080";
+        elem.style.fill = "none";
     }
-  });
 }
 
-// kattintásra váltás open <-> closed
-function toggleSwitch(id) {
-  const info = switchStates[id];
-  if (!info) return;
-
-  info.state = info.state === "closed" ? "open" : "closed";
-  console.log(`Szakaszoló ${id} → ${info.state}`);
-  updateAllSwitches();
-
-  // opcionális: módosítás mentése localStorage-be
-  localStorage.setItem("switchStates", JSON.stringify(switchStates));
+function toggleSwitch(id, elem, data) {
+    data.state = (data.state === "closed") ? "open" : "closed";
+    updateSwitchVisual(elem, data.state);
+    console.log(`Szakaszoló ${id} → ${data.state}`);
 }
 
-// előző állapot visszatöltése böngészőből
-function restoreFromLocal() {
-  const saved = localStorage.getItem("switchStates");
-  if (saved) {
-    switchStates = JSON.parse(saved);
-    updateAllSwitches();
-    console.log("Szakaszoló állapotok visszatöltve a localStorage-ból.");
-  }
-}
-
-// SVG betöltés után
-document.addEventListener("DOMContentLoaded", () => {
-  // kis késleltetés az SVG teljes rendereléséhez
-  setTimeout(() => {
-    loadSwitchData().then(restoreFromLocal);
-  }, 500);
-});
+loadSwitchData();
