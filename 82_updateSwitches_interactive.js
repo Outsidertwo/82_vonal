@@ -76,30 +76,25 @@ function updateSwitchVisual(elem, state) {
 
 }
 
+// ==============================
+// 🔁 FORGATÁS KEZELÉSE (helyes, egyetlen verzió)
+// ==============================
 function rotateSwitch(elem, angle) {
-    // lekérjük az elem méretét és helyzetét
-    const box = elem.getBBox(); // {x, y, width, height}
-    // kiszámítjuk a középpontot
-    const cx = box.x + box.width / 2;
-    const cy = box.y + box.height / 2;
-    // elforgatjuk az elemet a saját középpontja körül
-    elem.setAttribute("transform", `rotate(${angle}, ${cx}, ${cy})`);
-}
+  // 1️⃣ Lekérjük az elem méretét és pozícióját
+  const box = elem.getBBox(); // {x, y, width, height}
 
-// ==============================
-// 🔁 FORGATÁS KEZELÉSE
-// ==============================
-function rotateSwitch(elem, angle) {
-  // 1️⃣ Megnézzük az elem jelenlegi `transform` attribútumát (pl. "rotate(90,10,10)")
+  // 2️⃣ Kiszámítjuk a középpontját
+  const cx = box.x + box.width / 2;
+  const cy = box.y + box.height / 2;
+
+  // 3️⃣ Eltávolítjuk az előző "rotate(...)"-ot, ha volt
   const current = elem.getAttribute("transform") || "";
-
-  // 2️⃣ Kitöröljük a korábbi "rotate(...)" részt, hogy ne halmozódjon
   const cleaned = current.replace(/rotate\([^)]*\)/g, "").trim();
 
-  // 3️⃣ Új forgatás beillesztése a végére
-  // 💡 A 30° mindig a saját forgáspontjához viszonyítva történik (SVG pivot alapján)
-  elem.setAttribute("transform", `${cleaned} rotate(${angle})`);
+  // 4️⃣ Új forgatás a saját középpont körül
+  elem.setAttribute("transform", `${cleaned} rotate(${angle}, ${cx}, ${cy})`);
 }
+
 
 // ==============================
 // 🖱️ KATTINTÁS → ÁLLAPOTVÁLTÁS
