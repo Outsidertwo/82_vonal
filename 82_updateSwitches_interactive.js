@@ -68,6 +68,22 @@ function updateSwitchVisual(elem, state) {
     elem.style.stroke = "#808080";
     elem.style.fill = "none";
   }
+  if (state === "open") {
+    rotateSwitch(elem, 30); // 30 fokkal elforgatjuk nyitott állapotban
+  } else {
+    rotateSwitch(elem, 0); // vissza alaphelyzetbe zártnál
+  }
+
+}
+
+function rotateSwitch(elem, angle) {
+    // lekérjük az elem méretét és helyzetét
+    const box = elem.getBBox(); // {x, y, width, height}
+    // kiszámítjuk a középpontot
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
+    // elforgatjuk az elemet a saját középpontja körül
+    elem.setAttribute("transform", `rotate(${angle}, ${cx}, ${cy})`);
 }
 
 // ==============================
