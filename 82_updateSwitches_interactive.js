@@ -1,21 +1,25 @@
 async function loadSwitchData() {
-    try {
-        const response = await fetch('82_switch_states.json');
-        const switches = await response.json();
-        console.log(`Betöltve: ${Object.keys(switches).length} szakaszoló`);
+  try {
+    const response = await fetch("82_switch_states.json");
+    const data = await response.json();
 
-        for (const [id, data] of Object.entries(switches)) {
-            const elem = document.getElementById(id);
-            if (!elem) continue;
+    // ha a fájlban "switches" kulcs alatt vannak az adatok:
+    const switches = data.switches ? data.switches : data;
 
-            elem.style.cursor = "pointer";
-            elem.addEventListener('click', () => toggleSwitch(id, elem, data));
-            updateSwitchVisual(elem, data.state);
-        }
-    } catch (err) {
-        console.error('Betöltési hiba:', err);
-    }
+    console.log("Betöltve:", Object.keys(switches).length, "szakaszoló");
+
+    Object.entries(switches).forEach(([id, info]) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.style.cursor = "pointer";
+        element.addEventListener("click", () => toggleSwitch(id, element, info));
+      }
+    });
+  } catch (error) {
+    console.error("Betöltési hiba:", error);
+  }
 }
+
 
 function updateSwitchVisual(elem, state) {
     // Csak a színt változtatja, a forgatást NEM piszkálja.
@@ -38,3 +42,4 @@ function toggleSwitch(id, elem, data) {
 }
 
 loadSwitchData();
+
