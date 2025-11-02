@@ -1,123 +1,156 @@
-// ==============================
-// 🔹 FŐ FÜGGVÉNY: adat betöltése
-// ==============================
-async function loadSwitchData() {
-  try {
-    // 1️⃣ Beolvassuk a JSON fájlt (82_switch_states.json)
-    const response = await fetch("82_switch_states.json");
+// ===========================================
+// 🎨 TOPOLOGIA ALAPÚ SZÍNEZÉS ÉS SWITCH KEZELÉS
+// ===========================================
 
-    // 2️⃣ Átalakítjuk az adatokat JavaScript objektummá
-    const data = await response.json();
+// 1️⃣ Globális változók a vezetékek és színek kezeléséhez
+let wireColors = {}; // minden vezetékhez tartozó szín
+let szinTabla = {};  // az A/B/C fázis színtérkép
 
-    // 3️⃣ Ellenőrizzük, hogy a JSON-ban van-e "switch_states" kulcs, ha nincs, közvetlenül használjuk a gyökeret
-    const switches = data.switch_states ? data.switch_states : data;
+// ===========================================
+// 🔹 TOPOLOGIA BETÖLTÉSE ÉS SZÍNEK KIALAKÍTÁSA
+// ===========================================
+async function loadTopologyColors() {
+    try {
+        const response = await fetch("82_topologia.json"); // topológia betöltése
+        const topo = await response.json();
 
-    // 4️⃣ Kiírjuk a konzolra, hány szakaszolót talált
-    console.log("Betöltve:", Object.keys(switches).length, "szakaszoló");
+        szinTabla = topo.szinek; // színek táblázat mentése
 
-    // 5️⃣ Végigmegyünk minden szakaszolón
-    Object.entries(switches).forEach(([id, info]) => {
-      // 🔸 `id` = pl. "s_PT_Ht"
-      // 🔸 `info` = pl. { "state": "closed" }
+        // végigmegyünk az összes állomáson és node-on
+        Object.values(topo.stations).forEach(station => {
+            Object.entries(station.nodes).forEach(([id, node]) => {
+                if (node.fazis && node.oldal) {
+                    const kulcs = `${node.fazis}_${node.oldal}`;
+                    if (szinTabla[kulcs]) wireColors[id] = szinTabla[kulcs]; // fázis alapú szín
+                } else if (node.type === "gyujtosin") {
+                    wireColors[id] = szinTabla.gyujtosin || "#CC9900"; // gyűjtősín
+                }
+            });
+        });
 
-      // 6️⃣ Megkeressük az SVG-ben az adott szakaszolót azonosító alapján
-      const element = document.getElementById(id);
+        console.log("Vezeték színek betöltve:", Object.keys(wireColors).length);
 
-      if (element) {
-        // 7️⃣ Kézre álljon az egérkurzor → kattinthatónak tűnjön
-        element.style.cursor = "pointer";
+    } catch (e) {
+        console.warn("Nem sikerült betölteni a topológiai színeket:", e);
+    }
+}
 
-        // 8️⃣ Beállítjuk a színét az állapotnak megfelelően
-        updateSwitchVisual(element, info.state);
-
-        // 9️⃣ Ha a JSON szerint "open", akkor nyitott → el kell forgatni
-        if (info.state === "open") rotateSwitch(element, 30);
-        else rotateSwitch(element, 0);
-
-        // 🔟 Kattintás esemény hozzáadása → működés váltás
-        element.addEventListener("click", () => toggleSwitch(id, element, info));
-      } else {
-        // 1️⃣1️⃣ Ha nincs meg az SVG-ben, konzolra figyelmeztetés
-        console.warn("Hiányzó elem az SVG-ben:", id);
-      }
+// ===========================================
+// 🔹 SZÍNEK ALKALMAZÁSA AZ SVG-BEN (vezetékek)
+// ===========================================
+function applyWireColors() {
+    Object.entries(wireColors).forEach(([nodeId, color]) => {
+        const elem = document.getElementById(nodeId);
+        if (elem) {
+            elem.style.stroke = color; // körvonal színe
+            elem.style.fill = color;   // kitöltés, ha van
+        } else {
+            console.warn("Hiányzó vezeték elem az SVG-ben:", nodeId);
+        }
     });
-  } catch (error) {
-    // 1️⃣2️⃣ Hibakezelés, ha nem található vagy sérült a fájl
-    console.error("Betöltési hiba:", error);
-  }
 }
 
-// ==============================
-// 🎨 SZÍN BEÁLLÍTÁS (állapot alapján)
-// ==============================
-function updateSwitchVisual(elem, state) {
-  // 1️⃣ Ha zárt, zöld + sárga kitöltés
-  if (state === "closed") {
-    elem.style.stroke = "#00FF00"; // körvonal zöld
-    elem.style.fill = "#FFD700";   // belső sárga
-  }
+// ===========================================
+// 🔹 SWITCH ADATOK BETÖLTÉSE ÉS INIT
+// ===========================================
+async function loadSwitchData() {
+    try {
+        const response = await fetch("82_switch_states.json"); // switch állapotok
+        const data = await response.json();
+        const switches = data.switch_states ? data.switch_states : data;
 
-  // 2️⃣ Ha nyitott, piros + világos piros
-  else if (state === "open") {
-    elem.style.stroke = "#FF0000"; // körvonal piros
-    elem.style.fill = "#FFAAAA";   // halvány piros kitöltés
-  }
+        console.log("Betöltve:", Object.keys(switches).length, "szakaszoló");
 
-  // 3️⃣ Ha ismeretlen, szürke és üres kitöltés
-  else {
-    elem.style.stroke = "#808080";
-    elem.style.fill = "none";
-  }
-  if (state === "open") {
-    rotateSwitch(elem, 30); // 30 fokkal elforgatjuk nyitott állapotban
-  } else {
-    rotateSwitch(elem, 0); // vissza alaphelyzetbe zártnál
-  }
+        // minden switch-et inicializálunk
+        Object.entries(switches).forEach(([id, info]) => {
+            const element = document.getElementById(id);
+            if (!element) {
+                console.warn("Hiányzó switch elem az SVG-ben:", id);
+                return;
+            }
 
+            element.style.cursor = "pointer"; // kattinthatóság
+
+            // szín beállítása (zárt → from node színe, nyitott → fekete)
+            updateSwitchVisual(element, info.state, info.from);
+
+            // forgatás az állapotnak megfelelően
+            rotateSwitch(element, info.state === "open" ? 30 : 0);
+
+            // kattintás esemény
+            element.addEventListener("click", () => toggleSwitch(id, element, info));
+        });
+
+    } catch (error) {
+        console.error("Betöltési hiba:", error);
+    }
 }
 
-// ==============================
-// 🔁 FORGATÁS KEZELÉSE (helyes, egyetlen verzió)
-// ==============================
+// ===========================================
+// 🔹 SWITCH SZÍNEZÉS (állapot + from node)
+// ===========================================
+function updateSwitchVisual(elem, state, fromNodeId) {
+    let color = "#808080"; // alap: szürke
+    if (state === "closed") {
+        // ha van from node szín, használjuk
+        color = wireColors[fromNodeId] || "#00FF00"; 
+        elem.style.stroke = color;      // körvonal
+        elem.style.fill = lightenColor(color, 0.4); // világosabb kitöltés
+    } else if (state === "open") {
+        elem.style.stroke = "#000000";  // fekete körvonal nyitott
+        elem.style.fill = "transparent"; // átlátszó kitöltés
+    } else {
+        elem.style.stroke = "#808080";
+        elem.style.fill = "none";
+    }
+}
+
+// ===========================================
+// 🔹 EGYSZERŰ SZÍN FÉNYESÍTŐ FUNKCIÓ
+// ===========================================
+function lightenColor(hex, percent) {
+    // hex: pl "#FF8800", percent: 0.3 → 30% világosítás
+    let num = parseInt(hex.replace("#", ""), 16),
+        r = (num >> 16) + Math.round((255 - (num >> 16)) * percent),
+        g = ((num >> 8) & 0x00FF) + Math.round((255 - ((num >> 8) & 0x00FF)) * percent),
+        b = (num & 0x0000FF) + Math.round((255 - (num & 0x0000FF)) * percent);
+    return `rgb(${r},${g},${b})`;
+}
+
+// ===========================================
+// 🔹 SWITCH FORGATÁS
+// ===========================================
 function rotateSwitch(elem, angle) {
-  // 1️⃣ Lekérjük az elem méretét és pozícióját
-  const box = elem.getBBox(); // {x, y, width, height}
+    const box = elem.getBBox();
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
 
-  // 2️⃣ Kiszámítjuk a középpontját
-  const cx = box.x + box.width / 2;
-  const cy = box.y + box.height / 2;
+    const current = elem.getAttribute("transform") || "";
+    const cleaned = current.replace(/rotate\([^)]*\)/g, "").trim();
 
-  // 3️⃣ Eltávolítjuk az előző "rotate(...)"-ot, ha volt
-  const current = elem.getAttribute("transform") || "";
-  const cleaned = current.replace(/rotate\([^)]*\)/g, "").trim();
-
-  // 4️⃣ Új forgatás a saját középpont körül
-  elem.setAttribute("transform", `${cleaned} rotate(${angle}, ${cx}, ${cy})`);
+    elem.setAttribute("transform", `${cleaned} rotate(${angle}, ${cx}, ${cy})`);
 }
 
-
-// ==============================
-// 🖱️ KATTINTÁS → ÁLLAPOTVÁLTÁS
-// ==============================
+// ===========================================
+// 🔹 KATTINTÁS → ÁLLAPOTVÁLTÁS
+// ===========================================
 function toggleSwitch(id, elem, info) {
-  // 1️⃣ Az állapot átváltása closed ↔ open között
-  info.state = (info.state === "closed") ? "open" : "closed";
+    info.state = (info.state === "closed") ? "open" : "closed"; // váltás
 
-  // 2️⃣ A színezés frissítése
-  updateSwitchVisual(elem, info.state);
+    // frissítés szín + forgatás
+    updateSwitchVisual(elem, info.state, info.from);
+    rotateSwitch(elem, info.state === "open" ? 30 : 0);
 
-  // 3️⃣ A vizuális forgatás frissítése
-  if (info.state === "open") {
-    rotateSwitch(elem, 30); // nyitás → 30° jobbra
-  } else {
-    rotateSwitch(elem, 0);  // zárás → vissza 0°-ra
-  }
-
-  // 4️⃣ Naplózás a konzolra
-  console.log(`Szakaszoló ${id} → ${info.state}`);
+    console.log(`Szakaszoló ${id} → ${info.state}`);
 }
 
-// ==============================
-// 🚀 FÜGGVÉNY FUTTATÁSA INDULÁSKOR
-// ==============================
-loadSwitchData();
+// ===========================================
+// 🔹 FŐFÜGGVÉNY: betöltés indítás
+// ===========================================
+async function init() {
+    await loadTopologyColors(); // vezeték színek
+    applyWireColors();           // alkalmazzuk SVG-ben
+    await loadSwitchData();      // switch-ek
+}
+
+init();
