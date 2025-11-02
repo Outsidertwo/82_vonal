@@ -36,14 +36,23 @@ async function loadTopologyColors() {
 }
 
 // ===========================================
-// 🔹 SZÍNEK ALKALMAZÁSA AZ SVG-BEN (vezetékek)
+// 🔹 SZÍNEK ALKALMAZÁSA AZ SVG-BEN (vezetékek, <g> csoportok)
 // ===========================================
 function applyWireColors() {
     Object.entries(wireColors).forEach(([nodeId, color]) => {
         const elem = document.getElementById(nodeId);
         if (elem) {
-            elem.style.stroke = color; // körvonal színe
-            elem.style.fill = color;   // kitöltés, ha van
+            // minden gyermek elemre alkalmazzuk a stroke-ot
+            const children = elem.querySelectorAll("*");
+            children.forEach(child => {
+                if (child.tagName === "path" || child.tagName === "circle" || child.tagName === "rect" || child.tagName === "line") {
+                    child.style.stroke = color;
+                    // fill-t csak akkor állítunk, ha van kitöltés
+                    if (child.hasAttribute("fill") && child.getAttribute("fill") !== "none") {
+                        child.style.fill = color;
+                    }
+                }
+            });
         } else {
             console.warn("Hiányzó vezeték elem az SVG-ben:", nodeId);
         }
@@ -109,7 +118,6 @@ function updateSwitchVisual(elem, state, fromNodeId) {
 // 🔹 EGYSZERŰ SZÍN FÉNYESÍTŐ FUNKCIÓ
 // ===========================================
 function lightenColor(hex, percent) {
-    // hex: pl "#FF8800", percent: 0.3 → 30% világosítás
     let num = parseInt(hex.replace("#", ""), 16),
         r = (num >> 16) + Math.round((255 - (num >> 16)) * percent),
         g = ((num >> 8) & 0x00FF) + Math.round((255 - ((num >> 8) & 0x00FF)) * percent),
