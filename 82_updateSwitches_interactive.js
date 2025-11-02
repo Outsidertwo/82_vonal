@@ -9,7 +9,7 @@ async function loadSwitchData() {
     // 2️⃣ Átalakítjuk az adatokat JavaScript objektummá
     const data = await response.json();
 
-    // 3️⃣ Ellenőrizzük, hogy a JSON-ban van-e "switch_states" kulcs
+    // 3️⃣ Ellenőrizzük, hogy a JSON-ban van-e "switch_states" kulcs, ha nincs, közvetlenül használjuk a gyökeret
     const switches = data.switch_states ? data.switch_states : data;
 
     // 4️⃣ Kiírjuk a konzolra, hány szakaszolót talált
@@ -20,28 +20,29 @@ async function loadSwitchData() {
       // 🔸 `id` = pl. "s_PT_Ht"
       // 🔸 `info` = pl. { "state": "closed" }
 
-      const element = document.getElementById(id); // SVG-beli azonosító alapján keresés
+      // 6️⃣ Megkeressük az SVG-ben az adott szakaszolót azonosító alapján
+      const element = document.getElementById(id);
 
       if (element) {
-        // 6️⃣ Az egérkurzor kattinthatónak tűnjön
+        // 7️⃣ Kézre álljon az egérkurzor → kattinthatónak tűnjön
         element.style.cursor = "pointer";
 
-        // 7️⃣ Beállítjuk a színt az aktuális állapot alapján
+        // 8️⃣ Beállítjuk a színét az állapotnak megfelelően
         updateSwitchVisual(element, info.state);
 
-        // 8️⃣ Forgatást az állapot szerint
+        // 9️⃣ Ha a JSON szerint "open", akkor nyitott → el kell forgatni
         if (info.state === "open") rotateSwitch(element, 30);
         else rotateSwitch(element, 0);
 
-        // 9️⃣ Kattintás → állapotváltás
+        // 🔟 Kattintás esemény hozzáadása → működés váltás
         element.addEventListener("click", () => toggleSwitch(id, element, info));
       } else {
-        // 1️⃣0️⃣ Ha az SVG-ben nincs meg, konzol figyelmeztetés
+        // 1️⃣1️⃣ Ha nincs meg az SVG-ben, konzolra figyelmeztetés
         console.warn("Hiányzó elem az SVG-ben:", id);
       }
     });
   } catch (error) {
-    // 1️⃣1️⃣ Hibakezelés (pl. fájlhiba)
+    // 1️⃣2️⃣ Hibakezelés, ha nem található vagy sérült a fájl
     console.error("Betöltési hiba:", error);
   }
 }
@@ -50,59 +51,73 @@ async function loadSwitchData() {
 // 🎨 SZÍN BEÁLLÍTÁS (állapot alapján)
 // ==============================
 function updateSwitchVisual(elem, state) {
+  // 1️⃣ Ha zárt, zöld + sárga kitöltés
   if (state === "closed") {
-    // Zárt → zöld + sárga
-    elem.style.stroke = "#00FF00";
-    elem.style.fill = "#FFD700";
-  } else if (state === "open") {
-    // Nyitott → piros + halvány piros
-    elem.style.stroke = "#FF0000";
-    elem.style.fill = "#FFAAAA";
-  } else {
-    // Ismeretlen → szürke, üres
+    elem.style.stroke = "#00FF00"; // körvonal zöld
+    elem.style.fill = "#FFD700";   // belső sárga
+  }
+
+  // 2️⃣ Ha nyitott, piros + világos piros
+  else if (state === "open") {
+    elem.style.stroke = "#FF0000"; // körvonal piros
+    elem.style.fill = "#FFAAAA";   // halvány piros kitöltés
+  }
+
+  // 3️⃣ Ha ismeretlen, szürke és üres kitöltés
+  else {
     elem.style.stroke = "#808080";
     elem.style.fill = "none";
   }
+  if (state === "open") {
+    rotateSwitch(elem, 30); // 30 fokkal elforgatjuk nyitott állapotban
+  } else {
+    rotateSwitch(elem, 0); // vissza alaphelyzetbe zártnál
+  }
 
-  // A szín után mindig frissítjük a forgatást
-  if (state === "open") rotateSwitch(elem, 30);
-  else rotateSwitch(elem, 0);
 }
 
 // ==============================
-// 🔁 FORGATÁS KEZELÉSE
+// 🔁 FORGATÁS KEZELÉSE (helyes, egyetlen verzió)
 // ==============================
 function rotateSwitch(elem, angle) {
-  // 1️⃣ Megnézzük, van-e korábbi forgatás
-  const current = elem.getAttribute("transform") || "";
+  // 1️⃣ Lekérjük az elem méretét és pozícióját
+  const box = elem.getBBox(); // {x, y, width, height}
 
-  // 2️⃣ Eltávolítjuk az összes korábbi "rotate(...)" kifejezést
+  // 2️⃣ Kiszámítjuk a középpontját
+  const cx = box.x + box.width / 2;
+  const cy = box.y + box.height / 2;
+
+  // 3️⃣ Eltávolítjuk az előző "rotate(...)"-ot, ha volt
+  const current = elem.getAttribute("transform") || "";
   const cleaned = current.replace(/rotate\([^)]*\)/g, "").trim();
 
-  // 3️⃣ Lekérjük az elem méretét és helyét (a saját SVG koordinátarendszerében)
-  const box = elem.getBBox();
-  const cx = box.x + box.width / 2;  // középpont X
-  const cy = box.y + box.height / 2; // középpont Y
-
-  // 4️⃣ Új forgatás beillesztése – mindig friss, nem halmozódik
+  // 4️⃣ Új forgatás a saját középpont körül
   elem.setAttribute("transform", `${cleaned} rotate(${angle}, ${cx}, ${cy})`);
 }
+
 
 // ==============================
 // 🖱️ KATTINTÁS → ÁLLAPOTVÁLTÁS
 // ==============================
 function toggleSwitch(id, elem, info) {
-  // 1️⃣ Átváltjuk az állapotot
+  // 1️⃣ Az állapot átváltása closed ↔ open között
   info.state = (info.state === "closed") ? "open" : "closed";
 
-  // 2️⃣ Szín frissítése
+  // 2️⃣ A színezés frissítése
   updateSwitchVisual(elem, info.state);
 
-  // 3️⃣ Naplózás a konzolra
+  // 3️⃣ A vizuális forgatás frissítése
+  if (info.state === "open") {
+    rotateSwitch(elem, 30); // nyitás → 30° jobbra
+  } else {
+    rotateSwitch(elem, 0);  // zárás → vissza 0°-ra
+  }
+
+  // 4️⃣ Naplózás a konzolra
   console.log(`Szakaszoló ${id} → ${info.state}`);
 }
 
 // ==============================
-// 🚀 INDÍTÁS
+// 🚀 FÜGGVÉNY FUTTATÁSA INDULÁSKOR
 // ==============================
 loadSwitchData();
