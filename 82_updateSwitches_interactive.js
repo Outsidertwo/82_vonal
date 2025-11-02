@@ -5,9 +5,10 @@
 // 1️⃣ Globális változók a vezetékek és színek kezeléséhez
 let wireColors = {}; // minden vezetékhez tartozó szín
 let szinTabla = {};  // az A/B/C fázis színtérkép
+let switchData = {}; // a szakaszolók állapota és csoportja
 
 // ===========================================
-// 🔹 TOPOLOGIA BETÖLTÉSE ÉS SZÍNEK KIALAKÍTÁSA
+// 🔹 2️⃣ ALAPSZÍNEK BETÖLTÉSE
 // ===========================================
 async function loadTopologyColors() {
     try {
@@ -36,23 +37,14 @@ async function loadTopologyColors() {
 }
 
 // ===========================================
-// 🔹 SZÍNEK ALKALMAZÁSA AZ SVG-BEN (vezetékek, <g> csoportok)
+// 🔹 SZÍNEK ALKALMAZÁSA AZ SVG-BEN (vezetékek)
 // ===========================================
 function applyWireColors() {
     Object.entries(wireColors).forEach(([nodeId, color]) => {
         const elem = document.getElementById(nodeId);
         if (elem) {
-            // minden gyermek elemre alkalmazzuk a stroke-ot
-            const children = elem.querySelectorAll("*");
-            children.forEach(child => {
-                if (child.tagName === "path" || child.tagName === "circle" || child.tagName === "rect" || child.tagName === "line") {
-                    child.style.stroke = color;
-                    // fill-t csak akkor állítunk, ha van kitöltés
-                    if (child.hasAttribute("fill") && child.getAttribute("fill") !== "none") {
-                        child.style.fill = color;
-                    }
-                }
-            });
+            // Csak a stroke-ot állítjuk, a fill-t csak ha kifejezetten kell
+            elem.style.stroke = color;
         } else {
             console.warn("Hiányzó vezeték elem az SVG-ben:", nodeId);
         }
@@ -70,6 +62,8 @@ async function loadSwitchData() {
 
         console.log("Betöltve:", Object.keys(switches).length, "szakaszoló");
 
+        switchData = switches; // globális tárolás
+
         // minden switch-et inicializálunk
         Object.entries(switches).forEach(([id, info]) => {
             const element = document.getElementById(id);
@@ -80,14 +74,14 @@ async function loadSwitchData() {
 
             element.style.cursor = "pointer"; // kattinthatóság
 
-            // szín beállítása (zárt → from node színe, nyitott → fekete)
-            updateSwitchVisual(element, info.state, info.from);
+            // szín beállítása
+            updateSwitchVisual(id);
 
             // forgatás az állapotnak megfelelően
             rotateSwitch(element, info.state === "open" ? 30 : 0);
 
             // kattintás esemény
-            element.addEventListener("click", () => toggleSwitch(id, element, info));
+            element.addEventListener("click", () => toggleSwitch(id));
         });
 
     } catch (error) {
@@ -96,22 +90,50 @@ async function loadSwitchData() {
 }
 
 // ===========================================
-// 🔹 SWITCH SZÍNEZÉS (állapot + from node)
+// 🔹 SWITCH SZÍNEZÉS (állapot + csoport + vezetékek)
 // ===========================================
-function updateSwitchVisual(elem, state, fromNodeId) {
-    let color = "#808080"; // alap: szürke
-    if (state === "closed") {
-        // ha van from node szín, használjuk
-        color = wireColors[fromNodeId] || "#00FF00"; 
-        elem.style.stroke = color;      // körvonal
-        elem.style.fill = lightenColor(color, 0.4); // világosabb kitöltés
-    } else if (state === "open") {
-        elem.style.stroke = "#000000";  // fekete körvonal nyitott
-        elem.style.fill = "transparent"; // átlátszó kitöltés
-    } else {
-        elem.style.stroke = "#808080";
-        elem.style.fill = "none";
+function updateSwitchVisual(switchId) {
+    const info = switchData[switchId];
+    const elem = document.getElementById(switchId);
+    if (!elem) return;
+
+    const groupId = info.group;
+    const groupElem = document.getElementById(groupId);
+    if (!groupElem) return;
+
+    // 🟢 Zárt szakaszoló → a csoport színe (wireColors alapján)
+    if (info.state === "closed") {
+        let color = wireColors[groupId] || "#00FF00";
+        setGroupColor(groupElem, color);
+        elem.style.stroke = color;
+        elem.style.fill = lightenColor(color, 0.4);
+
+    // ⚫ Nyitott szakaszoló → fekete, ha minden táplálás megszűnt
+    } else if (info.state === "open") {
+        // ellenőrizni a csoport vezetékét
+        let anyActive = false;
+        groupElem.querySelectorAll("path, circle, rect, ellipse").forEach(child => {
+            const childId = child.id;
+            if (wireColors[childId] && childId !== switchId) anyActive = true;
+        });
+
+        const color = anyActive ? (wireColors[groupId] || "#808080") : "#000000";
+        setGroupColor(groupElem, color);
+
+        elem.style.stroke = color;
+        elem.style.fill = "transparent";
     }
+}
+
+// ===========================================
+// 🔹 Csoport minden elemének színét állítja
+// ===========================================
+function setGroupColor(groupElem, color) {
+    groupElem.querySelectorAll("*").forEach(child => {
+        // Csak stroke-t állítunk, ha a child nem fill-es elem
+        child.style.stroke = color;
+        if (child.tagName !== "path") child.style.fill = color; 
+    });
 }
 
 // ===========================================
@@ -142,11 +164,12 @@ function rotateSwitch(elem, angle) {
 // ===========================================
 // 🔹 KATTINTÁS → ÁLLAPOTVÁLTÁS
 // ===========================================
-function toggleSwitch(id, elem, info) {
+function toggleSwitch(id) {
+    const info = switchData[id];
+    const elem = document.getElementById(id);
     info.state = (info.state === "closed") ? "open" : "closed"; // váltás
 
-    // frissítés szín + forgatás
-    updateSwitchVisual(elem, info.state, info.from);
+    updateSwitchVisual(id);
     rotateSwitch(elem, info.state === "open" ? 30 : 0);
 
     console.log(`Szakaszoló ${id} → ${info.state}`);
