@@ -139,7 +139,7 @@
           "connects": ["s_JBH_STR"],
           "element_id": "w_JBH_STR",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "vezetek"          
+          "type": "mellekaramkor"          
        },
        "w_JBH_Aj": {
           "connects": ["s_JBH_Aj"],
@@ -356,7 +356,7 @@
           "connects": ["s_PT_STR"],
           "element_id": "w_PT_STR",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "vezetek"          
+          "type": "mellekaramkor"          
        },
        "w_PT_Aj": {
           "connects": ["s_PT_Aj"],
