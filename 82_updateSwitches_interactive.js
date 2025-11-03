@@ -1,5 +1,6 @@
 // ===========================================
 // ⚡ TOPOLOGIA ALAPÚ VEZETÉKSZÍNEZÉS + SZAKASZOLÓ KEZELÉS
+//    Feed csoportok statikusak, szakaszolók és csoportok dinamikusak
 // ===========================================
 
 // 🌍 Globális változók
@@ -18,6 +19,7 @@ async function loadTopologyColors() {
         topologyData = topo;
 
         szinTabla = topo.szinek;
+
         // Alapszínek hozzárendelése a vezetékekhez
         Object.values(topo.stations).forEach(station => {
             Object.entries(station.nodes).forEach(([id, node]) => {
@@ -37,7 +39,7 @@ async function loadTopologyColors() {
 }
 
 // ===========================================
-// 2️⃣ FEED PONTOK KEZELÉSE (mindig feszültség alatt)
+// 2️⃣ FEED PONTOK KEZELÉSE (mindig aktív, statikus szín)
 // ===========================================
 function applyFeeds() {
     if (!topologyData.feeds) return;
@@ -45,7 +47,7 @@ function applyFeeds() {
     Object.entries(topologyData.feeds).forEach(([feedName, feed]) => {
         const nodeId = feed.node;
         const phase = feed.phase;
-        const colorKey = `${phase}_jobb`; // vagy _bal, ha kell
+        const colorKey = `${phase}_jobb`; // vagy _bal
         const color = topologyData.szinek[colorKey] || "#FFFF00";
 
         const elem = document.getElementById(nodeId);
@@ -54,7 +56,13 @@ function applyFeeds() {
             elem.style.fill = "none";
         }
 
-        wireColors[nodeId] = color; // feszültség alatt van
+        // Feed csoport mindig aktív
+        const groupElem = document.getElementById(feed.group);
+        if (groupElem) {
+            setGroupColor(groupElem, color);
+        }
+
+        wireColors[nodeId] = color;
         console.log(`Feed aktív: ${nodeId} (${phase})`);
     });
 }
@@ -67,7 +75,7 @@ function applyWireColors() {
         const elem = document.getElementById(nodeId);
         if (elem) {
             elem.style.stroke = color;
-            elem.style.fill = "none"; // csak stroke, nincs kitöltés
+            elem.style.fill = "none";
         }
     });
 }
@@ -104,7 +112,7 @@ async function loadSwitchData() {
 }
 
 // ===========================================
-// 5️⃣ SZAKASZOLÓK SZÍNEZÉSE ÉS CSOPORTSZÍN
+// 5️⃣ SZAKASZOLÓK ÉS CSOPORTOK ÁLLAPOT SZÁMÍTÁS
 // ===========================================
 function updateSwitchVisual(switchId) {
     const info = switchData[switchId];
@@ -115,18 +123,27 @@ function updateSwitchVisual(switchId) {
     const groupElem = document.getElementById(groupId);
     if (!groupElem) return;
 
-    // Ha zárt → a csoport színét a fázis alapján vesszük
+    // Feed csoportokat nem módosítunk
+    if (topologyData.feeds && Object.values(topologyData.feeds).some(f => f.group === groupId)) {
+        // Feed csoport statikus, szín már beállítva
+        elem.style.stroke = wireColors[switchId] || "#00FF00";
+        elem.style.fill = "none";
+        return;
+    }
+
+    // Ha szakaszoló zárt → aktív szín mindkettőn
     if (info.state === "closed") {
-        let color = wireColors[groupId] || "#00FF00";
+        const color = wireColors[groupId] || "#00FF00";
         setGroupColor(groupElem, color);
         elem.style.stroke = color;
         elem.style.fill = "none";
     } else {
-        // Nyitott: ha nincs a csoportban aktív vezeték, legyen fekete
+        // Nyitott szakaszoló → ellenőrizzük a csoport többi aktív elemét
         let anyActive = false;
         groupElem.querySelectorAll("*").forEach(child => {
             const id = child.id;
-            if (wireColors[id] && id !== switchId) anyActive = true;
+            if (switchData[id] && switchData[id].state === "closed") anyActive = true;
+            else if (wireColors[id] && id !== switchId) anyActive = true;
         });
 
         const color = anyActive ? (wireColors[groupId] || "#808080") : "#000000";
@@ -142,7 +159,7 @@ function updateSwitchVisual(switchId) {
 function setGroupColor(groupElem, color) {
     groupElem.querySelectorAll("*").forEach(child => {
         child.style.stroke = color;
-        child.style.fill = "none"; // nem töltünk ki semmit
+        child.style.fill = "none";
     });
 }
 
@@ -177,7 +194,7 @@ function toggleSwitch(id) {
 // ===========================================
 async function init() {
     await loadTopologyColors();
-    applyFeeds();       // mindig feszültség alatt lévő pontok
+    applyFeeds();       // Feed pontok statikus, mindig aktív
     applyWireColors();  // alap színek
     await loadSwitchData();
 }
