@@ -605,10 +605,12 @@
   "feeds": {
     "Alallomas_HTK": {
       "node": "w_Alallomas_HTK_gys",
+      "group": "w_Alallomas_HTK_gys",
       "phase": "B"
     },
 	 "Alallomas_Hatvan": {
       "node": "w_JB_gys",
+      "group": "w_JB_gys",
       "phase": "C"
     }
   }
