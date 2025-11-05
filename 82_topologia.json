@@ -40,7 +40,7 @@
        },
       	"w_JBH_Ut": {
           "connects": ["s_H1T", "s_JBH_Ut"],
-          "element_id": "w_Alallomas_HTK_gys",
+          "element_id": "w_JBH_Ut",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
           "fazis": "B",
@@ -93,7 +93,7 @@
           "connects": ["s_JBH_Uv", "s_JBH_Hv", "s_JBH_Aj", "s_JBH_Oj"],
           "element_id": "w_JBH_j_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "csomopont",
+          "type": "gyujtosin",
           "fazis": "B",
           "oldal": "jobb"
        },
@@ -107,7 +107,7 @@
           "connects": ["s_JBH_Ut", "s_JBH_Ht", "s_JBH_Ab", "s_JBH_Ob"],
           "element_id": "w_JBH_b_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "csomopont",
+          "type": "gyujtosin",
           "fazis": "B",
           "oldal": "bal"
        },
@@ -121,7 +121,7 @@
        },
  	      "w_JBH_Hv": {
           "connects": ["s_JBH_U1", "s_PT_U2"],
-          "element_id": "w_JBH_Hv_megker",
+          "element_id": "w_JBH_Hv",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
           "fazis": "B",
@@ -310,7 +310,7 @@
           "connects": ["s_PT_Uv", "s_PT_Hv", "s_PT_Aj", "s_PT_Oj"],
           "element_id": "w_PT_j_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "csomopont",
+          "type": "gyujtosin",
           "fazis": "B",
           "oldal": "jobb"
        },
@@ -324,7 +324,7 @@
           "connects": ["s_PT_Ut", "s_PT_Ht", "s_PT_Ab", "s_PT_Ob"],
           "element_id": "w_PT_b_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "csomopont",
+          "type": "gyujtosin",
           "fazis": "B",
           "oldal": "bal"
        },
@@ -396,7 +396,7 @@
       "switches": {
 		  "s_PT_U2": {
           "type": "szakaszolo",
-          "from": "w_U_PT",
+          "from": "w_JBH_Hv",
           "to": "w_PT_Uv_megker",
           "state": "closed",
           "graphics": {
@@ -432,7 +432,7 @@
         },  
 		  "s_PT_Ut": {
           "type": "szakaszolo",
-          "from": "w_PT_Ut",
+          "from": "w_JBH_Ht",
           "to": "w_PT_b_gys",
           "state": "closed",
 		      "graphics": {
@@ -556,9 +556,9 @@
     },
     "JB": {
       "nodes": {
-        "w_JB_gys": {
+        "w_Hn_gys": {
           "connects": ["s_JB_Ut", "s_JB_Uv"],
-          "element_id": "w_JB_gys",
+          "element_id": "w_Hn_gys",
           "_info": "vezetek | csomopont | leagazas",
           "type": "gyujtosin"
          },
@@ -583,7 +583,7 @@
       "switches": {
 		    "s_JB_Ut": {
           "type": "szakaszolo",
-          "from": "w_JB_gys",
+          "from": "w_Hn_gys",
           "to": "w_JB_Ut",
           "state": "closed",
           "graphics": {
@@ -592,7 +592,7 @@
          },
         "s_JB_Uv": {
           "type": "szakaszolo",
-          "from": "w_JB_gys",
+          "from": "w_Hn_gys",
           "to": "w_JB_Uv",
           "state": "closed",
           "graphics": {
@@ -606,12 +606,14 @@
     "Alallomas_HTK": {
       "node": "w_Alallomas_HTK_gys",
       "group": "w_Alallomas_HTK_gys",
-      "phase": "B"
+      "phase": "B",
+      "oldal": "kozep"
     },
 	 "Alallomas_Hatvan": {
-      "node": "w_JB_gys",
-      "group": "w_JB_gys",
-      "phase": "C"
+      "node": "w_Hn_gys",
+      "group": "w_Hn_gys",
+      "phase": "C",
+      "oldal": "kozep"
     }
   }
 }
