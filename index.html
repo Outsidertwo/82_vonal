@@ -1,45 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>82 Vonal</title>
-     <!-- <script src="82_updateSwitches.js"></script> -->
-     <!-- Ez egy megjegyzés -->
+    <title>Vasúti Szakaszoló Szimuláció</title>
+    <style>
+        /* A szimuláció CSS stílusa */
+        .svg-container { border: 1px solid #ccc; width: 800px; height: 400px; margin: 20px; }
+        
+        /* Általános stílus a szakaszoknak és kapcsolóknak. A színeket a JS fogja állítani a stroke-on keresztül. */
+        .szakasz { stroke-width: 5; transition: stroke 0.3s; }
+        /* A kapcsoló stílusa: fill: none, de a stroke-ot a JS állítja. */
+        .kapcsolo { fill: none; stroke-width: 5; cursor: pointer; transition: transform 0.3s, stroke 0.3s; }
 
+        /* A CSS osztály a nyitott kapcsoló jelzéséhez (pl. 90 fokos forgatás) */
+        .kapcsolo-nyitva { 
+            transform: rotate(90deg); 
+            transform-origin: center center; /* A forgatás középpontja */
+        }
+    </style>
 </head>
 <body>
-    <svg
+
+    <div id="menu-container">
+        <h1>Vasúti Hálózati Szimuláció (Topológia Teszt)</h1>
+        <label for="szcenario-valaszto">Válassz Szcenáriót:</label>
+        <select id="szcenario-valaszto">
+            </select>
+    </div>
+
+    <div class="svg-container">
+        <svg
    width="3500mm"
    height="500mm"
    viewBox="0 0 3500 500"
    version="1.1"
    id="svg1"
-   sodipodi:docname="82_vonal10_nor.svg"
-   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     inkscape:zoom="0.36527619"
-     inkscape:cx="2296.8921"
-     inkscape:cy="661.14356"
-     inkscape:window-width="2560"
-     inkscape:window-height="1417"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs1">
     <clipPath
@@ -27595,7 +27592,7 @@
       </g>
     </g>
     <g
-       id="w_Alallomas_HTK_gys"
+       id="g1162"
        style="stroke:#ff00ff"
        transform="rotate(-90,4180.1285,4405.4109)">
       <path
@@ -27720,7 +27717,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_Ut"
+       id="g1163"
        style="stroke:#00ffff">
       <path
          id="path400-63"
@@ -28160,7 +28157,7 @@
       </g>
     </g>
     <g
-       id="w_Hv_megker"
+       id="g1164"
        style="stroke:#00ffff">
       <path
          d="m 775.781,-349.379 h -5.582"
@@ -28228,7 +28225,7 @@
       </g>
     </g>
     <g
-       id="w_U_JBH"
+       id="g1165"
        style="stroke:#ff00ff">
       <path
          id="path250-85"
@@ -28354,7 +28351,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="w_JBH_STR"
+       id="g1174"
        style="stroke:#ff0000">
       <path
          id="path444-44"
@@ -28497,7 +28494,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_Uv_megker"
+       id="g1166"
        style="stroke:#00ff00">
       <path
          id="path263-63"
@@ -28573,7 +28570,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_O"
+       id="g1168"
        style="stroke:#00ff00">
       <path
          id="path429-7"
@@ -28659,7 +28656,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_Ht"
+       id="g1172"
        style="stroke:#ff00ff">
       <path
          id="path375-43"
@@ -28743,7 +28740,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_R2"
+       id="g1178"
        style="stroke:#ff00ff">
       <path
          id="path500-47"
@@ -28798,7 +28795,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_b_gys"
+       id="g1176"
        style="fill:none;stroke:#ff0000">
       <path
          id="path393-05"
@@ -28840,7 +28837,7 @@
          r="1" />
     </g>
     <g
-       id="w_JBH_Ab"
+       id="g1177"
        style="stroke:#ff0000">
       <path
          id="path251-67"
@@ -28907,7 +28904,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_Aj"
+       id="g1173"
        style="stroke:#008000">
       <path
          id="path249-08"
@@ -29040,7 +29037,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_Hv"
+       id="g1171"
        style="stroke:#ff0000">
       <path
          id="path183-02"
@@ -29094,7 +29091,7 @@
          r="1" />
     </g>
     <g
-       id="w_JBH_Hv_megker"
+       id="g1170"
        style="stroke:#0000ff">
       <path
          id="path266-17"
@@ -29172,7 +29169,7 @@
       </g>
     </g>
     <g
-       id="w_JBH_j_gys"
+       id="g1167"
        style="stroke:#ff00ff">
       <path
          id="path381-84"
@@ -29210,7 +29207,7 @@
          r="1" />
     </g>
     <g
-       id="w_PT_Hv"
+       id="g1181"
        style="stroke:#ff00ff">
       <path
          id="path285-75"
@@ -29264,7 +29261,7 @@
          r="1" />
     </g>
     <g
-       id="w_JB_FH_semleges"
+       id="g1182"
        style="stroke:#000000"
        transform="translate(0,-0.5996875)">
       <path
@@ -29375,7 +29372,7 @@
       </g>
     </g>
     <g
-       id="w_PT_Ht"
+       id="g1180"
        style="stroke:#800000">
       <path
          id="path257-6"
@@ -29439,22 +29436,19 @@
        cy="186.57848"
        r="1" />
     <g
-       id="w_JB_FH_HnT_UT">
-      <g
-         id="s_JB_FH_HnT_UT">
-        <path
-           id="path494-87-1-8-6-84-4-4-5-7-27-4-7-4"
-           d="m 436.7938,186.5764 h 12"
-           style="fill:none;stroke:#ff0000;stroke-width:0.600001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
-        <ellipse
-           style="opacity:0;fill:none;stroke:#000000;stroke-width:7.00012;stroke-linecap:square;stroke-miterlimit:1;stroke-dasharray:none;paint-order:stroke fill markers"
-           id="path1159-1"
-           cx="441.29114"
-           cy="186.58263"
-           rx="3.4904802"
-           ry="3.4905512"
-           transform="matrix(1,0,0.00817361,0.9999666,0,0)" />
-      </g>
+       id="s_JB_FH_HnT_UT">
+      <path
+         id="path494-87-1-8-6-84-4-4-5-7-27-4-7-4"
+         d="m 436.7938,186.5764 h 12"
+         style="fill:none;stroke:#ff0000;stroke-width:0.600001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         style="opacity:0;fill:none;stroke:#000000;stroke-width:7.00012;stroke-linecap:square;stroke-miterlimit:1;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="path1159-1"
+         cx="441.29114"
+         cy="186.58263"
+         rx="3.4904802"
+         ry="3.4905512"
+         transform="matrix(1,0,0.00817361,0.9999666,0,0)" />
     </g>
     <g
        id="g1175-9"
@@ -29566,7 +29560,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="w_JBH_R1"
+       id="g1179"
        style="stroke:#ff00ff">
       <path
          id="path499-995"
@@ -30146,7 +30140,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="w_PT_STR"
+       id="g1174-0"
        style="stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30290,7 +30284,7 @@
       </g>
     </g>
     <g
-       id="w_PT_Uv_megker"
+       id="g1166-2"
        style="stroke:#00ff00"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30367,7 +30361,7 @@
       </g>
     </g>
     <g
-       id="w_PT_O"
+       id="g1168-3"
        style="stroke:#00ff00"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30454,7 +30448,7 @@
       </g>
     </g>
     <g
-       id="w_PT_R2"
+       id="g1178-0"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30510,7 +30504,7 @@
       </g>
     </g>
     <g
-       id="w_PT_b_gys"
+       id="g1176-5"
        style="fill:none;stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30553,7 +30547,7 @@
          r="1" />
     </g>
     <g
-       id="w_PT_Ab"
+       id="g1177-8"
        style="stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30621,7 +30615,7 @@
       </g>
     </g>
     <g
-       id="w_PT_Aj"
+       id="g1173-9"
        style="stroke:#008000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30755,7 +30749,7 @@
       </g>
     </g>
     <g
-       id="w_PT_Hv_megker"
+       id="g1170-7"
        style="stroke:#0000ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30836,7 +30830,7 @@
       </g>
     </g>
     <g
-       id="w_PT_j_gys"
+       id="g1167-8"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30984,7 +30978,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="w_PT_R1"
+       id="g1179-7"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -31082,7 +31076,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="w_Hn_gys"
+       id="g1167-8-2"
        style="stroke:#ff00ff"
        transform="translate(-609.04166,-86.907569)">
       <path
@@ -31121,7 +31115,7 @@
          r="1" />
     </g>
     <g
-       id="w_JB_Uv"
+       id="g1183"
        style="stroke:#0000ff">
       <path
          id="path81-2"
@@ -31192,7 +31186,7 @@
       </g>
     </g>
     <g
-       id="w_JB_Ut"
+       id="g1184"
        style="stroke:#000000">
       <path
          id="path79-75"
@@ -31242,13 +31236,15 @@
     </g>
   </g>
 </svg>
-<!--<script src="82_updateSwitches_interactive.js"></script>-->
-<script src="82_networkLogic.js"></script>
-<script src="82_voltageFlow.js"></script>
-<script src="82_switchControl.js"></script>
+    </div>
 
+    <script src="vasut_logika.js"></script>
+    <script src="grafika_kezelo.js"></script>
+    <script>
+        // Inicializálási pont: elindítja a teljes szimulációt, miután az oldal betöltődött.
+        document.addEventListener('DOMContentLoaded', () => {
+            vasut_logika.init();
+        });
+    </script>
 </body>
 </html>
-
-
-

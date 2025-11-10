@@ -1,0 +1,12 @@
+{
+  "scenariok": {
+    "alap_allapot": {},         // Alapállapot: minden kapcsoló az eredeti (JSON-beli) állásban
+    "hiba_tovabb": {            // Hiba szcenárió
+      "s_H1V": "open"           // A s_H1V kapcsoló nyitott
+    },
+    "parhuzamos_teszt": {
+      "s_H1T": "open",          // A s_H1T kapcsoló nyitott
+      "s_H1V": "closed"         // A s_H1V kapcsoló zárt (az alapállás is zárt, de így felülírható)
+    }
+  }
+}
