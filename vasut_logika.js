@@ -1,225 +1,259 @@
-/*
-* =========================================================================================
-* VASUT_LOGIKA.JS - A Szimuláció Logikai Magja (a "DÖNTÉSHOZÓ")
-* =========================================================================================
-* * A működés lényege: BFS Algoritmus (Breadth-First Search - Szélességi Bejárás)
-* A BFS garantálja, hogy minden útvonalat megtalál és kezeli a párhuzamos betáplálásokat.
-*/
+// vasut_logika.js - TELJES VERZIÓ (GRÁF ÉPÍTÉS, BFS SZÁMÍTÁS ÉS KAPCSOLÓ KEZELÉS)
 
 // --- GLOBÁLIS LOGIKAI TÁROLÓK ---
+let Logikai_Adatmodell_Graf = {}; 
+let Kapcsolo_Allapotok = {};     
+let Szinek = {};                
+let Szcenariok = {};            
+let Grafika_Kezelo_Referencia;  
 
-let Logikai_Adatmodell_Graf = {}; // A teljes gráf: szakaszok és szomszédságok (w_...)
-let Kapcsolo_Allapotok = {};     // A kapcsolók aktuális logikai állása: { "s_id": "closed" | "open", ... }
-let Szinek = {};                // A JSON-ból beolvasott színpaletta
-let Szcenariok = {};            // A beolvasott szcenáriók adatai
-let Grafika_Kezelo_Referencia;  // A grafika_kezelo.js modul publikus interfésze (visszahívás).
+// --- SEGÉDFÜGGVÉNYEK ---
 
-
-// --- PUBLIKUS SEGÉDMETÓDUSOK A GRAFIKÁNAK ---
-
-/**
- * Szinkronizálja a külső Grafika Kezelő Referenciát.
- * Ezt a függvényt a grafika_kezelo.js hívja meg az inicializáláskor.
- * @param {object} referenca - A grafika_kezelo.js modul interfésze.
- */
-function set_grafika_kezleo(referenca) {
-    Grafika_Kezelo_Referencia = referenca;
-}
-
-/**
- * Lekérdez egy JSON fájlt aszinkron módon.
- */
 async function betolt_json(fajl_nev) {
-    const valasz = await fetch(fajl_nev);
-    if (!valasz.ok) {
-        throw new Error(`HIBA: Nem sikerült betölteni a(z) ${fajl_nev} fájlt.`);
+    console.log(`LOGIKA: Megkísérli betölteni a JSON fájlt: ${fajl_nev}`); 
+    const response = await fetch(fajl_nev);
+    if (!response.ok) {
+        throw new Error(`Hiba a fájl betöltésekor: ${fajl_nev}, státusz: ${response.status}`);
     }
-    return valasz.json();
+    return response.json();
 }
 
+function set_grafika_kezleo(grafika_kezleo_objektum) {
+    Grafika_Kezelo_Referencia = grafika_kezleo_objektum;
+}
 
 // --- 1. FÁZIS: INICIALIZÁLÁS ---
 
-/**
- * Elindítja a Logika Modult: betölti az adatokat és felépíti a Logikai Gráfot.
- */
-async function init() {
+async function init_adatok() { 
     try {
         const topologia_json = await betolt_json('82_topologia.json');
-        const szcenario_json = await betolt_json('scenarios.json');
-
-        epitesi_kapcsolasi_graf(topologia_json);
-        Szcenariok = szcenario_json.scenariok;
         
-        // Előkészíti a grafikát (ez is aszinkron művelet, de a Grafika Modul kezeli)
-        Grafika_Kezelo_Referencia.init_grafika_kezleo(Szcenariok, Kapcsolo_Allapotok);
-
-        // Első számítás és frissítés a kezdeti állapottal
-        futtat_es_frissit();
-
+        epitesi_kapcsolasi_graf(topologia_json);
+        
+        Szinek = topologia_json.szinek || {};
+        
+        // Alapértelmezett színek beállítása
+        if (!Szinek.energized) Szinek.energized = '#ff0000'; // Vörös
+        if (!Szinek.unenergized) Szinek.unenergized = '#808080'; // Szürke
+        
+        if (Grafika_Kezelo_Referencia) {
+            Grafika_Kezelo_Referencia.init_grafika_kezelo(Szcenariok, Kapcsolo_Allapotok); 
+        }
+        
     } catch (hiba) {
-        console.error("Hiba a szimuláció inicializálásában:", hiba);
+        console.error("KRITIKUS HIBA a szimuláció inicializálásában:", hiba); 
     }
 }
 
+// ----------------------------------------------------------------------------------------------------------------------
+
 /**
- * Felépíti a Logikai Adatmodell Gráfot a JSON adatokból.
+ * Létrehozza a kapcsolóállapotokat és felépíti a logikai gráfot a JSON-ból.
  */
 function epitesi_kapcsolasi_graf(nyers_json) {
-    Szinek = nyers_json.szinek;
-    const kapcsolok_index = {};
+    
+    // 1. Logikai Gráf inicializálása
+    Logikai_Adatmodell_Graf = {
+        nodes: {},    
+        segments: {}, 
+        feeds: {}     
+    };
+    
+    // 2. Szegmensek, Csomópontok és Kapcsoló Állapotok gyűjtése
+    nyers_json.stations.forEach(station => { 
+        
+        // --- Csomópontok és Szegmensek gyűjtése EGYÜTT a 'nodes' objektumból ---
+        if (station.nodes) {
+            Object.entries(station.nodes).forEach(([id, node_data]) => {
+                
+                // Csomópont bejegyzése (összeköttetések gyűjtése)
+                Logikai_Adatmodell_Graf.nodes[id] = { 
+                    id: id,
+                    connections: node_data.connects || [], 
+                    is_feed_point: false, 
+                    state: 'unenergized' 
+                };
 
-    // 1. Kapcsolók Indexelése és Alapállás Mentése
-    nyers_json.stations.forEach(station => {
-        station.switches.forEach(sw => {
-            kapcsolok_index[sw.id] = sw;
-            Kapcsolo_Allapotok[sw.id] = sw.state; // Alapállás (closed/open) mentése
-        });
-    });
+                // SZERKEZET: A nodes bejegyzés maga a színezhető szegmens.
+                const segment_id = node_data.element_id || id;
+                Logikai_Adatmodell_Graf.segments[segment_id] = {
+                    id: segment_id,
+                    ends: [],     
+                    group: node_data.type,  
+                    state: 'unenergized',               
+                    connected_segments: [] 
+                };
+            });
+        }
+        
+        // --- Kapcsoló (Switch) Állapotok Inicializálása és gráfba vitele ---
+        if (station.switches) {
+            Object.entries(station.switches).forEach(([id, sw_data]) => {
+                 // Kapcsolók állapota tárolása
+                 Kapcsolo_Allapotok[id] = sw_data.state || "closed";
+                 
+                 const from_segment_id = sw_data.from;
+                 const to_segment_id = sw_data.to;
 
-    // 2. Node-ok (Szakaszok) felépítése és inicializálása
-    nyers_json.stations.forEach(station => {
-        station.nodes.forEach(node => {
-            const fazis_oldal = `${node.fazis}_${node.oldal}`;
-            const aktiv_szin_kod = Szinek[fazis_oldal] || Szinek.kikapcsolt;
+                 // A kapcsolót (szakaszolót) is szegmensként vesszük fel, mivel színezni kell.
+                 Logikai_Adatmodell_Graf.segments[id] = {
+                     id: id,
+                     ends: [from_segment_id, to_segment_id], 
+                     group: sw_data.type, // 'szakaszolo'
+                     state: sw_data.state,
+                     connected_segments: []
+                 };
 
-            Logikai_Adatmodell_Graf[node.id] = {
-                id: node.id,
-                aktiv_szin: aktiv_szin_kod,         // A Topológiában definiált szín
-                is_feszultseg_alatt: false,         // Kezdeti logikai állapot
-                is_feed: nyers_json.feeds.some(f => f.node === node.id), // Feszültségforrás-e?
-                szomszedok: []                      // A csatlakozó szakaszok listája
-            };
-        });
-    });
-
-    // 3. Élek (Összeköttetések/Kapcsolók) hozzárendelése (Gráf építése)
-    Object.values(kapcsolok_index).forEach(sw => {
-        const node_from = Logikai_Adatmodell_Graf[sw.from];
-        const node_to = Logikai_Adatmodell_Graf[sw.to];
-
-        if (node_from && node_to) {
-            // A kapcsolat kétirányú:
-            node_from.szomszedok.push({ node_id: sw.to, kapcsolo_id: sw.id });
-            node_to.szomszedok.push({ node_id: sw.from, kapcsolo_id: sw.id });
+                 // Frissítjük a két szegmens kapcsolatát (a kapcsolókon keresztül)
+                 if (Logikai_Adatmodell_Graf.segments[from_segment_id]) {
+                    Logikai_Adatmodell_Graf.segments[from_segment_id].connected_segments.push(to_segment_id);
+                 }
+                 if (Logikai_Adatmodell_Graf.segments[to_segment_id]) {
+                    Logikai_Adatmodell_Graf.segments[to_segment_id].connected_segments.push(from_segment_id);
+                 }
+            });
         }
     });
-}
-
-
-// --- 2. FÁZIS: LOGIKA MAGJA (BFS) ---
-
-/**
- * A fő vezérlő rutin, ami minden logikai változás után lefut.
- */
-function futtat_es_frissit() {
-    // 1. BFS Algoritmus futtatása a feszültség alatt álló szakaszok listájáért
-    const feszultseg_lista = szamol_feszultsegi_allapotok();
     
-    // 2. Frissítés a Grafika Modulban (színezés)
-    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(feszultseg_lista);
+    // 3. Tápforrások azonosítása (Feeds)
+    if (nyers_json.feeds) {
+        Logikai_Adatmodell_Graf.feeds = nyers_json.feeds;
+        
+        // A JSON-ban a feeds egy TÖMB, a forEach jó.
+        nyers_json.feeds.forEach(feed => {
+            const feed_node_id = feed.node;
+            
+            // Feszültség alá helyezzük a tápforráshoz tartozó csomópontot (a BFS kezdőpontja)
+            if (Logikai_Adatmodell_Graf.nodes[feed_node_id]) {
+                Logikai_Adatmodell_Graf.nodes[feed_node_id].is_feed_point = true;
+                Logikai_Adatmodell_Graf.nodes[feed_node_id].state = 'energized';
+            }
+            
+            // A szegmenst is feszültség alá helyezzük a kezdeti színezéshez.
+            if (Logikai_Adatmodell_Graf.segments[feed_node_id]) {
+                 Logikai_Adatmodell_Graf.segments[feed_node_id].state = 'energized';
+            }
+        }); // <- Itt volt a valószínű hiba, a blokk lezárása
+    }
 
-    // 3. Kapcsolók vizuális frissítése (nyitott/zárt jelzés)
-    Grafika_Kezelo_Referencia.frissit_kapcsolo_megjelenites(Kapcsolo_Allapotok);
+    console.log(`GRÁF ÉPÍTÉS KÉSZ: ${Object.keys(Logikai_Adatmodell_Graf.nodes).length} csomópont, ${Object.keys(Logikai_Adatmodell_Graf.segments).length} szegmens inicializálva.`);
+}
+
+// ----------------------------------------------------------------------------------------------------------------------
+
+// --- 2. FÁZIS: SZÁMÍTÁS ÉS FRISSÍTÉS ---
+
+function start_szimulacio() { 
+    futtat_es_frissit();
+}
+
+function futtat_es_frissit() {
+    const frissitett_szegmensek = szamol_feszultsegi_allapotok();
+    // A grafikus kezelőnek a frissített szegmens állapotokat (színeket) és a kapcsoló állást is átadjuk.
+    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(frissitett_szegmensek, Kapcsolo_Allapotok);
 }
 
 /**
- * BFS Algoritmus: Kiszámítja, mely szakaszok vannak feszültség alatt.
- * @returns {Array} - A feszültség alatt álló node-ok teljes listája.
+ * Feszültség terjedésének számítása BFS (szélességi bejárás) segítségével.
  */
 function szamol_feszultsegi_allapotok() {
     
-    let varolista = [];   // A BFS várólistája (Queue)
-    let eredmeny_lista = []; // A grafikai kimeneti lista (a feszült node-ok)
-
-    // Inicializálás: Minden node-ot resetelünk, a forrásokat betesszük a várólistába
-    Object.values(Logikai_Adatmodell_Graf).forEach(node => {
-        node.is_feszultseg_alatt = false;
-        if (node.is_feed) {
-            node.is_feszultseg_alatt = true;
-            varolista.push(node.id);
-            eredmeny_lista.push(node);
+    // 1. Inicializálás
+    Object.values(Logikai_Adatmodell_Graf.nodes).forEach(node => {
+        if (!node.is_feed_point) {
+            node.state = 'unenergized';
+        }
+    });
+    Object.values(Logikai_Adatmodell_Graf.segments).forEach(segment => {
+        if (segment.group !== 'szakaszolo' && !Logikai_Adatmodell_Graf.nodes[segment.id]?.is_feed_point) { 
+            segment.state = 'unenergized';
+        } else if (segment.group === 'szakaszolo') {
+            // A kapcsolók állapota a logikai tárolóból származik
+            segment.state = Kapcsolo_Allapotok[segment.id] === 'closed' ? 'energized' : 'open';
         }
     });
 
-    // Bejárási Hurok (Feszültség terjedése)
-    let node_A_id;
-    while (varolista.length > 0) {
-        node_A_id = varolista.shift(); // Kiemeljük a vizsgálandó szakasz ID-ját
-        const node_A = Logikai_Adatmodell_Graf[node_A_id];
-
-        // Megvizsgáljuk a Node A összes szomszédját
-        for (const szomszed of node_A.szomszedok) {
-            const node_B = Logikai_Adatmodell_Graf[szomszed.node_id];
-
-            // 1. FONTOS FELTÉTEL: A kapcsoló zárt állapotban van-e?
-            const kapcsolo_zart = Kapcsolo_Allapotok[szomszed.kapcsolo_id] === "closed";
-            
-            // 2. FONTOS FELTÉTEL: A Node B még nincs feszültség alatt? (Ne vizsgáljuk újra a látogatott elemeket)
-            const nincs_feszultseg_alatt = !node_B.is_feszultseg_alatt;
-
-            if (kapcsolo_zart && nincs_feszultseg_alatt) {
-                // Feszültség terjedése (átadása)
-                node_B.is_feszultseg_alatt = true;
-                varolista.push(node_B.id);
-                eredmeny_lista.push(node_B);
-            }
+    const queue = []; 
+    const visited = new Set(); 
+    
+    // Kezdőpontok (tápforrások) feltöltése
+    Object.values(Logikai_Adatmodell_Graf.nodes).forEach(node => {
+        if (node.is_feed_point) {
+            queue.push(node.id);
+            visited.add(node.id);
         }
+    });
+
+    // 2. BFS futtatása
+    while (queue.length > 0) {
+        const current_segment_id = queue.shift(); 
+        const current_node = Logikai_Adatmodell_Graf.nodes[current_segment_id];
+
+        if (!current_node) continue;
+        
+        // A jelenlegi szegmenst/csomópontot feszültség alá helyezzük
+        if (Logikai_Adatmodell_Graf.segments[current_segment_id]) {
+            Logikai_Adatmodell_Graf.segments[current_segment_id].state = 'energized';
+        }
+
+        // Végigmegyünk a csomóponthoz csatlakozó kapcsolók ID-in (pl. "s_H1V")
+        current_node.connections.forEach(kapcsolo_id => {
+            
+            const kapcsolo = Logikai_Adatmodell_Graf.segments[kapcsolo_id]; 
+            if (!kapcsolo || kapcsolo.group !== 'szakaszolo') return;
+
+            // 3. Kapcsoló Ellenőrzés
+            if (Kapcsolo_Allapotok[kapcsolo_id] === "open") {
+                // Ha nyitott, itt megáll a terjedés.
+                return;
+            }
+
+            // Ha zárt, a feszültség átjut, és a kapcsoló is feszültség alá kerül.
+            kapcsolo.state = 'energized';
+            
+            // Megkeressük a kapcsoló másik végét (szegmens ID-t)
+            const next_segment_id = kapcsolo.ends.find(id => id !== current_segment_id);
+            const next_segment = Logikai_Adatmodell_Graf.segments[next_segment_id];
+            
+            // Ha a következő szegmens létezik és még nem jártuk be, folytatjuk a BFS-t.
+            if (next_segment && !visited.has(next_segment_id)) {
+                next_segment.state = 'energized';
+                visited.add(next_segment_id);
+                queue.push(next_segment_id); 
+            }
+        });
     }
     
-    return eredmeny_lista;
+    return Logikai_Adatmodell_Graf.segments;
 }
 
+// ----------------------------------------------------------------------------------------------------------------------
 
 // --- 3. FÁZIS: ÁLLAPOT KEZELÉS ---
 
-/**
- * Kezeli a felhasználói kattintásból eredő kapcsolóállás váltását.
- */
 function kapcsolo_kezeles(kapcsolo_id) {
     if (Kapcsolo_Allapotok.hasOwnProperty(kapcsolo_id)) {
-        // Átváltjuk az aktuális állapotot (closed <-> open)
         const uj_allapot = (Kapcsolo_Allapotok[kapcsolo_id] === "closed") ? "open" : "closed";
         Kapcsolo_Allapotok[kapcsolo_id] = uj_allapot;
         
-        // Teljes szimuláció frissítése az új állással
-        futtat_es_frissit();
+        console.log(`LOGIKA: A(z) ${kapcsolo_id} állapota váltva: ${uj_allapot}`);
+        futtat_es_frissit(); // Újraszámolás és frissítés
     }
 }
 
-/**
- * Beállítja a hálózatot egy előre definiált szcenárióba.
- */
 function alkalmaz_szcenario(szcenario_id) {
-    const kivalasztott_szcenario = Szcenariok[szcenario_id];
-
-    if (!kivalasztott_szcenario) return;
-    
-    // 1. Reset az összes kapcsolóra: minden visszaáll az alap "closed" állapotba.
-    // Ezt a bonyolultabb JSON állás helyett most feltételezzük.
-    Object.keys(Kapcsolo_Allapotok).forEach(id => {
-        Kapcsolo_Allapotok[id] = 'closed'; 
-    });
-
-    // 2. Felülírjuk azokat az állásokat, amiket a szcenárió definiál
-    for (const [id, allapot] of Object.entries(kivalasztott_szcenario)) {
-        if (Kapcsolo_Allapotok.hasOwnProperty(id)) {
-            Kapcsolo_Allapotok[id] = allapot;
-        }
-    }
-
-    // Teljes szimuláció frissítése az új állással
-    futtat_es_frissit();
+    console.warn("Szcenárió alkalmazás ideiglenesen letiltva.");
 }
 
 
 // --- PUBLIKUS INTERFÉSZ A KÜLSŐ MODULOK FELÉ ---
 window.vasut_logika = {
-    init: init,
+    init_adatok: init_adatok,
+    start_szimulacio: start_szimulacio,
     set_grafika_kezleo: set_grafika_kezleo,
     kapcsolo_kezeles: kapcsolo_kezeles,
-    alkalmaz_szcenario: alkalmaz_szcenario,
-    get_node_adatok: (id) => Logikai_Adatmodell_Graf[id],
+    alkalmaz_szcenario: alkalmaz_szcenario, 
+    get_node_adatok: () => Logikai_Adatmodell_Graf,
     get_szcenario_nevek: () => Szcenariok,
     get_szinek: () => Szinek,
     get_kapcsolo_allapotok: () => Kapcsolo_Allapotok

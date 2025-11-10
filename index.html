@@ -2,33 +2,12 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Vasúti Szakaszoló Szimuláció</title>
-    <style>
-        /* A szimuláció CSS stílusa */
-        .svg-container { border: 1px solid #ccc; width: 800px; height: 400px; margin: 20px; }
-        
-        /* Általános stílus a szakaszoknak és kapcsolóknak. A színeket a JS fogja állítani a stroke-on keresztül. */
-        .szakasz { stroke-width: 5; transition: stroke 0.3s; }
-        /* A kapcsoló stílusa: fill: none, de a stroke-ot a JS állítja. */
-        .kapcsolo { fill: none; stroke-width: 5; cursor: pointer; transition: transform 0.3s, stroke 0.3s; }
-
-        /* A CSS osztály a nyitott kapcsoló jelzéséhez (pl. 90 fokos forgatás) */
-        .kapcsolo-nyitva { 
-            transform: rotate(90deg); 
-            transform-origin: center center; /* A forgatás középpontja */
-        }
-    </style>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasúti Szimuláció</title>
+    </head>
 <body>
 
-    <div id="menu-container">
-        <h1>Vasúti Hálózati Szimuláció (Topológia Teszt)</h1>
-        <label for="szcenario-valaszto">Válassz Szcenáriót:</label>
-        <select id="szcenario-valaszto">
-            </select>
-    </div>
-
-    <div class="svg-container">
+    <div id="szimulacio_kontener">
         <svg
    width="3500mm"
    height="500mm"
@@ -27592,7 +27571,7 @@
       </g>
     </g>
     <g
-       id="g1162"
+       id="w_Alallomas_HTK_gys"
        style="stroke:#ff00ff"
        transform="rotate(-90,4180.1285,4405.4109)">
       <path
@@ -27717,7 +27696,7 @@
       </g>
     </g>
     <g
-       id="g1163"
+       id="w_JBH_Ut"
        style="stroke:#00ffff">
       <path
          id="path400-63"
@@ -28157,7 +28136,7 @@
       </g>
     </g>
     <g
-       id="g1164"
+       id="w_Hv_megker"
        style="stroke:#00ffff">
       <path
          d="m 775.781,-349.379 h -5.582"
@@ -28225,7 +28204,7 @@
       </g>
     </g>
     <g
-       id="g1165"
+       id="w_U_JBH"
        style="stroke:#ff00ff">
       <path
          id="path250-85"
@@ -28351,7 +28330,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1174"
+       id="w_JBH_STR"
        style="stroke:#ff0000">
       <path
          id="path444-44"
@@ -28494,7 +28473,7 @@
       </g>
     </g>
     <g
-       id="g1166"
+       id="w_JBH_Uv_megker"
        style="stroke:#00ff00">
       <path
          id="path263-63"
@@ -28570,7 +28549,7 @@
       </g>
     </g>
     <g
-       id="g1168"
+       id="w_JBH_O"
        style="stroke:#00ff00">
       <path
          id="path429-7"
@@ -28656,7 +28635,7 @@
       </g>
     </g>
     <g
-       id="g1172"
+       id="w_JBH_Ht"
        style="stroke:#ff00ff">
       <path
          id="path375-43"
@@ -28740,7 +28719,7 @@
       </g>
     </g>
     <g
-       id="g1178"
+       id="w_JBH_R2"
        style="stroke:#ff00ff">
       <path
          id="path500-47"
@@ -28795,7 +28774,7 @@
       </g>
     </g>
     <g
-       id="g1176"
+       id="w_JBH_b_gys"
        style="fill:none;stroke:#ff0000">
       <path
          id="path393-05"
@@ -28837,7 +28816,7 @@
          r="1" />
     </g>
     <g
-       id="g1177"
+       id="w_JBH_Ab"
        style="stroke:#ff0000">
       <path
          id="path251-67"
@@ -28904,7 +28883,7 @@
       </g>
     </g>
     <g
-       id="g1173"
+       id="w_JBH_Aj"
        style="stroke:#008000">
       <path
          id="path249-08"
@@ -29037,7 +29016,7 @@
       </g>
     </g>
     <g
-       id="g1171"
+       id="w_JBH_Hv"
        style="stroke:#ff0000">
       <path
          id="path183-02"
@@ -29091,7 +29070,7 @@
          r="1" />
     </g>
     <g
-       id="g1170"
+       id="w_JBH_Hv_megker"
        style="stroke:#0000ff">
       <path
          id="path266-17"
@@ -29169,7 +29148,7 @@
       </g>
     </g>
     <g
-       id="g1167"
+       id="w_JBH_j_gys"
        style="stroke:#ff00ff">
       <path
          id="path381-84"
@@ -29207,7 +29186,7 @@
          r="1" />
     </g>
     <g
-       id="g1181"
+       id="w_PT_Hv"
        style="stroke:#ff00ff">
       <path
          id="path285-75"
@@ -29261,7 +29240,7 @@
          r="1" />
     </g>
     <g
-       id="g1182"
+       id="w_JB_FH_semleges"
        style="stroke:#000000"
        transform="translate(0,-0.5996875)">
       <path
@@ -29372,7 +29351,7 @@
       </g>
     </g>
     <g
-       id="g1180"
+       id="w_PT_Ht"
        style="stroke:#800000">
       <path
          id="path257-6"
@@ -29436,19 +29415,22 @@
        cy="186.57848"
        r="1" />
     <g
-       id="s_JB_FH_HnT_UT">
-      <path
-         id="path494-87-1-8-6-84-4-4-5-7-27-4-7-4"
-         d="m 436.7938,186.5764 h 12"
-         style="fill:none;stroke:#ff0000;stroke-width:0.600001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         style="opacity:0;fill:none;stroke:#000000;stroke-width:7.00012;stroke-linecap:square;stroke-miterlimit:1;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="path1159-1"
-         cx="441.29114"
-         cy="186.58263"
-         rx="3.4904802"
-         ry="3.4905512"
-         transform="matrix(1,0,0.00817361,0.9999666,0,0)" />
+       id="w_JB_FH_HnT_UT">
+      <g
+         id="s_JB_FH_HnT_UT">
+        <path
+           id="path494-87-1-8-6-84-4-4-5-7-27-4-7-4"
+           d="m 436.7938,186.5764 h 12"
+           style="fill:none;stroke:#ff0000;stroke-width:0.600001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+        <ellipse
+           style="opacity:0;fill:none;stroke:#000000;stroke-width:7.00012;stroke-linecap:square;stroke-miterlimit:1;stroke-dasharray:none;paint-order:stroke fill markers"
+           id="path1159-1"
+           cx="441.29114"
+           cy="186.58263"
+           rx="3.4904802"
+           ry="3.4905512"
+           transform="matrix(1,0,0.00817361,0.9999666,0,0)" />
+      </g>
     </g>
     <g
        id="g1175-9"
@@ -29560,7 +29542,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1179"
+       id="w_JBH_R1"
        style="stroke:#ff00ff">
       <path
          id="path499-995"
@@ -30140,7 +30122,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1174-0"
+       id="w_PT_STR"
        style="stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30284,7 +30266,7 @@
       </g>
     </g>
     <g
-       id="g1166-2"
+       id="w_PT_Uv_megker"
        style="stroke:#00ff00"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30361,7 +30343,7 @@
       </g>
     </g>
     <g
-       id="g1168-3"
+       id="w_PT_O"
        style="stroke:#00ff00"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30448,7 +30430,7 @@
       </g>
     </g>
     <g
-       id="g1178-0"
+       id="w_PT_R2"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30504,7 +30486,7 @@
       </g>
     </g>
     <g
-       id="g1176-5"
+       id="w_PT_b_gys"
        style="fill:none;stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30547,7 +30529,7 @@
          r="1" />
     </g>
     <g
-       id="g1177-8"
+       id="w_PT_Ab"
        style="stroke:#ff0000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30615,7 +30597,7 @@
       </g>
     </g>
     <g
-       id="g1173-9"
+       id="w_PT_Aj"
        style="stroke:#008000"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30749,7 +30731,7 @@
       </g>
     </g>
     <g
-       id="g1170-7"
+       id="w_PT_Hv_megker"
        style="stroke:#0000ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30830,7 +30812,7 @@
       </g>
     </g>
     <g
-       id="g1167-8"
+       id="w_PT_j_gys"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -30978,7 +30960,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1179-7"
+       id="w_PT_R1"
        style="stroke:#ff00ff"
        transform="translate(-254.18163,-0.03718921)">
       <path
@@ -31076,7 +31058,7 @@
          style="fill:none;stroke:#000000;stroke-width:0.254;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1167-8-2"
+       id="w_Hn_gys"
        style="stroke:#ff00ff"
        transform="translate(-609.04166,-86.907569)">
       <path
@@ -31115,7 +31097,7 @@
          r="1" />
     </g>
     <g
-       id="g1183"
+       id="w_JB_Uv"
        style="stroke:#0000ff">
       <path
          id="path81-2"
@@ -31186,7 +31168,7 @@
       </g>
     </g>
     <g
-       id="g1184"
+       id="w_JB_Ut"
        style="stroke:#000000">
       <path
          id="path79-75"
@@ -31240,10 +31222,15 @@
 
     <script src="vasut_logika.js"></script>
     <script src="grafika_kezelo.js"></script>
+
     <script>
-        // Inicializálási pont: elindítja a teljes szimulációt, miután az oldal betöltődött.
         document.addEventListener('DOMContentLoaded', () => {
-            vasut_logika.init();
+            console.log("DOM betöltve. Kezdődik az inicializálás.");
+            if (window.grafika_kezelo && typeof window.grafika_kezelo.init_minden === 'function') {
+                window.grafika_kezelo.init_minden();
+            } else {
+                console.error("KRITIKUS HIBA: A grafika_kezelo.js nem töltődött be rendesen, vagy hiányzik az init_minden funkció.");
+            }
         });
     </script>
 </body>
