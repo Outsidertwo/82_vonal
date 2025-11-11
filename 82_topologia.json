@@ -2,36 +2,33 @@
   "szinek": {
     "A_bal": "#0066CC",
     "A_jobb": "#66B2FF",
-    "A_kozep": "#3399FF",  
     "B_bal": "#CC0000",
     "B_jobb": "#FF8800",
-    "B_kozep": "#FF4400",  
     "C_bal": "#009933",
     "C_jobb": "#66FF66",
-    "C_kozep": "#33CC66",  
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
     "zarlat": "#FF0000",
     "gyujtosin": "#CC9900",
     "mellekaramkor": "#9966CC"
   },
-  
+
   "feeds": [
     {
       "node": "w_Alallomas_HTK_gys",
       "group": "w_Alallomas_HTK_gys",
       "phase": "B",
-      "oldal": "kozep"
+      "oldal": "bal" 
     },
     {
       "node": "w_Hn_gys",
       "group": "w_Hn_gys",
       "phase": "C",
-      "oldal": "kozep"
+      "oldal": "bal" 
     }
   ],
-  
-  "stations": [  
+
+  "stations": [ 	
     {
       "name": "82_kitap",
       "nodes": {
@@ -537,6 +534,13 @@
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
           "oldal": "jobb"
+        },
+        "w_JB_FH_HnT_UT": {
+          "connects": ["s_JB_FH_HnT_UT"],
+          "element_id": "w_JB_FH_HnT_UT",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
         }
       },
       "switches": {
