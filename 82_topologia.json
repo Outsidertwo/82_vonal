@@ -157,7 +157,7 @@
           "type": "mellekaramkor"
         },
         "w_JBH_Aj": {
-          "connects": ["s_JBH_Aj"],
+          "connects": ["s_JBH_Aj", "s_JBH_R1", "s_JBH_R2"],
           "element_id": "w_JBH_Aj",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
@@ -373,7 +373,7 @@
           "type": "mellekaramkor"
         },
         "w_PT_Aj": {
-          "connects": ["s_PT_Aj"],
+          "connects": ["s_PT_Aj", "s_PT_R1", "s_PT_R2"],
           "element_id": "w_PT_Aj",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
