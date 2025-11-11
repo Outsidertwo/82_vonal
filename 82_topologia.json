@@ -604,7 +604,7 @@
           "type": "szakaszolo",
           "from": "w_Hn_gys",
           "to": "w_JB_Ut",
-          "state": "closed",
+          "state": "open",
           "graphics": {
             "element_id": "s_JB_Ut"
           }
