@@ -293,7 +293,7 @@
           "type": "szakaszolo",
           "from": "w_JBH_Aj",
           "to": "w_JBH_R1",
-          "state": "closed",
+          "state": "open",
           "graphics": {
             "element_id": "s_JBH_R1"
           }
@@ -302,7 +302,7 @@
           "type": "szakaszolo",
           "from": "w_JBH_Aj",
           "to": "w_JBH_R2",
-          "state": "closed",
+          "state": "open",
           "graphics": {
             "element_id": "s_JBH_R2"
           }
@@ -509,7 +509,7 @@
           "type": "szakaszolo",
           "from": "w_PT_Aj",
           "to": "w_PT_R1",
-          "state": "closed",
+          "state": "open",
           "graphics": {
             "element_id": "s_PT_R1"
           }
@@ -518,7 +518,7 @@
           "type": "szakaszolo",
           "from": "w_PT_Aj",
           "to": "w_PT_R2",
-          "state": "closed",
+          "state": "open",
           "graphics": {
             "element_id": "s_PT_R2"
           }
