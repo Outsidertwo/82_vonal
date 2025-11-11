@@ -2,10 +2,13 @@
   "szinek": {
     "A_bal": "#0066CC",
     "A_jobb": "#66B2FF",
+    "A_kozep": "#3399FF",  
     "B_bal": "#CC0000",
     "B_jobb": "#FF8800",
+    "B_kozep": "#FF4400",  
     "C_bal": "#009933",
     "C_jobb": "#66FF66",
+    "C_kozep": "#33CC66",  
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
     "zarlat": "#FF0000",
@@ -532,7 +535,8 @@
           "connects": ["s_JB_FH_UV", "s_JB_FH_HnV"],
           "element_id": "w_JB_FH_semleges",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "vezetek"
+          "type": "vezetek",
+          "oldal": "jobb"
         }
       },
       "switches": {

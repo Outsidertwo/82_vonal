@@ -1,4 +1,4 @@
-// grafika_kezelo.js - TELJES VERZIÓ (NYITOTT SZAKASZOLÓK SZÍNEZÉSÉNEK IGNORÁLÁSA)
+// grafika_kezelo.js - SZÍNEZÉS FIX TOPOLÓGIAI OLDAL ALAPJÁN (FILL KIVÉVE)
 
 // A Logika Modul referencia objektuma.
 let logikai_interfesz; 
@@ -17,6 +17,7 @@ function init_minden() {
 
 function init_grafika_kezelo(szcenariok, kapcsolo_allapotok) {
     logikai_interfesz = vasut_logika; 
+    // Itt töltődik be a Szinek objektum, benne a topológia színei
     szinek_adatok = logikai_interfesz.get_szinek(); 
     
     init_svg_elemek(kapcsolo_allapotok);
@@ -24,13 +25,12 @@ function init_grafika_kezelo(szcenariok, kapcsolo_allapotok) {
     logikai_interfesz.start_szimulacio(); 
 }
 
-
 /**
  * Összegyűjti az ÖSSZES szakaszoló (switch) és szegmens (nodes) SVG elemet.
  */
 function init_svg_elemek(kapcsolo_allapotok) {
     
-    console.log("SVG elemek keresése mind a " + Object.keys(kapcsolo_allapotok).length + " kapcsolóra...");
+    console.log("SVG elemek keresése...");
     let talalt_elemek_szama = 0;
     
     // 1. Kapcsolók inicializálása
@@ -49,7 +49,7 @@ function init_svg_elemek(kapcsolo_allapotok) {
             });
             
         } else {
-            console.warn(`❌ HIBA: Az SVG-ben NEM található kapcsoló elem ehhez az ID-hez: ${kapcsolo_id}.`);
+            // Nem hiba, ha az SVG-ben nincs rajzolva egy logikai elem (pl. egy csomópont)
         }
     });
     
@@ -64,17 +64,18 @@ function init_svg_elemek(kapcsolo_allapotok) {
         } 
     });
 
-    console.log(`Összesen ${Object.keys(kapcsolo_allapotok).length} kapcsoló ID-ből, ${talalt_elemek_szama} SVG elem található meg a DOM-ban.`);
+    console.log(`SVG elem referenciák gyűjtése kész.`);
 }
+
 
 // --- 2. FÁZIS: FRISSÍTÉS (SZÍNEZÉS ÉS FORGATÁS) ---
 
 /**
  * Frissíti az összes SVG elem (szegmens és kapcsoló) megjelenítését.
  */
-function frissit_osszes_elem_megjelenitese(frissitett_szegmensek, kapcsolo_allapotok) {
+function frissit_osszes_elem_megjelenitese(frissitett_szegmensek, kapcsolo_allapotok, topologiai_oldal_adatok) {
     
-    frissit_szegmens_szinezest(frissitett_szegmensek);
+    frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adatok);
     
     frissit_kapcsolo_megjelenites(kapcsolo_allapotok);
     
@@ -96,26 +97,23 @@ function rotateSwitch(elem, angle) {
 }
 
 /**
- * Színezi a szegmenseket a BFS számítás alapján.
+ * Színezi a szegmenseket a BFS számítás és a fix topológiai oldal alapján.
  */
-function frissit_szegmens_szinezest(frissitett_szegmensek) {
-    const unenergized_color = szinek_adatok.unenergized || 'grey';
-    const logikai_adatok = logikai_interfesz.get_node_adatok();
+function frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adatok) {
+    // Alapértelmezett színek használata, ha a topológia nem adja meg
+    const unenergized_color = szinek_adatok.kikapcsolt || '#808080'; // Szürke
+    const default_energized_color = szinek_adatok.zarlat || '#ff0000'; // Piros
     
+    /**
+     * Színkulcs generálása a topológia Szinek objektumához.
+     */
     const get_phase_key = (fazis, oldal) => {
         if (fazis && oldal) {
-            return oldal === 'kozep' ? `${fazis}_kozep` : `${fazis}_${oldal}`;
+            return `${fazis}_${oldal}`;
         }
         return null;
     };
     
-    const feed_data = {};
-    logikai_adatok.feeds.forEach(feed => {
-        feed_data[feed.node] = { 
-            phase: feed.phase, 
-            oldal: feed.oldal 
-        };
-    });
 
     Object.values(frissitett_szegmensek).forEach(segment => {
         const elem = svg_elem_referencia[segment.id]; 
@@ -124,58 +122,44 @@ function frissit_szegmens_szinezest(frissitett_szegmensek) {
         let color_to_use = unenergized_color;
         let final_segment_state = segment.state;
 
-        // ----------------------------------------------------------------------------------
-        // *** JAVÍTÁS ***: TELJESEN KIHAGYJUK A NYITOTT SZAKASZOLÓK EGYEDI FELDOLGOZÁSÁT
-        // Hagyjuk, hogy a színezés a szülő $w\_ID$ csoporton keresztül érvényesüljön.
-        // Ha a state 'open' (nyitott szakaszoló), akkor nem állítunk be energizált színt.
+        // Kihagyjuk a nyitott szakaszolók egyedi feldolgozását
         if (segment.group === 'szakaszolo' && final_segment_state === 'open') {
-             // Mivel nem 'energized', a color_to_use 'unenergized_color' marad,
-             // DE NEM ENNEK a szegmensnek a gyermekei lesznek színeve. 
-             // Csak a 'w_' csoportokon keresztül engedjük a színezést!
-             
-             // Két esetet kell kezelni:
-             // 1. Ha az elem ID $w\_ID$, akkor ez a szülő csoport.
-             // 2. Ha az elem ID $s\_ID$ és nyitott, hagyjuk ki, hogy ne írja felül a szülőt!
              if (!segment.id.startsWith('w_')) {
-                 return; // Átugorjuk a nyitott szakaszoló szegmenst.
+                 return; 
              }
         }
-        // ----------------------------------------------------------------------------------
         
         // 1. Szín meghatározása - CSAK az 'energized' state alapján
         if (final_segment_state === 'energized') {
             
+            const fazis = segment.fazis;
+            const oldal = topologiai_oldal_adatok[segment.id]; 
+
             let phase_key = null;
+            phase_key = get_phase_key(fazis, oldal);
             
-            // Elsőbbség: BFS által beállított fázis/oldal infó (a terjedésből)
-            phase_key = get_phase_key(segment.fazis, segment.oldal);
-            
-            // Másodikbbség: Feed pontok adatai (ha maga a feed pont)
-            if (!phase_key && feed_data[segment.id]) {
-                 const data = feed_data[segment.id];
-                 phase_key = get_phase_key(data.phase, data.oldal);
-            }
-            
-            // Szín meghatározása: fázis alapú vagy csoport alapú
+            // Szín meghatározása a topológia szerint:
             if (phase_key && szinek_adatok[phase_key]) {
                 color_to_use = szinek_adatok[phase_key];
             }
+            // Ha a fázis/oldal kulcs nem létezik, de van csoportszín (pl. 'gyujtosin', 'mellekaramkor')
             else if (szinek_adatok[segment.group]) {
                 color_to_use = szinek_adatok[segment.group];
             } 
+            // Végül: alapértelmezett energizált szín
             else {
-                color_to_use = szinek_adatok.energized || 'red';
+                color_to_use = default_energized_color;
             }
         }
             
-        // 2. Színezés alkalmazása (a te csoportszínezési logikádnak megfelelően)
+        // 2. Színezés alkalmazása (hierarchikusan)
         
         let target_elements = [];
         
         // Elsődlegesen az SVG-csoport alatti közvetlen vizuális elemek
         target_elements.push(...Array.from(elem.querySelectorAll('path, line, circle, rect')));
         
-        // Keresés a w_ID csoporton belül lévő s_ID csoportokon belül (Ez szükséges a beágyazott szakaszolókhoz)
+        // Keresés a w_ID csoporton belül lévő s_ID csoportokon belül (beágyazott szakaszolók)
         if (elem.tagName.toLowerCase() === 'g') {
             elem.querySelectorAll('g').forEach(inner_g => {
                 if (inner_g.id.startsWith('s_')) {
@@ -195,21 +179,19 @@ function frissit_szegmens_szinezest(frissitett_szegmensek) {
         
         target_elements.forEach(target_elem => {
             
-            // Csak a ténylegesen rajzolt elemeket színezzük
             if (target_elem.tagName.toLowerCase() === 'path' || 
                 target_elem.tagName.toLowerCase() === 'line' ||
                 target_elem.tagName.toLowerCase() === 'circle' ||
                 target_elem.tagName.toLowerCase() === 'rect') {
                     
-                // A stroke beállítása
                 target_elem.style.stroke = color_to_use;
                 
-                // A fill beállítása (szakaszolóknál kitöltés, vonalaknál 'none')
-                if (segment.group === 'szakaszolo') { 
-                    target_elem.style.fill = color_to_use;
-                } else {
-                    target_elem.style.fill = 'none';
-                }
+                // MÓDOSÍTÁS ITT: A fill-t (kitöltést) kivesszük, ha az elem vonal jellegű
+                target_elem.style.fill = 'none'; 
+                
+                // KIVÉTEL: ha az elem típusa 'circle' vagy 'rect' és nem a szakaszoló része, 
+                // megtarthatjuk a fill-t, de a biztonság kedvéért a 'none' a legjobb általános megoldás,
+                // mivel így a szakaszoló rajza nem fog elmosódni. 
             }
         });
     });
@@ -228,7 +210,6 @@ function frissit_kapcsolo_megjelenites(kapcsolo_allapotok) {
             // Zárt (closed) = 0 fok, Nyitott (open) = 30 fok 
             rotateSwitch(elem, allapot === "open" ? 30 : 0);
             
-            // A CSS osztályok beállítása maradt
             if (allapot === "open") {
                 elem.classList.remove('allapot-closed');
                 elem.classList.add('allapot-open');

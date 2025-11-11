@@ -1,4 +1,4 @@
-// vasut_logika.js - TELJES VERZIÓ (STABIL BFS LOGIKÁVAL)
+// vasut_logika.js - FÁZIS TERJESZTÉS, FIX OLDAL ALAPJÁN TÖRTÉNŐ SZÍNEZÉS
 
 // --- GLOBÁLIS LOGIKAI TÁROLÓK ---
 let Logikai_Adatmodell_Graf = {}; 
@@ -6,6 +6,8 @@ let Kapcsolo_Allapotok = {};    
 let Szinek = {};                
 let Szcenariok = {};            
 let Grafika_Kezelo_Referencia;  
+// ÚJ: Eredeti topológiai oldaladatok tárolása
+let Topologiai_Oldal_Adatok = {}; 
 
 // --- SEGÉDFÜGGVÉNYEK ---
 
@@ -31,8 +33,7 @@ async function init_adatok() {
         epitesi_kapcsolasi_graf(topologia_json);
         
         Szinek = topologia_json.szinek || {};
-        
-        // Alapértelmezett színek beállítása
+        // Kényszerítsük a default szín beállítását, ha hiányzik
         if (!Szinek.energized) Szinek.energized = '#ff0000'; // Vörös
         if (!Szinek.unenergized) Szinek.unenergized = '#808080'; // Szürke
         
@@ -59,6 +60,8 @@ function epitesi_kapcsolasi_graf(nyers_json) {
         feeds: nyers_json.feeds || []     
     };
     
+    const NodeToSegmentMap = {};
+
     // 2. Szegmensek, Csomópontok és Kapcsoló Állapotok gyűjtése
     nyers_json.stations.forEach(station => { 
         
@@ -74,12 +77,18 @@ function epitesi_kapcsolasi_graf(nyers_json) {
                 };
 
                 const segment_id = node_data.element_id || id;
+                NodeToSegmentMap[id] = segment_id;
+                
+                // --- OLDAL ADAT ELMENTÉSE IDE: KIZÁRÓLAG TOPOLÓGIAI CÉLRA ---
+                Topologiai_Oldal_Adatok[segment_id] = node_data.oldal || 'bal'; // Azért bal, mert a legtöbb esetben a bal oldal a default.
+                
                 Logikai_Adatmodell_Graf.segments[segment_id] = {
                     id: segment_id,
                     ends: [],     
                     group: node_data.type,  
                     state: 'unenergized',               
-                    connected_segments: [] 
+                    connected_segments: [],
+                    fazis: null // CSAK FÁZIS, OLDAL NEM
                 };
             });
         }
@@ -93,12 +102,16 @@ function epitesi_kapcsolasi_graf(nyers_json) {
                 const to_segment_id = sw_data.to;
 
                 // Kapcsoló szegmensként
+                // A szakaszolóknak is kell az oldal adat, a from-szegmensről öröklik azt
+                Topologiai_Oldal_Adatok[id] = Topologiai_Oldal_Adatok[from_segment_id] || 'bal'; 
+                
                 Logikai_Adatmodell_Graf.segments[id] = {
                     id: id,
                     ends: [from_segment_id, to_segment_id], 
-                    group: sw_data.type, // 'szakaszolo'
+                    group: sw_data.type, 
                     state: sw_data.state,
-                    connected_segments: []
+                    connected_segments: [],
+                    fazis: null 
                 };
 
                 if (Logikai_Adatmodell_Graf.segments[from_segment_id]) {
@@ -111,21 +124,30 @@ function epitesi_kapcsolasi_graf(nyers_json) {
         }
     });
     
-    // 3. Tápforrások (Feeds) beállítása
+    // 3. Tápforrások (Feeds) beállítása: CSAK a fazis adat terjed!
     Logikai_Adatmodell_Graf.feeds.forEach(feed => {
-        const feed_node_id = feed.node;
-        
-        if (Logikai_Adatmodell_Graf.nodes[feed_node_id]) {
-            Logikai_Adatmodell_Graf.nodes[feed_node_id].is_feed_point = true;
-            Logikai_Adatmodell_Graf.nodes[feed_node_id].state = 'energized';
+        const node_id = feed.node;
+        const segment_id = NodeToSegmentMap[node_id] || node_id; 
+
+        if (Logikai_Adatmodell_Graf.nodes[node_id]) {
+            Logikai_Adatmodell_Graf.nodes[node_id].is_feed_point = true;
+            Logikai_Adatmodell_Graf.nodes[node_id].state = 'energized';
         }
         
-        // Szegmens energizálása és Fázis/Oldal infó elmentése a BFS-hez
-        if (Logikai_Adatmodell_Graf.segments[feed_node_id]) {
-            Logikai_Adatmodell_Graf.segments[feed_node_id].state = 'energized';
-            Logikai_Adatmodell_Graf.segments[feed_node_id].fazis = feed.phase; 
-            Logikai_Adatmodell_Graf.segments[feed_node_id].oldal = feed.oldal;
+        // Szegmens energizálása és FÁZIS infó elmentése a BFS-hez
+        if (Logikai_Adatmodell_Graf.segments[segment_id]) {
+            Logikai_Adatmodell_Graf.segments[segment_id].state = 'energized';
+            Logikai_Adatmodell_Graf.segments[segment_id].fazis = feed.phase; 
+        } 
+        if (segment_id !== node_id && Logikai_Adatmodell_Graf.segments[node_id]) {
+             Logikai_Adatmodell_Graf.segments[node_id].state = 'energized';
+             Logikai_Adatmodell_Graf.segments[node_id].fazis = feed.phase; 
         }
+        
+        // EXTRA FIX: A gyűjtősín (ami a feed) oldalát is a 'kozep'-ről átállítjuk 'bal'-ra (vagy ahogy a feedben megadtad)
+        // Mivel törölni akarjuk a kozep oldalt:
+        Topologiai_Oldal_Adatok[segment_id] = feed.oldal || Topologiai_Oldal_Adatok[segment_id];
+
     }); 
 
     console.log(`GRÁF ÉPÍTÉS KÉSZ: ${Object.keys(Logikai_Adatmodell_Graf.nodes).length} csomópont, ${Object.keys(Logikai_Adatmodell_Graf.segments).length} szegmens inicializálva.`);
@@ -141,22 +163,21 @@ function start_szimulacio() {
 
 function futtat_es_frissit() {
     const frissitett_szegmensek = szamol_feszultsegi_allapotok();
-    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(frissitett_szegmensek, Kapcsolo_Allapotok);
+    // ÁTADJUK A GRAFIKUSNAK A FIX OLDAL ADATOKAT IS!
+    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(frissitett_szegmensek, Kapcsolo_Allapotok, Topologiai_Oldal_Adatok);
 }
 
 /**
  * Feszültség terjedésének számítása BFS (szélességi bejárás) segítségével.
- * Csak zárt kapcsoló (closed) terjeszt ÉS kerül explicit 'energized' állapotba.
  */
 function szamol_feszultsegi_allapotok() {
     
     // 1. Inicializálás és feszültségmentesítés
     Object.values(Logikai_Adatmodell_Graf.segments).forEach(segment => {
-        // Csak a tápforrásokat hagyjuk meg energizáltnak
+        // Visszaállítjuk a fázis infókat, kivéve a feed pontokat
         if (!Logikai_Adatmodell_Graf.nodes[segment.id]?.is_feed_point) {
             segment.state = 'unenergized';
             segment.fazis = null;
-            segment.oldal = null;
         }
     });
 
@@ -179,14 +200,11 @@ function szamol_feszultsegi_allapotok() {
 
         if (!current_node || !current_segment) continue;
         
-        // Szín/fázis információ átadása a terjedő segmensből
+        // CSAK a fázis információt terjesztjük!
         const propagation_fazis = current_segment.fazis;
-        const propagation_oldal = current_segment.oldal;
         
-        // Feszültség alá helyezzük a jelenlegi szegmenst (w_ csoport)
         current_segment.state = 'energized';
 
-        // Végigmegyünk a csomóponthoz csatlakozó KAPCSOLÓK ID-in
         current_node.connections.forEach(kapcsolo_id => {
             
             const kapcsolo = Logikai_Adatmodell_Graf.segments[kapcsolo_id]; 
@@ -197,6 +215,7 @@ function szamol_feszultsegi_allapotok() {
                 
                 // Ha zárt: KAPCSOLÓ is energizált ÉS TOVÁBBTERJESZT
                 kapcsolo.state = 'energized'; 
+                kapcsolo.fazis = propagation_fazis; 
                 
                 const next_segment_id = kapcsolo.ends.find(id => id !== current_segment_id);
                 
@@ -204,17 +223,18 @@ function szamol_feszultsegi_allapotok() {
                     const next_segment = Logikai_Adatmodell_Graf.segments[next_segment_id];
                     if (next_segment) {
                         next_segment.state = 'energized';
-                        next_segment.fazis = propagation_fazis;
-                        next_segment.oldal = propagation_oldal;
+                        // FÁZIS INFÓ TERJESZTÉSE A KÖVETKEZŐ SZEGMENSBE
+                        next_segment.fazis = propagation_fazis; 
                         visited.add(next_segment_id);
                         queue.push(next_segment_id); 
                     }
                 }
             } else if (Kapcsolo_Allapotok[kapcsolo_id] === "open") {
-                // Ha nyitott, nem kap 'energized' state-et. Csak a saját állapotát tartja meg.
                 kapcsolo.state = 'open'; 
+                kapcsolo.fazis = null; 
             } else {
                 kapcsolo.state = 'unenergized';
+                kapcsolo.fazis = null;
             }
         });
     }
@@ -249,7 +269,6 @@ window.vasut_logika = {
     kapcsolo_kezeles: kapcsolo_kezeles,
     alkalmaz_szcenario: alkalmaz_szcenario, 
     get_node_adatok: () => Logikai_Adatmodell_Graf,
-    get_szcenario_nevek: () => Szcenariok,
     get_szinek: () => Szinek,
     get_kapcsolo_allapotok: () => Kapcsolo_Allapotok
 };
