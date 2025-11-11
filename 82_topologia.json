@@ -1,15 +1,15 @@
 {
   "szinek": {
-    "A_bal": "#0066CC",
-    "A_jobb": "#66B2FF",
-    "B_bal": "#CC0000",
+    "A_bal": "#0000FF",
+    "A_jobb": "#FF0000",
+    "B_bal": "#00CCFF",
     "B_jobb": "#FF8800",
     "C_bal": "#009933",
-    "C_jobb": "#66FF66",
+    "C_jobb": "#990033",
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
-    "zarlat": "#FF0000",
-    "gyujtosin": "#CC9900",
+    "zarlat": "#FF00FF",
+    "gyujtosin": "#CCFF00",
     "mellekaramkor": "#9966CC"
   },
 
