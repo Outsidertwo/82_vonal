@@ -4,8 +4,8 @@
     "A_jobb": "#FF0000",
     "B_bal": "#00CCFF",
     "B_jobb": "#FF8800",
-    "C_bal": "#009933",
-    "C_jobb": "#990033",
+    "C_bal": "#8338EC",
+    "C_jobb": "#FF006E",
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
     "zarlat": "#FF00FF",
@@ -556,6 +556,7 @@
         "s_JB_FH_HnV": {
           "type": "szakaszolo",
           "from": "w_JB_Uv",
+          "oldal": "jobb",
           "to": "w_JB_FH_semleges",
           "state": "open",
           "graphics": {
@@ -612,6 +613,7 @@
         "s_JB_Uv": {
           "type": "szakaszolo",
           "from": "w_Hn_gys",
+          "oldal": "jobb",
           "to": "w_JB_Uv",
           "state": "closed",
           "graphics": {
