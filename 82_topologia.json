@@ -4,13 +4,15 @@
     "A_jobb": "#FF0000",
     "B_bal": "#00CCFF",
     "B_jobb": "#FF8800",
+    "B_kozep": "990099",
     "C_bal": "#8338EC",
     "C_jobb": "#FF006E",
+    "C_kozep": "990099",
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
     "zarlat": "#FF00FF",
     "gyujtosin": "#CCFF00",
-    "mellekaramkor": "#9966CC"
+    "mellekaramkor": "#FFFFFF"
   },
 
   "feeds": [
@@ -18,13 +20,13 @@
       "node": "w_Alallomas_HTK_gys",
       "group": "w_Alallomas_HTK_gys",
       "phase": "B",
-      "oldal": "bal" 
+      "oldal": "kozep" 
     },
     {
       "node": "w_Hn_gys",
       "group": "w_Hn_gys",
       "phase": "C",
-      "oldal": "bal" 
+      "oldal": "kozep"  
     }
   ],
 
@@ -67,6 +69,7 @@
         "s_H1V": {
           "type": "szakaszolo",
           "from": "w_Alallomas_HTK_gys",
+          "oldal": "jobb",
           "to": "w_Hv_megker",
           "state": "closed",
           "graphics": {
@@ -108,7 +111,7 @@
           "connects": ["s_JBH_Uv", "s_JBH_Hv", "s_JBH_Aj", "s_JBH_Oj"],
           "element_id": "w_JBH_j_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin",
+          "type": "vezetek",
           "fazis": "B",
           "oldal": "jobb"
         },
@@ -116,13 +119,14 @@
           "connects": ["s_JBH_Ob", "s_JBH_Oj", "s_JBH_STR"],
           "element_id": "w_JBH_O",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin"
+          "type": "gyujtosin",
+          "oldal": "kozep" 
         },
         "w_JBH_b_gys": {
           "connects": ["s_JBH_Ut", "s_JBH_Ht", "s_JBH_Ab", "s_JBH_Ob"],
           "element_id": "w_JBH_b_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin",
+          "type": "vezetek",
           "fazis": "B",
           "oldal": "bal"
         },
@@ -324,7 +328,7 @@
           "connects": ["s_PT_Uv", "s_PT_Hv", "s_PT_Aj", "s_PT_Oj"],
           "element_id": "w_PT_j_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin",
+          "type": "vezetek",
           "fazis": "B",
           "oldal": "jobb"
         },
@@ -332,13 +336,14 @@
           "connects": ["s_PT_Ob", "s_PT_Oj", "s_PT_STR"],
           "element_id": "w_PT_O",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin"
+          "type": "gyujtosin",
+          "oldal": "kozep" 
         },
         "w_PT_b_gys": {
           "connects": ["s_PT_Ut", "s_PT_Ht", "s_PT_Ab", "s_PT_Ob"],
           "element_id": "w_PT_b_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin",
+          "type": "vezetek",
           "fazis": "B",
           "oldal": "bal"
         },
