@@ -1,7 +1,7 @@
 {
   "szinek": {
-    "A_bal": "#0000FF",
-    "A_jobb": "#FF0000",
+    "A_bal": "#3A86FF",
+    "A_jobb": "#D62828",
     "B_bal": "#00CCFF",
     "B_jobb": "#FF8800",
     "B_kozep": "990099",
@@ -13,7 +13,7 @@
     "zarlat": "#FF00FF",
     "gyujtosin": "#CCFF00",
     "mellekaramkor": "#CCFF00",
-    "feed": "#00FF00"
+    "feed": "#CCFF00"
   },
 
   "feeds": [
@@ -39,7 +39,7 @@
           "connects": ["s_H1V", "s_H1T"],
           "element_id": "w_Alallomas_HTK_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin"
+          "type": "feed"
         },
         "w_Hv_megker": {
           "connects": ["s_H1V", "s_THv"],
@@ -587,7 +587,7 @@
           "connects": ["s_JB_Ut", "s_JB_Uv"],
           "element_id": "w_Hn_gys",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "gyujtosin"
+          "type": "feed"
         },
         "w_JB_Ut": {
           "connects": ["s_JB_Ut", "s_JB_FH_HnT_UT"],
