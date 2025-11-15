@@ -1,9 +1,9 @@
-// grafika_kezelo.js - VÉGLEGES VÁLTOZAT (Stabil Kattintás + Kozep Színezés + Speciális Csoportok)
+// grafika_kezelo.js - VÉGLEGES VÁLTOZAT (Fix Színprioritás + Stabil Kattintás)
 
 let logikai_interfesz; 
 let svg_elem_referencia = {}; 
 let szinek_adatok = {}; 
-let eredeti_szinek_specialis = {}; // ÚJ: Eredeti színek tárolására
+let eredeti_szinek_specialis = {}; // Eredeti színek tárolására (gyujtosin/mellekaramkor esetleg)
 
 // --- 1. FÁZIS: INICIALIZÁLÁS ---
 
@@ -18,7 +18,7 @@ function init_grafika_kezelo(szcenariok, kapcsolo_allapotok) {
     szinek_adatok = logikai_interfesz.get_szinek(); 
     
     init_svg_elemek(kapcsolo_allapotok);
-    tarol_eredeti_szineket(); // Eredeti színek eltárolása a speciális csoportokhoz
+    tarol_eredeti_szineket(); 
     
     logikai_interfesz.start_szimulacio(); 
 }
@@ -61,21 +61,21 @@ function init_svg_elemek(kapcsolo_allapotok) {
 }
 
 /**
- * Eltárolja a gyűjtősínek és mellékáramkörök topológiában megadott eredeti színét.
- */
+ * Eltárolja a gyűjtősínek és mellékáramkörök topológiában megadott eredeti színét.
+ */
 function tarol_eredeti_szineket() {
-    const logikai_adatok = logikai_interfesz.get_node_adatok();
-    Object.values(logikai_adatok.segments).forEach(segment => {
-        if (segment.group === 'gyujtosin' || segment.group === 'mellekaramkor') {
-            const elem = svg_elem_referencia[segment.id];
-            if (elem) {
-                // Megpróbáljuk kiolvasni a stílusból az eredeti színt
-                const target = Array.from(elem.querySelectorAll('path, line, circle, rect'))[0] || elem;
-                // Az alapértelmezett szín a szinek_adatok[segment.group] legyen
-                eredeti_szinek_specialis[segment.id] = target.style.stroke || target.style.fill || szinek_adatok[segment.group] || szinek_adatok.energized;
-            }
-        }
-    });
+    const logikai_adatok = logikai_interfesz.get_node_adatok();
+    Object.values(logikai_adatok.segments).forEach(segment => {
+        if (segment.group === 'gyujtosin' || segment.group === 'mellekaramkor') {
+            const elem = svg_elem_referencia[segment.id];
+            if (elem) {
+                // Megpróbáljuk kiolvasni a stílusból az eredeti színt
+                const target = Array.from(elem.querySelectorAll('path, line, circle, rect'))[0] || elem;
+                // Az alapértelmezett szín a szinek_adatok[segment.group] legyen
+                eredeti_szinek_specialis[segment.id] = target.style.stroke || target.style.fill || szinek_adatok[segment.group] || szinek_adatok.energized;
+            }
+        }
+    });
 }
 
 
@@ -114,14 +114,13 @@ function frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adat
     
     const unenergized_color = szinek_adatok.kikapcsolt || '#808080'; 
     const default_energized_color = szinek_adatok.zarlat || '#ff0000'; 
-    const semleges_color = szinek_adatok.semleges_szin || unenergized_color;
+    const semleges_color = szinek_adatok.semleges_szin || unenergized_color;
     
     /**
-     * Színkulcs generálása a topológia Szinek objektumához.
+     * Színkulcs generálása a topológia Szinek objektumához (pl. A_bal).
      */
     const get_phase_key = (fazis, oldal) => {
         if (fazis && oldal) {
-            // A kulcs generálásnál figyelembe vesszük a 'kozep' oldalt is!
             return `${fazis}_${oldal}`; 
         }
         return null;
@@ -142,47 +141,58 @@ function frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adat
              }
         }
         
-        // 1. Szín meghatározása - CSAK az 'energized' state alapján
+        // 1. Szín meghatározása - CSAK az 'energized' (vagy 'open' w_-nél) state alapján
         if (final_segment_state === 'energized' || final_segment_state === 'open') {
             
-            const fazis = segment.fazis;
-            // Itt olvassuk ki a vasut_logika.js-ben beállított 'kozep' értéket
-            const oldal = topologiai_oldal_adatok[segment.id]; 
+            // *** PRIOTITÁS #1: Feeds, Gyűjtősín, Mellékáramkör (Oldalfüggetlen, Fix Szín) ***
+            const isAlwaysFixedColor = segment.group === 'feed' || segment.group === 'gyujtosin' || segment.group === 'mellekaramkor';
             
-            // *** Gyűjtősín és Mellékáramkör Speciális Kezelése ***
-            const isSpecialGroup = segment.group === 'gyujtosin' || segment.group === 'mellekaramkor';
-            
-            if (isSpecialGroup) {
-                // Ha feszültség alatt van, megtartja az eredeti topológiai színét
-                color_to_use = eredeti_szinek_specialis[segment.id] || default_energized_color;
-            } 
-            // *** NORMÁL ELEMEK ÉS FEED ELEMEK (melyek nem gyűjtősínek) ***
-            else {
-                
-                let phase_key = get_phase_key(fazis, oldal);
-            
-                // Szín meghatározása a topológia szerint (pl. A_kozep, A_bal, stb.)
-                if (phase_key && szinek_adatok[phase_key]) {
-                    color_to_use = szinek_adatok[phase_key];
-                }
-                // Ha a fázis/oldal kulcs nem létezik, de van csoportszín (pl. 'vezeték', 'feed')
-                else if (szinek_adatok[segment.group]) {
+            if (isAlwaysFixedColor) {
+                // Csoportszín kulcsot keres (pl. szinek.feed)
+                if (szinek_adatok[segment.group]) {
                     color_to_use = szinek_adatok[segment.group];
                 } 
+                // Ha gyűjtősín/mellékáramkör, és a csoportszín hiányzik, az eredeti színt tartja meg
+                else if (segment.group !== 'feed' && eredeti_szinek_specialis[segment.id]) {
+                    color_to_use = eredeti_szinek_specialis[segment.id];
+                }
                 // Végül: alapértelmezett energizált szín
                 else {
                     color_to_use = default_energized_color;
                 }
             }
+            // *** PRIOTITÁS #2: w_szakaszoló (Ha nincs feed/gyujtosin/mellekaramkor) ***
+            else if (segment.group === 'szakaszolo' && segment.id.startsWith('w_')) {
+                color_to_use = szinek_adatok['w_szakaszolo'] || default_energized_color;
+            }
+            // *** PRIOTITÁS #3: NORMÁL ELEMEK (Fázis/Oldal szerint) ***
+            else {
+                const fazis = segment.fazis;
+                const oldal = topologiai_oldal_adatok[segment.id]; 
+                let phase_key = get_phase_key(fazis, oldal);
+            
+                // 1. Fázis/Oldal szín (pl. A_bal)
+                if (phase_key && szinek_adatok[phase_key]) {
+                    color_to_use = szinek_adatok[phase_key];
+                }
+                // 2. Csoportszín (pl. 'vezeték'), ha fázis/oldal szín nincs
+                else if (szinek_adatok[segment.group]) {
+                    color_to_use = szinek_adatok[segment.group];
+                } 
+                // 3. Alapértelmezett energizált szín
+                else {
+                    color_to_use = default_energized_color;
+                }
+            }
         }
-        
-        // Semleges/Kikapcsolt állapot a speciális csoportoknál
-        else if (final_segment_state === 'unenergized' && (segment.group === 'gyujtosin' || segment.group === 'mellekaramkor')) {
-            color_to_use = semleges_color;
-        }
         
-        // 2. Színezés alkalmazása
-        
+        // Semleges/Kikapcsolt állapot a speciális csoportoknál
+        else if (final_segment_state === 'unenergized' && (segment.group === 'gyujtosin' || segment.group === 'mellekaramkor')) {
+            color_to_use = semleges_color;
+        }
+        
+        // 2. Színezés alkalmazása
+        
         let target_elements = [];
         
         // Elsődlegesen az SVG-csoport alatti közvetlen vizuális elemek
@@ -191,7 +201,7 @@ function frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adat
         // Keresés a beágyazott csoportokon belül
         if (elem.tagName.toLowerCase() === 'g') {
             elem.querySelectorAll('g').forEach(inner_g => {
-                if (inner_g.id.startsWith('s_')) {
+                if (inner_g.id.startsWith('s_') || inner_g.id.startsWith('w_')) { // w_ hozzáadva
                     Array.from(inner_g.querySelectorAll('path, line, circle, rect')).forEach(visual_child => {
                         if (!target_elements.includes(visual_child)) { 
                            target_elements.push(visual_child);
