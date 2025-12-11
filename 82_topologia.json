@@ -28,6 +28,30 @@
       "group": "w_Hn_gys",
       "phase": "C",
       "oldal": "kozep"  
+    },
+    {
+      "node": "w_r_ma_b",
+      "group": "w_r_ma_b",
+      "phase": "C",
+      "oldal": "bal"  
+    },
+    {
+      "node": "w_r_ma_j",
+      "group": "w_r_ma_j",
+      "phase": "C",
+      "oldal": "jobb"  
+    },
+    {
+      "node": "w_sz_fha_b",
+      "group": "w_sz_fha_b",
+      "phase": "C",
+      "oldal": "bal"  
+    },
+    {
+      "node": "w_sz_fha_j",
+      "group": "w_sz_fha_j",
+      "phase": "C",
+      "oldal": "jobb"  
     }
   ],
 
