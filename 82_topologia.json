@@ -1,13 +1,16 @@
 {
   "szinek": {
-    "A_bal": "#3A86FF",
+    "A_bal": "#0000FF",
     "A_jobb": "#D62828",
+    "A_extra2": "#FF6666",
+    "A_kozep": "#CCFF00",
     "B_bal": "#00CCFF",
     "B_jobb": "#FF8800",
-    "B_kozep": "990099",
+    "B_extra1": "#FFCC00",
+    "B_kozep": "#CCFF00",
     "C_bal": "#8338EC",
     "C_jobb": "#FF006E",
-    "C_kozep": "990099",
+    "C_kozep": "#CCFF00",
     "kikapcsolt": "#808080",
     "foldelt": "#8B4513",
     "zarlat": "#FF00FF",
@@ -24,34 +27,34 @@
       "oldal": "kozep" 
     },
     {
+      "node": "w_Alallomas_LoTK_gys",
+      "group": "w_Alallomas_LoTK_gys",
+      "phase": "B",
+      "oldal": "kozep" 
+    },
+    {
+      "node": "w_Alallomas_BpTK_gys",
+      "group": "w_Alallomas_BpTK_gys",
+      "phase": "A",
+      "oldal": "kozep" 
+    },
+    {
       "node": "w_Hn_gys",
       "group": "w_Hn_gys",
       "phase": "C",
       "oldal": "kozep"  
     },
     {
-      "node": "w_r_ma_b",
-      "group": "w_r_ma_b",
+      "node": "w_it_kitap",
+      "group": "w_it_kitap",
       "phase": "C",
-      "oldal": "bal"  
+      "oldal": "kozep"  
     },
     {
-      "node": "w_r_ma_j",
-      "group": "w_r_ma_j",
+      "node": "w_sza_kitap",
+      "group": "w_sza_kitap",
       "phase": "C",
-      "oldal": "jobb"  
-    },
-    {
-      "node": "w_sz_fha_b",
-      "group": "w_sz_fha_b",
-      "phase": "C",
-      "oldal": "bal"  
-    },
-    {
-      "node": "w_sz_fha_j",
-      "group": "w_sz_fha_j",
-      "phase": "C",
-      "oldal": "jobb"  
+      "oldal": "kozep"  
     }
   ],
 
@@ -74,7 +77,7 @@
           "oldal": "jobb"
         },
         "w_U_JBH": {
-          "connects": ["s_THv", "s_JBH_U2"],
+          "connects": ["s_THv", "s_JBH_U2","s_82_fhhv"],
           "element_id": "w_U_JBH",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
@@ -94,7 +97,7 @@
         "s_H1V": {
           "type": "szakaszolo",
           "from": "w_Alallomas_HTK_gys",
-          "oldal": "jobb",
+          "oldal": "kozep",
           "to": "w_Hv_megker",
           "state": "closed",
           "graphics": {
@@ -115,8 +118,258 @@
           "from": "w_Alallomas_HTK_gys",
           "to": "w_JBH_Ut",
           "state": "closed",
+          "oldal": "kozep",
           "graphics": {
             "element_id": "s_H1T"
+          }
+        }
+      }
+    },
+    {
+      "name": "120_kitap",
+      "nodes": {
+        "w_Alallomas_BpTK_gys": {
+          "connects": ["s_Alallomas_Bpb", "s_Alallomas_Bpj"],
+          "element_id": "w_Alallomas_BpTK_gys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "feed"
+        },
+          "w_Alallomas_LoTK_gys": {
+          "connects": ["s_Alallomas_Lob", "s_Alallomas_Loj"],
+          "element_id": "w_Alallomas_LoTK_gys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "feed"
+        },
+        "w_Alallomas_Bpj_megker": {
+          "connects": ["s_Alallomas_Bpj", "s_u_u2"],
+          "element_id": "w_Alallomas_Bpj_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_Alallomas_Bpb_megker": {
+          "connects": ["s_Alallomas_Bpb", "s_u_u1"],
+          "element_id": "w_Alallomas_Bpb_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_Alallomas_Lob_megker": {
+          "connects": ["s_Alallomas_Lob", "s_u_u3"],
+          "element_id": "w_Alallomas_Lob_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_Alallomas_Loj_megker": {
+          "connects": ["s_Alallomas_Loj", "s_u_u4"],
+          "element_id": "w_Alallomas_Loj_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_it_kitap": {
+          "connects": ["s_it_bpb","s_it_bpj"],
+          "element_id": "w_it_kitap",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "feed"
+        }
+      },
+      "switches": {
+        "s_Alallomas_Bpb": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_BpTK_gys",
+          "oldal": "kozep",
+          "to": "w_Alallomas_Bpb_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_Alallomas_Bpb"
+          }
+        },
+        "s_Alallomas_Lob": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_LoTK_gys",
+          "oldal": "kozep",
+          "to": "w_Alallomas_Lob_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_Alallomas_Lob"
+          }
+        }, 
+        "s_Alallomas_Bpj": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_BpTK_gys",
+          "to": "w_Alallomas_Bpj_megker",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_Alallomas_Bpj"
+          }
+        }, 
+        "s_Alallomas_Loj": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_LoTK_gys",
+          "to": "w_Alallomas_Loj_megker",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_Alallomas_Loj"
+          }
+        },
+        "s_u_u1": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_Bpb_megker",
+          "to": "w_fh_120_bpb",
+          "state": "closed",
+          "phase": "A",
+          "oldal": "bal",
+          "graphics": {
+            "element_id": "s_u_u1"
+          }
+        },
+        "s_u_u2": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_Bpj_megker",
+          "to": "w_fh_120_bpj",
+          "state": "closed",
+          "oldal": "jobb",
+          "graphics": {
+            "element_id": "s_u_u2"
+          }
+        },
+        "s_u_u3": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_Lob_megker",
+          "to": "w_120_lo_ub",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_u_u3"
+          }
+        },
+        "s_u_u4": {
+          "type": "szakaszolo",
+          "from": "w_Alallomas_Loj_megker",
+          "to": "w_120_lo_uj",
+          "state": "closed",
+          "oldal": "jobb",
+          "graphics": {
+            "element_id": "s_u_u4"
+          }
+        },
+        "s_it_bpb": {
+          "type": "szakaszolo",
+          "from": "w_it_kitap",
+          "to": "w_r_ma_b",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_it_bpb"
+          }
+        },
+        "s_it_bpj": {
+          "type": "szakaszolo",
+          "from": "w_it_kitap",
+          "to": "w_r_ma_j",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_it_bpj"
+          }
+        }
+      }
+    },
+    {
+      "name": "fh_82",
+      "nodes": {
+        "w_fh_82": {
+          "connects": ["s_82_fhuv", "s_82_fhhv"],
+          "element_id": "w_fh_82",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_82_fhuv": {
+          "type": "szakaszolo",
+          "from": "w_82_uv",
+          "to": "w_fh_82",
+          "state": "open",
+          "oldal": "jobb",
+          "graphics": {
+            "element_id": "s_82_fhuv"
+          }
+        },
+        "s_82_fhhv": {
+          "type": "szakaszolo",
+          "from": "w_U_JBH",
+          "to": "w_fh_82",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_82_fhhv"
+          }
+        }
+      }
+    },
+    {
+      "name": "fh_120",
+      "nodes": {
+        "w_fh_120_b": {
+          "connects": ["s_U_FhBpb", "s_U_FhLb"],
+          "element_id": "w_fh_120_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_fh_120_j": {
+          "connects": ["s_U_FhBpj", "s_U_FhLj"],
+          "element_id": "w_fh_120_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_U_FhBpb": {
+          "type": "szakaszolo",
+          "from": "w_fh_120_bpb",
+          "to": "w_fh_120_b",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_U_FhBpb"
+          }
+        },
+        "s_U_FhLb": {
+          "type": "szakaszolo",
+          "from": "w_120_lo_ub",
+          "to": "w_fh_120_b",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_U_FhLb"
+          }
+        },
+        "s_U_FhBpj": {
+          "type": "szakaszolo",
+          "from": "w_fh_120_bpj",
+          "to": "w_fh_120_j",
+          "state": "open",
+          "oldal": "jobb",
+          "graphics": {
+            "element_id": "s_U_FhBpj"          
+          }
+        },
+        "s_U_FhLj": {
+          "type": "szakaszolo",
+          "from": "w_120_lo_uj",
+          "to": "w_fh_120_j",
+          "state": "open",
+          "oldal": "jobb",
+          "graphics": {
+            "element_id": "s_U_FhLj"
           }
         }
       }
@@ -653,14 +906,2493 @@
       }
     },
     {
-      "name": "maglod",
+      "name": "fh_ Abonyiút",
+      "nodes": {
+        "w_sza_kitap": {
+          "connects": ["s_sza_bpb","s_sza_bpj"],
+          "element_id": "w_sza_kitap",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "feed"
+        },
+        "w_Sz_A_Fhj": {
+          "connects": ["s_A_Fh_Loj","s_sza_bpj"],
+          "element_id": "w_Sz_A_Fhj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+        "w_Sz_A_Fhb": {
+          "connects": ["s_A_Fh_Lob", "s_sza_bpb"],
+          "element_id": "w_Sz_A_Fhb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_A_Fhb": {
+          "connects": ["s_A_Fh_Bpb", "s_A_Fh_Lob"],
+          "element_id": "w_A_Fhb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_A_Fhj": {
+          "connects": ["s_A_Fh_Bpj", "s_A_Fh_Loj"],
+          "element_id": "w_A_Fhj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_sza_bpb": {
+          "type": "szakaszolo",
+          "from": "w_sza_kitap",
+          "to": "w_Sz_A_Fhb",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_sza_bpb"
+          }
+        },
+        "s_sza_bpj": {
+          "type": "szakaszolo",
+          "from": "w_sza_kitap",
+          "to": "w_Sz_A_Fhj",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_sza_bpj"
+          }
+        },
+        "s_A_Fh_Bpb": {
+          "type": "szakaszolo",
+          "from": "w_A_Fhb",
+          "to": "w_A_Fh_Ub",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_A_Fh_Bpb"
+          }
+        },
+        "s_A_Fh_Bpj": {
+          "type": "szakaszolo",
+          "from": "w_A_Fhj",
+          "to": "w_A_Fh_Uj",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_A_Fh_Bpj"
+          }
+        },
+        "s_A_Fh_Lob": {
+          "type": "szakaszolo",
+          "from": "w_Sz_A_Fhb",
+          "to": "w_A_Fhb",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_A_Fh_Lob"
+          }
+        },
+        "s_A_Fh_Loj": {
+          "type": "szakaszolo",
+          "from": "w_Sz_A_Fhj",
+          "to": "w_A_Fhj",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_A_Fh_Loj"
+          }
+        }      
+      }
+    },
+    {
+      "name": "ujszasz",
+      "nodes": {
+        "w_U_Bpb_megker": {
+          "connects": ["s_U_U5", "s_U_Bpb"],
+          "element_id": "w_U_Bpb_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_U_Bpj_megker": {
+          "connects": ["s_U_U6", "s_U_Bpj"],
+          "element_id": "w_U_Bpj_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_U_Lob_megker": {
+          "connects": ["s_U_U9", "s_U_Lob"],
+          "element_id": "w_U_Lob_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_U_Loj_megker": {
+          "connects": ["s_U_U8", "s_U_Loj"],
+          "element_id": "w_U_Loj_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_U_Hv_megker": {
+          "connects": ["s_U_U7", "s_U_Hv", "s_U_str"],
+          "element_id": "w_U_Hv_megker",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_U_gys_b": {
+          "connects": ["s_U_Bpb", "s_U_Ab", "s_U_Lob", "s_U_Ob","s_U_Hv" ],
+          "element_id": "w_U_gys_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_U_gys_j": {
+          "connects": ["s_U_Bpj", "s_U_Aj", "s_U_Loj", "s_U_Oj"],
+          "element_id": "w_U_gys_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_U_O": {
+          "connects": ["s_U_Ob", "s_U_Oj", "s_U_aj"],
+          "element_id": "w_U_O",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_fh_120_bpb": {
+          "connects": ["s_u_u1","s_U_FhBpb", "s_g_u3"],
+          "element_id": "w_fh_120_bpb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_120_lo_ub": {
+          "connects": ["s_u_u3", "s_U_U5", "s_U_FhLb"],
+          "element_id": "w_120_lo_ub",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_fh_120_bpj": {
+          "connects": ["s_u_u2","s_U_FhBpj", "s_g_u4"],
+          "element_id": "w_fh_120_bpj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_120_lo_uj": {
+          "connects": ["s_u_u4", "s_U_U6", "s_U_FhLj"],
+          "element_id": "w_120_lo_uj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_U_str": {
+          "connects": ["s_U_str"],
+          "element_id": "w_U_str",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	      "w_82_uv": {
+          "connects": ["s_U_U7", "s_82_fhuv"],
+          "element_id": "w_82_uv",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek"
+        },
+	      "w_U_Ab": {
+          "connects": ["s_U_Ab", "s_U_Rb"],
+          "element_id": "w_U_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        }, 
+        "w_U_Aj": {
+          "connects": ["s_U_Aj"],
+          "element_id": "w_U_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        }, 
+        "w_U_aj": {
+          "connects": ["s_U_aj","s_U_Rj"],
+          "element_id": "w_U_aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "extra1"
+        },
+        "w_U_Rb": {
+          "connects": ["s_U_Rb"],
+          "element_id": "w_U_Rb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_U_Rj": {
+          "connects": ["s_U_Rj"],
+          "element_id": "w_U_Rj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_A_Fh_Ub": {
+          "connects": ["s_U_U9","s_A_Fh_Bpb"],
+          "element_id": "w_A_Fh_Ub",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek"
+        },
+        "w_A_Fh_Uj": {
+          "connects": ["s_U_U8", "s_A_Fh_Bpj"],
+          "element_id": "w_A_Fh_Uj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_U_U5": {
+          "type": "szakaszolo",
+          "from": "w_120_lo_ub",
+          "to": "w_U_Bpb_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_U5"
+          }
+        },
+        "s_U_U6": {
+          "type": "szakaszolo",
+          "from": "w_120_lo_uj",
+          "to": "w_U_Bpj_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_U6"
+          }
+        },
+        "s_U_U7": {
+          "type": "szakaszolo",
+          "from": "w_82_uv",
+          "to": "w_U_Hv_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_U7"
+          }
+        }
+        ,
+        "s_U_U9": {
+          "type": "szakaszolo",
+          "from": "w_U_Lob_megker",
+          "to": "w_A_Fh_Ub",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_U9"
+          }
+        },
+        "s_U_U8": {
+          "type": "szakaszolo",
+          "from": "w_U_Loj_megker",
+          "to": "w_A_Fh_Uj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_U8"
+          }
+        },
+        "s_U_Bpb": {
+          "type": "szakaszolo",
+          "from": "w_U_Bpb_megker",
+          "to": "w_U_gys_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Bpb"
+          }
+        }, 
+        "s_U_Hv": {
+          "type": "szakaszolo",
+          "from": "w_U_Hv_megker",
+          "to": "w_U_gys_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Hv"
+          }
+        }, 
+        "s_U_Ab": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_b",
+          "to": "w_U_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Ab"
+          }
+        }, 
+        "s_U_Lob": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_b",
+          "to": "w_U_Lob_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Lob"
+          }
+        },
+        "s_U_Ob": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_b",
+          "to": "w_U_O",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_U_Ob"
+          }
+        },
+        "s_U_Bpj": {
+          "type": "szakaszolo",
+          "from": "w_U_Bpj_megker",
+          "to": "w_U_gys_j",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Bpj"
+          }
+        }, 
+        "s_U_Aj": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_j",
+          "to": "w_U_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Aj"
+          }
+        }, 
+        "s_U_aj": {
+          "type": "szakaszolo",
+          "from": "w_U_O",
+          "to": "w_U_aj",
+          "state": "closed",
+          "oldal": "extra1",
+          "graphics": {
+            "element_id": "s_U_aj"
+          }
+        }, 
+        "s_U_Loj": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_j",
+          "to": "w_U_Loj_megker",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Loj"
+          }
+        },
+        "s_U_Oj": {
+          "type": "szakaszolo",
+          "from": "w_U_gys_j",
+          "to": "w_U_O",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_U_Oj"
+          }
+        }, 
+        "s_U_str": {
+          "type": "szakaszolo",
+          "from": "w_U_Hv_megker",
+          "to": "w_U_str",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_str"
+          }
+        }, 
+        "s_U_Rb": {
+          "type": "szakaszolo",
+          "from": "w_U_Ab",
+          "to": "w_U_Rb",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_U_Rb"
+          }
+        }, 
+        "s_U_Rj": {
+          "type": "szakaszolo",
+          "from": "w_U_aj",
+          "to": "w_U_Rj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_U_Rj"
+          }
+        }
+      }
+    },
+    {
+      "name": "Tapiogyorgye",
+      "nodes": {
+        "w_g_bpbm": {
+          "connects": ["s_g_u1", "s_g_bpb"],
+          "element_id": "w_g_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_g_bpjm": {
+          "connects": ["s_g_u2", "s_g_bpj", "s_g_str1"],
+          "element_id": "w_g_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_g_lobm": {
+          "connects": ["s_g_u3", "s_g_lob", "s_g_str2", "s_g_str3"],
+          "element_id": "w_g_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_g_lojm": {
+          "connects": ["s_g_u4", "s_g_loj"],
+          "element_id": "w_g_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_g_bgys": {
+          "connects": ["s_g_bpb", "s_g_Ab", "s_g_lob", "s_g_ob"],
+          "element_id": "w_g_bgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_g_jgys": {
+          "connects": ["s_g_bpj", "s_g_Aj", "s_g_loj", "s_g_oj"],
+          "element_id": "w_g_jgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_g_o": {
+          "connects": ["s_g_ob", "s_g_oj"],
+          "element_id": "w_g_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_r_g_b": {
+          "connects": ["s_g_u1"],
+          "element_id": "w_r_g_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_r_g_j": {
+          "connects": ["s_g_u2"],
+          "element_id": "w_r_g_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_g_str1": {
+          "connects": ["s_g_str1"],
+          "element_id": "w_g_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+	      "w_g_str2": {
+          "connects": ["s_g_str2"],
+          "element_id": "w_g_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	     "w_g_str3": {
+          "connects": ["s_g_str3"],
+          "element_id": "w_g_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_g_Ab": {
+          "connects": ["s_g_Ab", "s_g_r1"],
+          "element_id": "w_g_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_g_Aj": {
+          "connects": ["s_g_Aj"],
+          "element_id": "w_g_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_g_r1": {
+          "connects": ["s_g_r1"],
+          "element_id": "w_g_r1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },    
+        "w_g_s_b": {
+          "connects": ["s_g_u1","s_s_u3"],
+          "element_id": "w_g_s_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_g_s_j": {
+          "connects": ["s_g_u2","s_s_u4"],
+          "element_id": "w_g_s_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_g_u1": {
+          "type": "szakaszolo",
+          "from": "w_g_s_b",
+          "to": "w_g_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_u1"
+          }
+        },
+        "s_g_u2": {
+          "type": "szakaszolo",
+          "from": "w_g_s_j",
+          "to": "w_g_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_u2"
+          }
+        },
+        "s_g_u3": {
+          "type": "szakaszolo",
+          "from": "w_g_lobm",
+          "to": "w_fh_120_bpb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_u3"
+          }
+        },
+        "s_g_u4": {
+          "type": "szakaszolo",
+          "from": "w_g_lojm",
+          "to": "w_fh_120_bpj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_u4"
+          }
+        },
+        "s_g_bpb": {
+          "type": "szakaszolo",
+          "from": "w_g_bpbm",
+          "to": "w_g_bgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_bpb"
+          }
+        }, 
+        "s_g_Ab": {
+          "type": "szakaszolo",
+          "from": "w_g_bgys",
+          "to": "w_g_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_Ab"
+          }
+        }, 
+        "s_g_lob": {
+          "type": "szakaszolo",
+          "from": "w_g_bgys",
+          "to": "w_g_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_lob"
+          }
+        },
+        "s_g_ob": {
+          "type": "szakaszolo",
+          "from": "w_g_bgys",
+          "to": "w_g_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_ob"
+          }
+        },
+        "s_g_bpj": {
+          "type": "szakaszolo",
+          "from": "w_g_bpjm",
+          "to": "w_g_jgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_bpj"
+          }
+        }, 
+        "s_g_Aj": {
+          "type": "szakaszolo",
+          "from": "w_g_jgys",
+          "to": "w_g_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_Aj"
+          }
+        }, 
+        "s_g_loj": {
+          "type": "szakaszolo",
+          "from": "w_g_jgys",
+          "to": "w_g_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_loj"
+          }
+        },
+        "s_g_oj": {
+          "type": "szakaszolo",
+          "from": "w_g_jgys",
+          "to": "w_g_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_oj"
+          }
+        }, 
+        "s_g_str1": {
+          "type": "szakaszolo",
+          "from": "w_g_bpjm",
+          "to": "w_g_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_str1"
+          }
+        }, 
+        "s_g_str2": {
+          "type": "szakaszolo",
+          "from": "w_g_lobm",
+          "to": "w_g_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_str2"
+          }
+        }, 
+        "s_g_str3": {
+          "type": "szakaszolo",
+          "from": "w_g_lobm",
+          "to": "w_g_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_g_str3"
+          }
+        }, 
+        "s_g_r1": {
+          "type": "szakaszolo",
+          "from": "w_g_Ab",
+          "to": "w_g_r1",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_g_r1"
+          }
+        }
+      }
+    },
+    {
+      "name": "Tapioszele",
+      "nodes": {
+        "w_s_bpbm": {
+          "connects": ["s_s_u1", "s_s_bpb"],
+          "element_id": "w_s_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_s_bpjm": {
+          "connects": ["s_s_u2", "s_s_bpj", "s_s_str1"],
+          "element_id": "w_s_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_s_lobm": {
+          "connects": ["s_s_u3", "s_s_lob", "s_s_str3"],
+          "element_id": "w_s_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_s_lojm": {
+          "connects": ["s_s_u4", "s_s_loj"],
+          "element_id": "w_s_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_s_bgys": {
+          "connects": ["s_s_bpb", "s_s_Ab", "s_s_lob", "s_s_ob"],
+          "element_id": "w_s_bgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_s_jgys": {
+          "connects": ["s_s_bpj", "s_s_Aj", "s_s_loj", "s_s_oj"],
+          "element_id": "w_s_jgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_s_o": {
+          "connects": ["s_s_ob", "s_s_oj", "s_s_str2"],
+          "element_id": "w_s_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_s_k_fhb": {
+          "connects": ["s_s_u1", "s_k_fh_lob"],
+          "element_id": "w_s_k_fhb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_s_k_fhj": {
+          "connects": ["s_s_u2", "s_k_fh_loj"],
+          "element_id": "w_s_k_fhj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_s_str1": {
+          "connects": ["s_s_str1"],
+          "element_id": "w_s_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+	      "w_s_str2": {
+          "connects": ["s_s_str2"],
+          "element_id": "w_s_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "kozep"
+        },
+	     "w_s_str3": {
+          "connects": ["s_s_str3"],
+          "element_id": "w_s_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_s_Ab": {
+          "connects": ["s_s_Ab"],
+          "element_id": "w_s_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_s_Aj": {
+          "connects": ["s_s_Aj", "s_s_r"],
+          "element_id": "w_s_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_s_r": {
+          "connects": ["s_s_r"],
+          "element_id": "w_s_r",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_s_u1": {
+          "type": "szakaszolo",
+          "from": "w_s_k_fhb",
+          "to": "w_s_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_u1"
+          }
+        },
+        "s_s_u2": {
+          "type": "szakaszolo",
+          "from": "w_s_k_fhj",
+          "to": "w_s_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_u2"
+          }
+        },
+        "s_s_u3": {
+          "type": "szakaszolo",
+          "from": "w_s_lobm",
+          "to": "w_g_s_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_u3"
+          }
+        },
+        "s_s_u4": {
+          "type": "szakaszolo",
+          "from": "w_s_lojm",
+          "to": "w_g_s_j",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_u4"
+          }
+        },
+        "s_s_bpb": {
+          "type": "szakaszolo",
+          "from": "w_s_bpbm",
+          "to": "w_s_bgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_bpb"
+          }
+        }, 
+        "s_s_Ab": {
+          "type": "szakaszolo",
+          "from": "w_s_bgys",
+          "to": "w_s_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_Ab"
+          }
+        }, 
+        "s_s_lob": {
+          "type": "szakaszolo",
+          "from": "w_s_bgys",
+          "to": "w_s_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_lob"
+          }
+        },
+        "s_s_ob": {
+          "type": "szakaszolo",
+          "from": "w_s_bgys",
+          "to": "w_s_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_ob"
+          }
+        },
+        "s_s_bpj": {
+          "type": "szakaszolo",
+          "from": "w_s_bpjm",
+          "to": "w_s_jgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_bpj"
+          }
+        }, 
+        "s_s_Aj": {
+          "type": "szakaszolo",
+          "from": "w_s_jgys",
+          "to": "w_s_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_Aj"
+          }
+        }, 
+        "s_s_loj": {
+          "type": "szakaszolo",
+          "from": "w_s_jgys",
+          "to": "w_s_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_loj"
+          }
+        },
+        "s_s_oj": {
+          "type": "szakaszolo",
+          "from": "w_s_jgys",
+          "to": "w_s_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_oj"
+          }
+        }, 
+        "s_s_str1": {
+          "type": "szakaszolo",
+          "from": "w_s_bpjm",
+          "to": "w_s_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_str1"
+          }
+        }, 
+        "s_s_str2": {
+          "type": "szakaszolo",
+          "from": "w_s_o",
+          "to": "w_s_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_str2"
+          }
+        }, 
+        "s_s_str3": {
+          "type": "szakaszolo",
+          "from": "w_s_lobm",
+          "to": "w_s_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_s_str3"
+          }
+        }, 
+        "s_s_r": {
+          "type": "szakaszolo",
+          "from": "w_s_Aj",
+          "to": "w_s_r",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_s_r"
+          }
+        }
+      }
+    },
+    {
+      "name": "fh_ Kata",
+      "nodes": {
+       "w_k_fh_kb": {
+          "connects": ["s_k_fh_bpb", "s_k_u3"],
+          "element_id": "w_k_fh_kb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_k_fh_kj": {
+          "connects": ["s_k_fh_bpj", "s_k_u4"],
+          "element_id": "w_k_fh_kj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+        "w_k_fhb": {
+          "connects": ["s_k_fh_bpb", "s_k_fh_lob"],
+          "element_id": "w_k_fhb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_k_fhj": {
+          "connects": ["s_k_fh_bpj", "s_k_fh_loj"],
+          "element_id": "w_k_fhj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+       "s_k_fh_bpb": {
+          "type": "szakaszolo",
+          "from": "w_k_fh_kb",
+          "to": "w_k_fhb",
+          "ends": ["w_k_fh_kb", "w_k_fhb"],
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_fh_bpb"
+          }
+        },
+        "s_k_fh_bpj": {
+          "type": "szakaszolo",
+          "from": "w_k_fh_kj",
+          "to": "w_k_fhj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_fh_bpj"
+          }
+        },
+        "s_k_fh_lob": {
+          "type": "szakaszolo",
+          "from": "w_s_k_fhb",
+          "to": "w_k_fhb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_fh_lob"
+          }
+        },
+        "s_k_fh_loj": {
+          "type": "szakaszolo",
+          "from": "w_s_k_fhj",
+          "to": "w_k_fhj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_fh_loj"
+          }
+        }      
+      }
+    },
+     {
+      "name": "Kata",
+      "nodes": {
+        "w_k_bpbm": {
+          "connects": ["s_k_u1", "s_k_bpb"],
+          "element_id": "w_k_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_k_bpjm": {
+          "connects": ["s_k_u2", "s_k_bpj", "s_k_str1"],
+          "element_id": "w_k_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_k_lobm": {
+          "connects": ["s_k_u3", "s_k_lob", "s_k_str3"],
+          "element_id": "w_k_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_k_lojm": {
+          "connects": ["s_k_u4", "s_k_loj"],
+          "element_id": "w_k_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_k_gysb": {
+          "connects": ["s_k_bpb", "s_k_Ab", "s_k_lob", "s_k_ob" ],
+          "element_id": "w_k_gysb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_k_gysj": {
+          "connects": ["s_k_bpj", "s_k_Aj", "s_k_loj", "s_k_oj"],
+          "element_id": "w_k_gysj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        },
+        "w_k_o": {
+          "connects": ["s_k_ob", "s_k_oj", "s_k_aj", "s_k_str2"],
+          "element_id": "w_k_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_k_c_b": {
+          "connects": ["s_k_u1", "s_c_u3"],
+          "element_id": "w_k_c_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_k_c_j": {
+          "connects": ["s_k_u2", "s_c_u4"],
+          "element_id": "w_k_c_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_k_str1": {
+          "connects": ["s_k_str1"],
+          "element_id": "w_k_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+        "w_k_str2": {
+          "connects": ["s_k_str2"],
+          "element_id": "w_k_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "kozep"
+        },
+        "w_k_str3": {
+          "connects": ["s_k_str3"],
+          "element_id": "w_k_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	      "w_k_Ab": {
+          "connects": ["s_k_Ab", "s_k_r", "s_k_i"],
+          "element_id": "w_k_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        }, 
+        "w_k_Aj": {
+          "connects": ["s_k_Aj"],
+          "element_id": "w_k_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "jobb"
+        }, 
+        "w_k_aj": {
+          "connects": ["s_k_aj","s_k_i"],
+          "element_id": "w_k_aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "extra1"
+        },
+        "w_k_r": {
+          "connects": ["s_k_r"],
+          "element_id": "w_k_r",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        },
+        "w_k_i": {
+          "connects": ["s_k_i"],
+          "element_id": "w_k_i",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "B",
+          "oldal": "bal"
+        }
+      },
+      "switches": {
+        "s_k_u1": {
+          "type": "szakaszolo",
+          "from": "w_k_c_b",
+          "to": "w_k_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_u1"
+          }
+        },
+        "s_k_u2": {
+          "type": "szakaszolo",
+          "from": "w_k_c_j",
+          "to": "w_k_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_u2"
+          }
+        },
+        "s_k_u3": {
+          "type": "szakaszolo",
+          "from": "w_k_lobm",
+          "to": "w_k_fh_kb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_u3"
+          }
+        },
+        "s_k_u4": {
+          "type": "szakaszolo",
+          "from": "w_k_lojm",
+          "to": "w_k_fh_kj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_u4"
+          }
+        },
+        "s_k_bpb": {
+          "type": "szakaszolo",
+          "from": "w_k_bpbm",
+          "to": "w_k_gysb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_bpb"
+          }
+        }, 
+        "s_k_Ab": {
+          "type": "szakaszolo",
+          "from": "w_k_gysb",
+          "to": "w_k_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_Ab"
+          }
+        }, 
+        "s_k_lob": {
+          "type": "szakaszolo",
+          "from": "w_k_gysb",
+          "to": "w_k_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_lob"
+          }
+        },
+        "s_k_ob": {
+          "type": "szakaszolo",
+          "from": "w_k_gysb",
+          "to": "w_k_o",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_k_ob"
+          }
+        },
+        "s_k_bpj": {
+          "type": "szakaszolo",
+          "from": "w_k_bpjm",
+          "to": "w_k_gysj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_bpj"
+          }
+        }, 
+        "s_k_Aj": {
+          "type": "szakaszolo",
+          "from": "w_k_gysj",
+          "to": "w_k_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_Aj"
+          }
+        }, 
+        "s_k_aj": {
+          "type": "szakaszolo",
+          "from": "w_k_o",
+          "to": "w_k_aj",
+          "state": "closed",
+          "oldal": "extra1",
+          "graphics": {
+            "element_id": "s_k_aj"
+          }
+        }, 
+        "s_k_loj": {
+          "type": "szakaszolo",
+          "from": "w_k_gysj",
+          "to": "w_k_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_loj"
+          }
+        },
+        "s_k_oj": {
+          "type": "szakaszolo",
+          "from": "w_k_gysj",
+          "to": "w_k_o",
+          "state": "closed",
+          "oldal": "kozep",
+          "graphics": {
+            "element_id": "s_k_oj"
+          }
+        }, 
+        "s_k_str1": {
+          "type": "szakaszolo",
+          "from": "w_k_bpjm",
+          "to": "w_k_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_str1"
+          }
+        }, 
+        "s_k_str2": {
+          "type": "szakaszolo",
+          "from": "w_k_o",
+          "to": "w_k_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_str2"
+          }
+        }, 
+        "s_k_str3": {
+          "type": "szakaszolo",
+          "from": "w_k_lobm",
+          "to": "w_k_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_k_str3"
+          }
+        }, 
+        "s_k_r": {
+          "type": "szakaszolo",
+          "from": "w_k_Ab",
+          "to": "w_k_r",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_k_r"
+          }
+        }, 
+        "s_k_i": {
+          "type": "szakaszolo",
+          "from": "w_k_Ab",
+          "to": "w_k_i",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_k_i"
+          }
+        }
+      }
+    },
+    {
+      "name": "Tapioszecso",
+      "nodes": {
+        "w_c_bpbm": {
+          "connects": ["s_c_u1", "s_c_bpb", "s_c_str1"],
+          "element_id": "w_c_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_c_bpjm": {
+          "connects": ["s_c_u2", "s_c_bpj"],
+          "element_id": "w_c_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_c_lobm": {
+          "connects": ["s_c_u3", "s_c_lob", "s_c_str3"],
+          "element_id": "w_c_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_c_lojm": {
+          "connects": ["s_c_u4", "s_c_loj"],
+          "element_id": "w_c_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_c_bgys": {
+          "connects": ["s_c_bpb", "s_c_Ab", "s_c_lob", "s_c_ob"],
+          "element_id": "w_c_bgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_c_jgys": {
+          "connects": ["s_c_bpj", "s_c_Aj", "s_c_loj", "s_c_oj"],
+          "element_id": "w_c_jgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_c_o": {
+          "connects": ["s_c_ob", "s_c_oj", "s_c_str2"],
+          "element_id": "w_c_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_y_c_b": {
+          "connects": ["s_c_u1", "s_y_u3"],
+          "element_id": "w_y_c_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_y_c_j": {
+          "connects": ["s_c_u2", "s_y_u4"],
+          "element_id": "w_y_c_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_c_str1": {
+          "connects": ["s_c_str1"],
+          "element_id": "w_c_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	      "w_c_str2": {
+          "connects": ["s_c_str2"],
+          "element_id": "w_c_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "kozep"
+        },
+	     "w_c_str3": {
+          "connects": ["s_c_str3"],
+          "element_id": "w_c_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_c_Ab": {
+          "connects": ["s_c_Ab"],
+          "element_id": "w_c_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_c_Aj": {
+          "connects": ["s_c_Aj"],
+          "element_id": "w_c_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_c_u1": {
+          "type": "szakaszolo",
+          "from": "w_y_c_b",
+          "to": "w_c_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_u1"
+          }
+        },
+        "s_c_u2": {
+          "type": "szakaszolo",
+          "from": "w_y_c_j",
+          "to": "w_c_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_u2"
+          }
+        },
+        "s_c_u3": {
+          "type": "szakaszolo",
+          "from": "w_c_lobm",
+          "to": "w_k_c_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_u3"
+          }
+        },
+        "s_c_u4": {
+          "type": "szakaszolo",
+          "from": "w_c_lojm",
+          "to": "w_k_c_j",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_u4"
+          }
+        },
+        "s_c_bpb": {
+          "type": "szakaszolo",
+          "from": "w_c_bpbm",
+          "to": "w_c_bgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_bpb"
+          }
+        }, 
+        "s_c_Ab": {
+          "type": "szakaszolo",
+          "from": "w_c_bgys",
+          "to": "w_c_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_Ab"
+          }
+        }, 
+        "s_c_lob": {
+          "type": "szakaszolo",
+          "from": "w_c_bgys",
+          "to": "w_c_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_lob"
+          }
+        },
+        "s_c_ob": {
+          "type": "szakaszolo",
+          "from": "w_c_bgys",
+          "to": "w_c_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_ob"
+          }
+        },
+        "s_c_bpj": {
+          "type": "szakaszolo",
+          "from": "w_c_bpjm",
+          "to": "w_c_jgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_bpj"
+          }
+        }, 
+        "s_c_Aj": {
+          "type": "szakaszolo",
+          "from": "w_c_jgys",
+          "to": "w_c_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_Aj"
+          }
+        }, 
+        "s_c_loj": {
+          "type": "szakaszolo",
+          "from": "w_c_jgys",
+          "to": "w_c_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_loj"
+          }
+        },
+        "s_c_oj": {
+          "type": "szakaszolo",
+          "from": "w_c_jgys",
+          "to": "w_c_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_oj"
+          }
+        }, 
+        "s_c_str1": {
+          "type": "szakaszolo",
+          "from": "w_c_bpbm",
+          "to": "w_c_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_str1"
+          }
+        }, 
+        "s_c_str2": {
+          "type": "szakaszolo",
+          "from": "w_c_o",
+          "to": "w_c_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_str2"
+          }
+        }, 
+        "s_c_str3": {
+          "type": "szakaszolo",
+          "from": "w_c_lobm",
+          "to": "w_c_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_c_str3"
+          }
+        }
+      }
+    },
+    {
+      "name": "sulysap",
+      "nodes": {
+        "w_y_bpbm": {
+          "connects": ["s_y_u1", "s_y_bpb"],
+          "element_id": "w_y_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_y_bpjm": {
+          "connects": ["s_y_u2", "s_y_bpj", "s_y_str1"],
+          "element_id": "w_y_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_y_lobm": {
+          "connects": ["s_y_u3", "s_y_lob", "s_y_str3"],
+          "element_id": "w_y_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_y_lojm": {
+          "connects": ["s_y_u4", "s_y_loj"],
+          "element_id": "w_y_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_y_bgys": {
+          "connects": ["s_y_bpb", "s_y_Ab", "s_y_lob", "s_y_ob"],
+          "element_id": "w_y_bgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_y_jgys": {
+          "connects": ["s_y_bpj", "s_y_Aj", "s_y_loj", "s_y_oj"],
+          "element_id": "w_y_jgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_y_o": {
+          "connects": ["s_y_ob", "s_y_oj", "s_y_str2"],
+          "element_id": "w_y_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_p_y_b": {
+          "connects": ["s_y_u1", "s_p_fh_Lob"],
+          "element_id": "w_p_y_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_p_y_j": {
+          "connects": ["s_y_u2", "s_p_fh_Loj"],
+          "element_id": "w_p_y_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_y_str1": {
+          "connects": ["s_y_str1"],
+          "element_id": "w_y_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+	      "w_y_str2": {
+          "connects": ["s_y_str2"],
+          "element_id": "w_y_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "kozep"
+        },
+	     "w_y_str3": {
+          "connects": ["s_y_str3"],
+          "element_id": "w_y_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_y_Ab": {
+          "connects": ["s_y_Ab", "s_y_r"],
+          "element_id": "w_y_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_y_Aj": {
+          "connects": ["s_y_Aj"],
+          "element_id": "w_y_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_y_r": {
+          "connects": ["s_y_r"],
+          "element_id": "w_y_r",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }
+      },
+      "switches": {
+        "s_y_u1": {
+          "type": "szakaszolo",
+          "from": "w_p_y_b",
+          "to": "w_y_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_u1"
+          }
+        },
+        "s_y_u2": {
+          "type": "szakaszolo",
+          "from": "w_p_y_j",
+          "to": "w_y_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_u2"
+          }
+        },
+        "s_y_u3": {
+          "type": "szakaszolo",
+          "from": "w_y_lobm",
+          "to": "w_y_c_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_u3"
+          }
+        },
+        "s_y_u4": {
+          "type": "szakaszolo",
+          "from": "w_y_lojm",
+          "to": "w_y_c_j",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_u4"
+          }
+        },
+        "s_y_bpb": {
+          "type": "szakaszolo",
+          "from": "w_y_bpbm",
+          "to": "w_y_bgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_bpb"
+          }
+        }, 
+        "s_y_Ab": {
+          "type": "szakaszolo",
+          "from": "w_y_bgys",
+          "to": "w_y_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_Ab"
+          }
+        }, 
+        "s_y_lob": {
+          "type": "szakaszolo",
+          "from": "w_y_bgys",
+          "to": "w_y_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_lob"
+          }
+        },
+        "s_y_ob": {
+          "type": "szakaszolo",
+          "from": "w_y_bgys",
+          "to": "w_y_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_ob"
+          }
+        },
+        "s_y_bpj": {
+          "type": "szakaszolo",
+          "from": "w_y_bpjm",
+          "to": "w_y_jgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_bpj"
+          }
+        }, 
+        "s_y_Aj": {
+          "type": "szakaszolo",
+          "from": "w_y_jgys",
+          "to": "w_y_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_Aj"
+          }
+        }, 
+        "s_y_loj": {
+          "type": "szakaszolo",
+          "from": "w_y_jgys",
+          "to": "w_y_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_loj"
+          }
+        },
+        "s_y_oj": {
+          "type": "szakaszolo",
+          "from": "w_y_jgys",
+          "to": "w_y_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_oj"
+          }
+        }, 
+        "s_y_str1": {
+          "type": "szakaszolo",
+          "from": "w_y_bpjm",
+          "to": "w_y_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_str1"
+          }
+        }, 
+        "s_y_str2": {
+          "type": "szakaszolo",
+          "from": "w_y_o",
+          "to": "w_y_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_str2"
+          }
+        }, 
+        "s_y_str3": {
+          "type": "szakaszolo",
+          "from": "w_y_lobm",
+          "to": "w_y_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_y_str3"
+          }
+        }, 
+        "s_y_r": {
+          "type": "szakaszolo",
+          "from": "w_y_Ab",
+          "to": "w_y_r",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_y_r"
+          }
+        }
+      }
+    },
+    {
+      "name": "fh_Pusztaszentistvan",
+      "nodes": {
+       "w_me_pb": {
+          "connects": ["s_p_fh_Bpb", "s_me_u3"],
+          "element_id": "w_me_pb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_me_pj": {
+          "connects": ["s_p_fh_Bpj", "s_me_u4"],
+          "element_id": "w_me_pj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+        "w_p_fhb": {
+          "connects": ["s_p_fh_Bpb", "s_p_fh_Lob"],
+          "element_id": "w_p_fhb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_p_fhj": {
+          "connects": ["s_p_fh_Bpj", "s_p_fh_Loj"],
+          "element_id": "w_p_fhj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+       "s_p_fh_Bpb": {
+          "type": "szakaszolo",
+          "from": "w_p_fhb",
+          "to": "w_me_pb",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_p_fh_Bpb"
+          }
+        },
+        "s_p_fh_Bpj": {
+          "type": "szakaszolo",
+          "from": "w_p_fhj",
+          "to": "w_me_pj",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_p_fh_Bpj"
+          }
+        },
+        "s_p_fh_Lob": {
+          "type": "szakaszolo",
+          "from": "w_p_y_b",
+          "to": "w_p_fhb",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_p_fh_Lob"
+          }
+        },
+        "s_p_fh_Loj": {
+          "type": "szakaszolo",
+          "from": "w_p_y_j",
+          "to": "w_p_fhj",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_p_fh_Loj"
+          }
+        }      
+      }
+    },
+    {
+      "name": "Mende",
+      "nodes": {
+        "w_me_bpbm": {
+          "connects": ["s_me_u1", "s_me_bpb", "s_me_str1"],
+          "element_id": "w_me_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_me_bpjm": {
+          "connects": ["s_me_u2", "s_me_bpj"],
+          "element_id": "w_me_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_me_lobm": {
+          "connects": ["s_me_u3", "s_me_lob", "s_me_str3"],
+          "element_id": "w_me_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_me_lojm": {
+          "connects": ["s_me_u4", "s_me_loj"],
+          "element_id": "w_me_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_me_bgys": {
+          "connects": ["s_me_bpb", "s_me_Ab", "s_me_lob", "s_me_ob"],
+          "element_id": "w_me_bgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_me_jgys": {
+          "connects": ["s_me_bpj", "s_me_Aj", "s_me_loj", "s_me_oj"],
+          "element_id": "w_me_jgys",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_me_o": {
+          "connects": ["s_me_ob", "s_me_oj", "s_me_str2"],
+          "element_id": "w_me_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_gy_me_b": {
+          "connects": ["s_me_u1", "s_gy_u3"],
+          "element_id": "w_gy_me_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_gy_me_j": {
+          "connects": ["s_me_u2", "s_gy_u4"],
+          "element_id": "w_gy_me_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_me_str1": {
+          "connects": ["s_me_str1"],
+          "element_id": "w_me_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	      "w_me_str2": {
+          "connects": ["s_me_str2"],
+          "element_id": "w_me_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+	     "w_me_str3": {
+          "connects": ["s_me_str3"],
+          "element_id": "w_me_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_me_Ab": {
+          "connects": ["s_me_Ab", "s_me_r"],
+          "element_id": "w_me_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_me_Aj": {
+          "connects": ["s_me_Aj"],
+          "element_id": "w_me_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_me_r": {
+          "connects": ["s_me_r"],
+          "element_id": "w_me_r",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }
+      },
+      "switches": {
+        "s_me_u1": {
+          "type": "szakaszolo",
+          "from": "w_gy_me_b",
+          "to": "w_me_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_u1"
+          }
+        },
+        "s_me_u2": {
+          "type": "szakaszolo",
+          "from": "w_gy_me_j",
+          "to": "w_me_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_u2"
+          }
+        },
+        "s_me_u3": {
+          "type": "szakaszolo",
+          "from": "w_me_lobm",
+          "to": "w_me_pb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_u3"
+          }
+        },
+        "s_me_u4": {
+          "type": "szakaszolo",
+          "from": "w_me_lojm",
+          "to": "w_me_pj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_u4"
+          }
+        },
+        "s_me_bpb": {
+          "type": "szakaszolo",
+          "from": "w_me_bpbm",
+          "to": "w_me_bgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_bpb"
+          }
+        }, 
+        "s_me_Ab": {
+          "type": "szakaszolo",
+          "from": "w_me_bgys",
+          "to": "w_me_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_Ab"
+          }
+        }, 
+        "s_me_lob": {
+          "type": "szakaszolo",
+          "from": "w_me_bgys",
+          "to": "w_me_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_lob"
+          }
+        },
+        "s_me_ob": {
+          "type": "szakaszolo",
+          "from": "w_me_bgys",
+          "to": "w_me_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_ob"
+          }
+        },
+        "s_me_bpj": {
+          "type": "szakaszolo",
+          "from": "w_me_bpjm",
+          "to": "w_me_jgys",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_bpj"
+          }
+        }, 
+        "s_me_Aj": {
+          "type": "szakaszolo",
+          "from": "w_me_jgys",
+          "to": "w_me_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_Aj"
+          }
+        }, 
+        "s_me_loj": {
+          "type": "szakaszolo",
+          "from": "w_me_jgys",
+          "to": "w_me_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_loj"
+          }
+        },
+        "s_me_oj": {
+          "type": "szakaszolo",
+          "from": "w_me_jgys",
+          "to": "w_me_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_oj"
+          }
+        }, 
+        "s_me_str1": {
+          "type": "szakaszolo",
+          "from": "w_me_bpbm",
+          "to": "w_me_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_str1"
+          }
+        }, 
+        "s_me_str2": {
+          "type": "szakaszolo",
+          "from": "w_me_o",
+          "to": "w_me_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_str2"
+          }
+        }, 
+        "s_me_str3": {
+          "type": "szakaszolo",
+          "from": "w_me_lobm",
+          "to": "w_me_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_me_str3"
+          }
+        }, 
+        "s_me_r": {
+          "type": "szakaszolo",
+          "from": "w_me_Ab",
+          "to": "w_me_r",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_me_r"
+          }
+        }
+      }
+    },
+    {
+      "name": "Gyomro",
+      "nodes": {
+        "w_gy_bpbm": {
+          "connects": ["s_gy_u1", "s_gy_bpb"],
+          "element_id": "w_gy_bpbm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_gy_bpjm": {
+          "connects": ["s_gy_u2", "s_gy_bpj", "s_gy_str1"],
+          "element_id": "w_gy_bpjm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_gy_lobm": {
+          "connects": ["s_gy_u3", "s_gy_lob", "s_gy_str3"],
+          "element_id": "w_gy_lobm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_gy_lojm": {
+          "connects": ["s_gy_u4", "s_gy_loj", "s_gy_str2"],
+          "element_id": "w_gy_lojm",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_gy_gysb": {
+          "connects": ["s_gy_bpb", "s_gy_Ab", "s_gy_lob", "s_gy_ob"],
+          "element_id": "w_gy_gysb",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_gy_gysj": {
+          "connects": ["s_gy_bpj", "s_gy_Aj", "s_gy_loj", "s_gy_oj"],
+          "element_id": "w_gy_gysj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_gy_o": {
+          "connects": ["s_gy_ob", "s_gy_oj"],
+          "element_id": "w_gy_o",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "gyujtosin",
+          "oldal": "kozep" 
+        },
+        "w_ma_gy_b": {
+          "connects": ["s_gy_u1", "s_ma_u3"],
+          "element_id": "w_ma_gy_b",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        },
+        "w_ma_gy_j": {
+          "connects": ["s_gy_u2", "s_ma_u4"],
+          "element_id": "w_ma_gy_j",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_gy_str1": {
+          "connects": ["s_gy_str1"],
+          "element_id": "w_gy_str1",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+	      "w_gy_str2": {
+          "connects": ["s_gy_str2"],
+          "element_id": "w_gy_str2",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "jobb"
+        },
+	     "w_gy_str3": {
+          "connects": ["s_gy_str3"],
+          "element_id": "w_gy_str3",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "oldal": "bal"
+        },
+        "w_gy_Ab": {
+          "connects": ["s_gy_Ab"],
+          "element_id": "w_gy_Ab",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "bal"
+        }, 
+        "w_gy_Aj": {
+          "connects": ["s_gy_Aj", "s_gy_r"],
+          "element_id": "w_gy_Aj",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        },
+        "w_gy_r": {
+          "connects": ["s_gy_r"],
+          "element_id": "w_gy_r",
+          "_info": "vezetek | csomopont | leagazas",
+          "type": "vezetek",
+          "fazis": "A",
+          "oldal": "jobb"
+        }
+      },
+      "switches": {
+        "s_gy_u1": {
+          "type": "szakaszolo",
+          "from": "w_ma_gy_b",
+          "to": "w_gy_bpbm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_u1"
+          }
+        },
+        "s_gy_u2": {
+          "type": "szakaszolo",
+          "from": "w_ma_gy_j",
+          "to": "w_gy_bpjm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_u2"
+          }
+        },
+        "s_gy_u3": {
+          "type": "szakaszolo",
+          "from": "w_gy_lobm",
+          "to": "w_gy_me_b",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_u3"
+          }
+        },
+        "s_gy_u4": {
+          "type": "szakaszolo",
+          "from": "w_gy_lojm",
+          "to": "w_gy_me_j",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_u4"
+          }
+        },
+        "s_gy_bpb": {
+          "type": "szakaszolo",
+          "from": "w_gy_bpbm",
+          "to": "w_gy_gysb",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_bpb"
+          }
+        }, 
+        "s_gy_Ab": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysb",
+          "to": "w_gy_Ab",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_Ab"
+          }
+        }, 
+        "s_gy_lob": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysb",
+          "to": "w_gy_lobm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_lob"
+          }
+        },
+        "s_gy_ob": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysb",
+          "to": "w_gy_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_ob"
+          }
+        },
+        "s_gy_bpj": {
+          "type": "szakaszolo",
+          "from": "w_gy_bpjm",
+          "to": "w_gy_gysj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_bpj"
+          }
+        }, 
+        "s_gy_Aj": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysj",
+          "to": "w_gy_Aj",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_Aj"
+          }
+        }, 
+        "s_gy_loj": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysj",
+          "to": "w_gy_lojm",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_loj"
+          }
+        },
+        "s_gy_oj": {
+          "type": "szakaszolo",
+          "from": "w_gy_gysj",
+          "to": "w_gy_o",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_oj"
+          }
+        }, 
+        "s_gy_str1": {
+          "type": "szakaszolo",
+          "from": "w_gy_bpjm",
+          "to": "w_gy_str1",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_str1"
+          }
+        }, 
+        "s_gy_str2": {
+          "type": "szakaszolo",
+          "from": "w_gy_lojm",
+          "to": "w_gy_str2",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_str2"
+          }
+        }, 
+        "s_gy_str3": {
+          "type": "szakaszolo",
+          "from": "w_gy_lobm",
+          "to": "w_gy_str3",
+          "state": "closed",
+          "graphics": {
+            "element_id": "s_gy_str3"
+          }
+        }, 
+        "s_gy_r": {
+          "type": "szakaszolo",
+          "from": "w_gy_Aj",
+          "to": "w_gy_r",
+          "state": "open",
+          "graphics": {
+            "element_id": "s_gy_r"
+          }
+        }
+      }
+    },
+    {
+      "name": "Maglod",
       "nodes": {
         "w_ma_bpbm": {
-          "connects": ["s_ma_u1", "s_ma_bpb"],
+          "connects": ["s_ma_u1", "s_ma_bpb", "s_ma_str1"],
           "element_id": "w_ma_bpbm",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         },
         "w_ma_bpjm": {
@@ -668,15 +3400,15 @@
           "element_id": "w_ma_bpjm",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "jobb"
         },
         "w_ma_lobm": {
-          "connects": ["s_ma_u3", "s_ma_lob"],
+          "connects": ["s_ma_u3", "s_ma_lob", "s_ma_str3"],
           "element_id": "w_ma_lobm",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         },
         "w_ma_lojm": {
@@ -684,7 +3416,7 @@
           "element_id": "w_ma_lojm",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "jobb"
         },
         "w_ma_bgys": {
@@ -692,15 +3424,15 @@
           "element_id": "w_ma_bgys",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         },
         "w_ma_jgys": {
-          "connects": ["s_ma_bpj", "s_ma_Aj", "s_ma_loj", "s_ma_oj","s_ma_str2"],
+          "connects": ["s_ma_bpj", "s_ma_Aj", "s_ma_loj", "s_ma_oj", "s_ma_str2"],
           "element_id": "w_ma_jgys",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "jobb"
         },
         "w_ma_o": {
@@ -711,45 +3443,48 @@
           "oldal": "kozep" 
         },
         "w_r_ma_b": {
-          "connects": ["s_ma_u1"],
+          "connects": ["s_ma_u1", "s_it_bpb"],
           "element_id": "w_r_ma_b",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         },
         "w_r_ma_j": {
-          "connects": ["s_ma_u2"],
+          "connects": ["s_ma_u2", "s_it_bpj"],
           "element_id": "w_r_ma_j",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "jobb"
         },
         "w_ma_str1": {
           "connects": ["s_ma_str1"],
           "element_id": "w_ma_str1",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "mellekaramkor"
+          "type": "vezetek",
+          "oldal": "bal"
         },
 	      "w_ma_str2": {
           "connects": ["s_ma_str2"],
           "element_id": "w_ma_str2",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "mellekaramkor"
+          "type": "vezetek",
+          "oldal": "jobb"
         },
 	     "w_ma_str3": {
           "connects": ["s_ma_str3"],
           "element_id": "w_ma_str3",
           "_info": "vezetek | csomopont | leagazas",
-          "type": "mellekaramkor"
+          "type": "vezetek",
+          "oldal": "bal"
         },
         "w_ma_Ab": {
           "connects": ["s_ma_Ab", "s_ma_r"],
           "element_id": "w_ma_Ab",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         }, 
         "w_ma_Aj": {
@@ -757,7 +3492,7 @@
           "element_id": "w_ma_Aj",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "jobb"
         },
         "w_ma_r": {
@@ -765,7 +3500,7 @@
           "element_id": "w_ma_r",
           "_info": "vezetek | csomopont | leagazas",
           "type": "vezetek",
-          "fazis": "C",
+          "fazis": "A",
           "oldal": "bal"
         }
       },
@@ -915,6 +3650,6 @@
           }
         }
       }
-    }
+    }   
   ]
 }
