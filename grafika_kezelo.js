@@ -89,6 +89,15 @@ function frissit_osszes_elem_megjelenitese(frissitett_szegmensek, kapcsolo_allap
     frissit_szegmens_szinezest(frissitett_szegmensek, topologiai_oldal_adatok);
     
     frissit_kapcsolo_megjelenites(kapcsolo_allapotok);
+
+// --- EZT A RÉSZT ADD HOZZÁ PONTOSAN ÍGY ---
+    console.log("Próba: JelzőModul hívása...");
+    if (window.JelzoModul) {
+        window.JelzoModul.frissites();
+    } else {
+        console.log("Hiba: A JelzoModul nem található a window objektumban!");
+    }
+    // ------------------------------------------
     
     console.log("Grafikus frissítés kész.");
 }
@@ -238,7 +247,11 @@ function frissit_kapcsolo_megjelenites(kapcsolo_allapotok) {
     Object.keys(kapcsolo_allapotok).forEach(kapcsolo_id => {
         const elem = svg_elem_referencia[kapcsolo_id];
         const allapot = kapcsolo_allapotok[kapcsolo_id];
-        
+        // --- EZT A PÁR SORT KELL BEILLESZTENED ---
+    if (window.JelzoModul && typeof window.JelzoModul.frissites === 'function') {
+        window.JelzoModul.frissites();
+    }
+    // -----------------------------------------
         if (elem) {
             // Zárt (closed) = 0 fok, Nyitott (open) = 30 fok 
             rotateSwitch(elem, allapot === "open" ? 30 : 0);
