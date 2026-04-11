@@ -1,5 +1,5 @@
 /**
- * Jelző Modul - Optimalizált Verzió
+ * Jelző Modul - Bővített Stabil Verzió
  */
 const JelzoModul = {
     konfiguracio: [],
@@ -30,9 +30,13 @@ const JelzoModul = {
             }
         }
 
-        // 2. Feszültségmentes (sötét) szegmensek kigyűjtése
+        // 2. Szegmensek kigyűjtése állapot szerint
         const mindenSotetId = Object.keys(adatok.segments).filter(id => 
             adatok.segments[id].state !== "energized"
+        );
+        
+        const mindenAktivId = Object.keys(adatok.segments).filter(id => 
+            adatok.segments[id].state === "energized"
         );
 
         let talaltJelzo = null;
@@ -40,13 +44,19 @@ const JelzoModul = {
         // 3. PRIORITÁSOS KERESÉS
         for (const szabaly of this.konfiguracio) {
             
-            // A: Vezetékcsoportok ellenőrzése
+            // A: Inaktív (sötét) vezetékek ellenőrzése (Régi "groups")
             const csoport = szabaly.groups || [];
             if (csoport.length > 0 && !csoport.every(id => mindenSotetId.includes(id.trim()))) {
                 continue;
             }
 
-            // B: Kapcsolók mechanikai állásának ellenőrzése
+            // B: Aktív (feszültség alatti) vezetékek ellenőrzése (ÚJ "active")
+            const aktivCsoport = szabaly.active || [];
+            if (aktivCsoport.length > 0 && !aktivCsoport.every(id => mindenAktivId.includes(id.trim()))) {
+                continue;
+            }
+
+            // C: Kapcsolók mechanikai állásának ellenőrzése
             let kapcsolokOk = true;
             if (szabaly.switches) {
                 for (let swId in szabaly.switches) {
@@ -70,7 +80,6 @@ const JelzoModul = {
                 el.style.display = "block";
                 el.style.opacity = "1";
                 
-                // Csak akkor írunk a konzolra, ha tényleg változott a jelző
                 if (this.utolsoAktivLayer !== talaltJelzo.layer) {
                     console.log(`>>> JELZŐ: ${talaltJelzo.layer}`);
                     this.utolsoAktivLayer = talaltJelzo.layer;
