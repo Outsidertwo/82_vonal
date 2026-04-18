@@ -1,9 +1,13 @@
 /**
  * Jelző Modul - Bővített Stabil Verzió
  */
+/**
+ * Jelző Modul - Bővített Stabil Verzió
+ */
 const JelzoModul = {
     konfiguracio: [],
     utolsoAktivLayer: null,
+    aktiv: false,
 
     init: async function(jsonPath) {
         try {
@@ -16,6 +20,18 @@ const JelzoModul = {
     },
 
     frissites: function() {
+        // Ha ki van kapcsolva, mindent elrejt és kilép
+        if (!this.aktiv) {
+            for (let i = 0; i < this.konfiguracio.length; i++) {
+                const el = document.getElementById(this.konfiguracio[i].layer);
+                if (el) { 
+                    el.style.display = "none"; 
+                    el.style.opacity = "0"; 
+                }
+            }
+            return;
+        }
+
         const adatok = typeof vasut_logika !== 'undefined' ? vasut_logika.get_node_adatok() : null;
         const kapcsolok = typeof vasut_logika !== 'undefined' ? vasut_logika.get_kapcsolo_allapotok() : {};
         
@@ -44,13 +60,13 @@ const JelzoModul = {
         // 3. PRIORITÁSOS KERESÉS
         for (const szabaly of this.konfiguracio) {
             
-            // A: Inaktív (sötét) vezetékek ellenőrzése (Régi "groups")
+            // A: Inaktív (sötét) vezetékek ellenőrzése
             const csoport = szabaly.groups || [];
             if (csoport.length > 0 && !csoport.every(id => mindenSotetId.includes(id.trim()))) {
                 continue;
             }
 
-            // B: Aktív (feszültség alatti) vezetékek ellenőrzése (ÚJ "active")
+            // B: Aktív (feszültség alatti) vezetékek ellenőrzése
             const aktivCsoport = szabaly.active || [];
             if (aktivCsoport.length > 0 && !aktivCsoport.every(id => mindenAktivId.includes(id.trim()))) {
                 continue;
@@ -88,6 +104,11 @@ const JelzoModul = {
         } else {
             this.utolsoAktivLayer = null;
         }
+    },
+
+    setAktiv: function(erteke) {
+        this.aktiv = erteke;
+        this.frissites();
     }
 };
 
