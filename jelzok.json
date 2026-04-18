@@ -22,41 +22,45 @@
   
   {
     "groups": ["w_k_Aj", "w_k_fh_kj", "w_s_k_fhj"],
+    "active": ["w_k_fh_kb"],
     "switches": { "s_k_fh_bpj": "closed", "s_k_fh_loj": "closed" },
     "layer": "kksj"
   },
   {
     "groups": ["w_k_Ab", "w_k_fh_kb", "w_s_k_fhb"],
+    "active": ["w_k_fh_kj"],
     "switches": { "s_k_fh_bpb": "closed", "s_k_fh_lob": "closed" },
     "layer": "kksb"
   },
   {
     "groups": ["w_s_Aj", "w_k_fh_kj", "w_s_k_fhj"],
+    "active": ["w_s_k_fhb"],
     "switches": { "s_k_fh_bpj": "closed", "s_k_fh_loj": "closed" },
     "layer": "sksj"
   },
   {
     "groups": ["w_s_Ab", "w_k_fh_kb", "w_s_k_fhb"],
+    "active": ["w_s_k_fhj"],
     "switches": { "s_k_fh_bpb": "closed", "s_k_fh_lob": "closed" },
     "layer": "sksb"
   },
   {
-    "groups": ["w_g_Aj", "w_fh_120_bpj", "w_fh_120_lo_uj"],
+    "groups": ["w_g_Aj", "w_fh_120_bpj", "w_120_lo_uj"],
     "switches": { "s_U_FhBpj": "closed", "s_U_FhLj": "closed" },
     "layer": "gguj"
   },
   {
-    "groups": ["w_g_Ab", "w_fh_120_bpb", "w_fh_120_lo_ub"],
+    "groups": ["w_g_Ab", "w_fh_120_bpb", "w_120_lo_ub"],
     "switches": { "s_U_FhBpb": "closed", "s_U_FhLb": "closed" },
     "layer": "ggub"
   },
   {
-    "groups": ["w_U_Aj", "w_fh_120_bpj", "w_fh_120_lo_uj"],
+    "groups": ["w_U_Aj", "w_fh_120_bpj", "w_120_lo_uj"],
     "switches": { "s_U_FhBpj": "closed", "s_U_FhLj": "closed" },
     "layer": "uugj"
   },
   {
-    "groups": ["w_U_Ab", "w_fh_120_bpb", "w_fh_120_lo_ub"],
+    "groups": ["w_U_Ab", "w_fh_120_bpb", "w_120_lo_ub"],
     "switches": { "s_U_FhBpb": "closed", "s_U_FhLb": "closed" },
     "layer": "uugb"
   },
@@ -72,17 +76,18 @@
   },
   {
     "groups": ["w_PT_Aj", "w_JB_Uv", "w_PT_Hv"],
+    "active": ["w_JBH_Hv"],
     "switches": { "s_JB_FH_HnV": "closed", "s_JB_FH_UV": "closed" },
     "layer": "ptptjb"
   },
   {
     "groups": ["w_JBH_Aj", "w_U_JBH", "w_82_uv"],
-    "switches": { "s_82_Fhuv": "closed", "s_82_Fhhv": "closed" },
+    "switches": { "s_82_fhuv": "closed", "s_82_fhhv": "closed" },
     "layer": "jju"
   },
   {
     "groups": ["w_U_Ab", "w_U_JBH", "w_82_uv"],
-    "switches": { "s_82_Fhuv": "closed", "s_82_Fhhv": "closed" },
+    "switches": { "s_82_fhuv": "closed", "s_82_fhhv": "closed" },
     "layer": "uuj"
   },
   {
@@ -97,21 +102,23 @@
   },
   {
     "groups": ["w_k_fh_kj", "w_s_k_fhj"],
+    "active": ["w_s_k_fhb"],
     "switches": { "s_k_fh_bpj": "closed", "s_k_fh_loj": "closed" },
     "layer": "ksj"
   },
   {
     "groups": ["w_k_fh_kb", "w_s_k_fhb"],
+    "active": ["w_s_k_fhj"],
     "switches": { "s_k_fh_bpb": "closed", "s_k_fh_lob": "closed" },
     "layer": "ksb"
   },
   {
-    "groups": ["w_fh_120_bpj", "w_fh_120_lo_uj"],
+    "groups": ["w_fh_120_bpj", "w_120_lo_uj"],
     "switches": { "s_U_FhBpj": "closed", "s_U_FhLj": "closed" },
     "layer": "guj"
   },
   {
-    "groups": ["w_fh_120_bpb", "w_fh_120_lo_ub"],
+    "groups": ["w_fh_120_bpb", "w_120_lo_ub"],
     "switches": { "s_U_FhBpb": "closed", "s_U_FhLb": "closed" },
     "layer": "gub"
   },
@@ -132,61 +139,118 @@
   },
   {
     "groups": ["w_U_JBH", "w_82_uv"],
-    "switches": { "s_82_Fhuv": "closed", "s_82_Fhhv": "closed" },
+    "switches": { "s_82_fhuv": "closed", "s_82_fhhv": "closed" },
     "layer": "ju"
   },
 
-  { "groups": ["w_ma_Aj", "w_ma_gy_j"],
-    "switches": { "s_ma_Aj": "open", "s_ma_loj": "open" },
-    "layer": "mamagyj" },
 
-  { "groups": ["w_ma_Aj", "w_ma_Ab"],
-    "active": ["w_r_ma_b", "w_ma_gy_b", "w_r_ma_j", "w_ma_gy_j"],
-       "layer": "matfm" },
 
-  { "groups": ["w_ma_Ab", "w_ma_gy_b"],
-    "switches": { "s_ma_Ab": "open", "s_ma_lob": "open" },
-    "layer": "mamagyb" },
 
-  { "groups": ["w_gy_Aj", "w_ma_gy_j"],
-    "active": ["w_ma_gy_b"], "layer": "magygyj" },
 
+  { "groups": ["w_ma_Ab", "w_r_ma_b"],
+    "active": ["w_r_ma_j"], "layer": "mamarb" },
+    
   { "groups": ["w_gy_Ab", "w_ma_gy_b"],
     "active": ["w_ma_gy_j"], "layer": "magygyb" },
+ 
+  { "groups": ["w_me_Ab", "w_gy_me_b"],
+    "active": ["w_gy_me_j"], "layer": "memegyb" },
+
+  { "groups": ["w_c_Ab", "w_y_c_b"],
+    "active": ["w_y_c_j"], "layer": "cycb" },
+
+  { "groups": ["w_k_Ab", "w_k_c_b"],
+    "active": ["w_k_c_j"], "layer": "kkcb" },
+
+  { "groups": ["w_g_Ab", "w_g_s_b"],
+    "active": ["w_g_s_j"], "layer": "ggsb" },
+
+
+  { "groups": ["w_ma_Aj", "w_r_ma_j"],
+    "active": ["w_r_ma_b"], "layer": "mamarj" },
+    
+  { "groups": ["w_gy_Aj", "w_ma_gy_j"],
+    "active": ["w_ma_gy_b"], "layer": "magygyj" },
+    
+  { "groups": ["w_me_Aj", "w_gy_me_j"],
+    "active": ["w_gy_me_b"], "layer": "memegyj" },
+
+  { "groups": ["w_c_Aj", "w_y_c_j"],
+    "active": ["w_y_c_b"], "layer": "cycj" },
+
+  { "groups": ["w_k_Aj", "w_k_c_j"],
+    "active": ["w_k_c_b"], "layer": "kkcj" },
+
+  { "groups": ["w_g_Aj", "w_g_s_j"],
+    "active": ["w_g_s_b"], "layer": "ggsj" },
+  
+  { "groups": ["w_JBH_Aj", "w_JBH_Hv"],
+    "active": ["w_U_JBH"], "layer": "jjpt" },
+
+
+
+
+
+
+  { "groups": ["w_ma_Ab", "w_ma_gy_b"],
+    "active": ["w_ma_gy_j"], "layer": "mamagyb" },
+
+  { "groups": ["w_gy_Ab", "w_gy_me_b"],
+    "active": ["w_gy_me_j"], "layer": "gygymeb" },
+  
+  { "groups": ["w_y_Ab", "w_y_c_b"],
+    "active": ["w_y_c_j"], "layer": "yycb" },
+
+  { "groups": ["w_c_Ab", "w_k_c_b"],
+    "active": ["w_k_c_j"], "layer": "cckb" },
+
+  { "groups": ["w_s_Ab", "w_g_s_b"],
+    "active": ["w_g_s_j"], "layer": "ssgb" },
+
+
+  { "groups": ["w_ma_Aj", "w_ma_gy_j"],
+    "active": ["w_ma_gy_b"], "layer": "mamagyj" },
+
+  { "groups": ["w_gy_Aj", "w_gy_me_j"],
+    "active": ["w_gy_me_b"], "layer": "gygymej" },
+
+  { "groups": ["w_y_Aj", "w_y_c_j"],
+    "active": ["w_y_c_b"], "layer": "yycj" },
+
+  { "groups": ["w_c_Aj", "w_k_c_j"],
+    "active": ["w_k_c_b"], "layer": "cckj" },
+  
+  { "groups": ["w_s_Aj", "w_g_s_j"],
+    "active": ["w_g_s_b"], "layer": "ssgj" },
+  
+  { "groups": ["w_PT_Aj", "w_JBH_Hv"],
+    "active": ["w_JBH_Aj"], "layer": "ptptj" },
+
+
+
+
+
+
+  { "groups": ["w_ma_Aj", "w_ma_Ab"],
+    "active": ["w_r_ma_b", "w_ma_gy_b", "w_r_ma_j", "w_ma_gy_j"], "layer": "matfm" },
 
   { "groups": ["w_gy_Aj", "w_gy_Ab"],
     "active": ["w_gy_me_b", "w_gy_me_j", "w_ma_gy_b", "w_ma_gy_j"], "layer": "gytfm" },
 
-  { "groups": ["w_gy_Aj", "w_gy_me_j"], "layer": "gygymej" },
-  { "groups": ["w_gy_Ab", "w_gy_me_b"], "layer": "gygymeb" },
   { "groups": ["w_me_Aj", "w_me_Ab"],
     "active": ["w_gy_me_b", "w_gy_me_j", "w_me_pb", "w_me_pj"], "layer": "metfm" },
-  { "groups": ["w_me_Aj", "w_gy_me_j"], "layer": "memegyj" },
-  { "groups": ["w_me_Ab", "w_gy_me_b"], "layer": "memegyb" },
 
   { "groups": ["w_y_Aj", "w_y_Ab"],
     "active": ["w_p_y_j", "w_p_y_b", "w_y_c_j", "w_y_c_b"], "layer": "ytfm" },
-  { "groups": ["w_y_Aj", "w_y_c_j"], "layer": "yycj" },
-  { "groups": ["w_y_Ab", "w_y_c_b"], "layer": "yycb" },
-  { "groups": ["w_c_Aj", "w_y_c_j"], "layer": "cycj" },
-  { "groups": ["w_c_Ab", "w_y_c_b"], "layer": "cycb" },
 
   { "groups": ["w_c_Aj", "w_c_Ab"],
     "active": ["w_k_c_j", "w_k_c_b", "w_y_c_j", "w_y_c_b"], "layer": "ctfm" },
-  { "groups": ["w_c_Aj", "w_k_c_j"], "layer": "cckj" },
-  { "groups": ["w_c_Ab", "w_k_c_b"], "layer": "cckb" },
-  { "groups": ["w_k_Aj", "w_k_c_j"], "layer": "kkcj" },
-  { "groups": ["w_k_Ab", "w_k_c_b"], "layer": "kkcb" },
 
   { "groups": ["w_k_Aj", "w_k_Ab", "w_k_aj"],
     "active": ["w_k_c_j", "w_k_c_b", "w_k_fh_kj", "w_k_fh_kb"], "layer": "ktfm" },
 
   { "groups": ["w_s_Aj", "w_s_Ab"],
     "active": ["w_g_s_j", "w_g_s_b", "w_s_k_fhj", "w_s_k_fhb"], "layer": "stfm" },
-  { "groups": ["w_s_Aj", "w_g_s_j"], "layer": "ssgj" },
-  { "groups": ["w_s_Ab", "w_g_s_b"], "layer": "ssgb" },
-  { "groups": ["w_g_Aj", "w_g_s_j"], "layer": "ggsj" },
-  { "groups": ["w_g_Ab", "w_g_s_b"], "layer": "ggsb" },
 
   { "groups": ["w_g_Aj", "w_g_Ab"],
     "active": ["w_g_s_j", "w_g_s_b", "w_fh_120_bpj", "w_fh_120_bpb"], "layer": "gtfm" },
@@ -196,48 +260,113 @@
 
   { "groups": ["w_PT_Aj", "w_PT_Ab"],
     "active": ["w_PT_Hv", "w_JBH_Hv"], "layer": "ptfm" },
-  { "groups": ["w_PT_Aj", "w_JBH_Hv"], "layer": "ptptj" },
-  { "groups": ["w_JBH_Aj", "w_JBH_Hv"], "layer": "jjpt" },
 
   { "groups": ["w_JBH_Aj", "w_JBH_Ab"],
     "active": ["w_U_JBH", "w_JBH_Hv"], "layer": "jtfm" },
 
-  { "groups": ["w_ma_gy_j"], "layer": "magyj" },
-  { "groups": ["w_ma_gy_b"], "layer": "magyb" },
-  { "groups": ["w_gy_me_j"], "layer": "gymej" },
-  { "groups": ["w_gy_me_b"], "layer": "gymeb" },
-  { "groups": ["w_y_c_j"], "layer": "ycj" },
-  { "groups": ["w_y_c_b"], "layer": "ycb" },
-  { "groups": ["w_c_k_j"], "layer": "ckj" },
-  { "groups": ["w_c_k_b"], "layer": "ckb" },
-  { "groups": ["w_g_s_j"], "layer": "sgj" },
-  { "groups": ["w_g_s_b"], "layer": "sgb" },
-  { "groups": ["w_JBH_Hv"], "layer": "jpt" },
 
-  { "groups": ["w_ma_Ab"],
-    "active": ["w_r_ma_b", "w_ma_gy_b", "w_r_ma_j", "w_ma_gy_j"], "layer": "mab" },
-  { "groups": ["w_gy_Ab"], "layer": "gyb" },
-  { "groups": ["w_me_Ab"], "layer": "meb" },
-  { "groups": ["w_y_Ab"], "layer": "yb" },
-  { "groups": ["w_c_Ab"], "layer": "cb" },
-  { "groups": ["w_k_Ab"], "layer": "kb" },
-  { "groups": ["w_s_Ab"], "layer": "sb" },
-  { "groups": ["w_g_Ab"], "layer": "gb" },
-  { "groups": ["w_U_Ab"], "layer": "ub" },
-  { "groups": ["w_PT_Ab"], "layer": "pb" },
-  { "groups": ["w_JBH_Ab"], "layer": "jb" },
+
+
+
+  { "groups": ["w_ma_gy_b"],
+    "active": ["w_ma_gy_j","w_ma_Ab", "w_gy_Ab"], "layer": "magyb" },
+
+  { "groups": ["w_gy_me_b"],
+    "active": ["w_gy_me_j", "w_gy_Ab", "w_me_Ab"], "layer": "gymeb" },
+
+  { "groups": ["w_y_c_b"],
+    "active": ["w_y_c_j", "w_y_Ab", "w_c_Ab"], "layer": "ycb" },
+
+  { "groups": ["w_k_c_b"],
+    "active": ["w_k_c_j", "w_k_Ab", "w_c_Ab"], "layer": "ckb" },
+
+  { "groups": ["w_g_s_b"],
+    "active": ["w_g_s_j", "w_g_Ab", "w_s_Ab"], "layer": "sgb" },
+
+
+  { "groups": ["w_ma_gy_j"],
+    "active": ["w_ma_gy_b", "w_ma_Aj", "w_gy_Aj"], "layer": "magyj" },
+
+  { "groups": ["w_gy_me_j"],
+    "active": ["w_gy_me_b", "w_gy_Aj", "w_me_Aj"], "layer": "gymej" },
+
+  { "groups": ["w_y_c_j"],
+    "active": ["w_y_c_b", "w_y_Aj", "w_c_Aj"], "layer": "ycj" },
+
+  { "groups": ["w_k_c_j"],
+    "active": ["w_k_c_b", "w_k_Aj", "w_c_Aj"], "layer": "ckj" },
+
+  { "groups": ["w_g_s_j"],
+    "active": ["w_g_s_b", "w_g_Aj", "w_s_Aj"], "layer": "sgj" },
+
+  { "groups": ["w_JBH_Hv"],
+    "active": ["w_JBH_Aj", "w_PT_Aj"], "layer": "jpt" },
+
+
+
+
+
+  { "groups": ["w_gy_Ab"],
+    "active": ["w_gy_Aj", "w_ma_gy_b", "w_ma_gy_j", "w_gy_me_b", "w_gy_me_j"], "layer": "gyb" },
+
+  { "groups": ["w_me_Ab"],
+    "active": ["w_me_Aj", "w_gy_me_b", "w_gy_me_j", "w_me_pb", "w_me_pj"], "layer": "meb" },
+
+  { "groups": ["w_y_Ab"],
+    "active": ["w_y_Aj", "w_p_y_b", "w_p_y_j", "w_y_c_b", "w_y_c_j"], "layer": "yb" },
+
+  { "groups": ["w_c_Ab"],
+    "active": ["w_c_Aj", "w_y_c_b", "w_y_c_j", "w_k_c_b", "w_k_c_j"], "layer": "cb" },
+
+  { "groups": ["w_k_Ab"],
+    "active": ["w_k_Aj", "w_k_c_b", "w_k_c_j", "w_k_fh_kb", "w_k_fh_kj"], "layer": "kb" },
+
+  { "groups": ["w_s_Ab"],
+    "active": ["w_s_Aj", "w_g_s_b", "w_g_s_j", "w_s_k_fhb", "w_s_k_fhj"], "layer": "sb" },
+
+  { "groups": ["w_g_Ab"],
+    "active": ["w_g_Aj", "w_g_s_b", "w_g_s_j", "w_fh_120_bpb", "w_fh_120_bpj"], "layer": "gb" },
+
+  { "groups": ["w_U_Ab"],
+    "active": ["w_U_Aj", "w_A_Fh_Ub", "w_A_Fh_Uj", "w_120_lo_ub", "w_120_lo_uj"], "layer": "ub" },
+
+  { "groups": ["w_PT_Ab"],
+    "active": ["w_PT_Aj", "w_PT_Hv", "w_JBH_Hv"], "layer": "pb" },
+
+  { "groups": ["w_JBH_Ab"],
+    "active": ["w_JBH_Aj", "w_U_JBH", "w_JBH_Hv"], "layer": "jb" },
 
 
   { "groups": ["w_ma_Aj"],
-    "active": ["w_r_ma_b", "w_ma_gy_b", "w_r_ma_j", "w_ma_gy_j"], "layer": "maj" },
-  { "groups": ["w_gy_Aj"], "layer": "gyj" },
-  { "groups": ["w_me_Aj"], "layer": "mej" },
-  { "groups": ["w_y_Aj"], "layer": "yj" },
-  { "groups": ["w_c_Aj"], "layer": "cj" },
-  { "groups": ["w_k_Aj"], "layer": "kj" },
-  { "groups": ["w_s_Aj"], "layer": "sj" },
-  { "groups": ["w_g_Aj"], "layer": "gj" },
-  { "groups": ["w_U_Aj"], "layer": "uj" },
-  { "groups": ["w_PT_Aj"], "layer": "pj" },
-  { "groups": ["w_JBH_Aj"], "layer": "jj" }
+    "active": ["w_ma_Ab", "w_r_ma_b", "w_ma_gy_b", "w_r_ma_j", "w_ma_gy_j"], "layer": "maj" },
+
+  { "groups": ["w_gy_Aj"],
+    "active": ["w_gy_Ab", "w_gy_me_b", "w_ma_gy_b", "w_gy_me_j", "w_ma_gy_j"], "layer": "gyj" },
+
+  { "groups": ["w_me_Aj"],
+    "active": ["w_me_Ab", "w_gy_me_b", "w_me_pj", "w_gy_me_j", "w_me_pb"], "layer": "mej" },
+
+  { "groups": ["w_y_Aj"],
+    "active": ["w_y_Ab", "w_p_y_b", "w_p_y_j", "w_y_c_b", "w_y_c_j"], "layer": "yj" },
+
+  { "groups": ["w_c_Aj"],
+    "active": ["w_c_Ab", "w_k_c_b", "w_k_c_j", "w_y_c_b", "w_y_c_j"], "layer": "cj" },
+
+  { "groups": ["w_k_Aj"],
+    "active": ["w_k_Ab", "w_k_c_b", "w_k_c_j", "w_k_fh_kb", "w_k_fh_kj"], "layer": "kj" },
+
+  { "groups": ["w_s_Aj"],
+    "active": ["w_s_Ab", "w_s_k_fhb", "w_s_k_fhj", "w_g_s_b", "w_g_s_j"], "layer": "sj" },
+    
+  { "groups": ["w_g_Aj"],
+  "active": ["w_g_Ab", "w_g_s_b", "w_g_s_j", "w_fh_120_bpb", "w_fh_120_bpj"], "layer": "gj" },
+
+{ "groups": ["w_U_Aj"],
+  "active": ["w_U_Ab", "w_A_Fh_Ub", "w_A_Fh_Uj", "w_120_lo_ub", "w_120_lo_uj"], "layer": "uj" },
+
+{ "groups": ["w_PT_Aj"],
+  "active": ["w_PT_Ab", "w_PT_Hv", "w_JBH_Hv"], "layer": "pj" },
+
+{ "groups": ["w_JBH_Aj"],
+  "active": ["w_JBH_Ab", "w_U_JBH", "w_JBH_Hv"], "layer": "jj" }
 ]
