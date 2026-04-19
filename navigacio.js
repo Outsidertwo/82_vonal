@@ -1,7 +1,3 @@
-/**
- * navigacio.js - Állomáskeret alapú navigáció
- */
-
 const Navigacio = {
     allomasok: [
         ["Maglód", "rect-maglod"],
@@ -57,14 +53,14 @@ const Navigacio = {
                         border: 1px solid #bdc3c7;
                         background: var(--btn-off-bg, #e0e0e0);
                         color: var(--panel-text, #2c3e50);">
-                        🚦 Jelzők: KI
+                        Jelzok: KI
                     </button>
                     <button id="btn-sotet" onclick="Navigacio.toggleSotetMod()" style="
                         padding: 7px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
                         border: 1px solid #bdc3c7;
                         background: var(--btn-off-bg, #e0e0e0);
                         color: var(--panel-text, #2c3e50);">
-                        🌙 Sötét mód
+                        Sotet mod: KI
                     </button>
                 </div>
             </div>
@@ -80,7 +76,7 @@ const Navigacio = {
     toggleJelzo: function() {
         this.jelzoKijelzesAktiv = !this.jelzoKijelzesAktiv;
         const btn = document.getElementById('btn-jelzo');
-        btn.textContent = this.jelzoKijelzesAktiv ? '🚦 Jelzők: BE' : '🚦 Jelzők: KI';
+        btn.textContent = this.jelzoKijelzesAktiv ? 'Jelzők: BE' : 'Jelzők: KI';
         btn.style.background = this.jelzoKijelzesAktiv
             ? 'var(--btn-on-bg, #27ae60)'
             : 'var(--btn-off-bg, #e0e0e0)';
@@ -96,7 +92,7 @@ const Navigacio = {
     toggleSotetMod: function() {
         this.sotetModAktiv = !this.sotetModAktiv;
         const btn = document.getElementById('btn-sotet');
-        btn.textContent = this.sotetModAktiv ? '☀️ Világos mód' : '🌙 Sötét mód';
+        btn.textContent = this.sotetModAktiv ? 'Világos mód' : 'Sötét mód';
         btn.style.background = this.sotetModAktiv
             ? 'var(--btn-on-bg, #2c3e50)'
             : 'var(--btn-off-bg, #e0e0e0)';
@@ -105,6 +101,10 @@ const Navigacio = {
             : 'var(--panel-text, #2c3e50)';
 
         document.body.classList.toggle('sotet-mod', this.sotetModAktiv);
+
+        if (window.grafika_kezelo && typeof window.grafika_kezelo.frissit_szinek === 'function') {
+            window.grafika_kezelo.frissit_szinek(this.sotetModAktiv);
+        }
     },
 
     ugras: function(elementId) {
