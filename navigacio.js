@@ -53,14 +53,14 @@ const Navigacio = {
                         border: 1px solid #bdc3c7;
                         background: var(--btn-off-bg, #e0e0e0);
                         color: var(--panel-text, #2c3e50);">
-                        Jelzok: KI
+                        Jelzők: KI
                     </button>
                     <button id="btn-sotet" onclick="Navigacio.toggleSotetMod()" style="
                         padding: 7px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
                         border: 1px solid #bdc3c7;
                         background: var(--btn-off-bg, #e0e0e0);
                         color: var(--panel-text, #2c3e50);">
-                        Sotet mod: KI
+                        Sötét mód
                     </button>
                 </div>
             </div>

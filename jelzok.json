@@ -305,6 +305,8 @@
 
 
 
+  { "groups": ["w_ma_Ab"],
+    "active": ["w_ma_Aj", "w_r_ma_j", "w_ma_gy_j", "w_r_ma_b", "w_ma_gy_b"], "layer": "mab" },
 
   { "groups": ["w_gy_Ab"],
     "active": ["w_gy_Aj", "w_ma_gy_b", "w_ma_gy_j", "w_gy_me_b", "w_gy_me_j"], "layer": "gyb" },
