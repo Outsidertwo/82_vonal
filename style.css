@@ -25,3 +25,7 @@
     body.sotet-mod text {
         fill: #ecf0f1 !important;
     }
+
+    #szimulacio_kontener {
+    position: relative;
+}

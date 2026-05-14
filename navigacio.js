@@ -62,6 +62,13 @@ const Navigacio = {
                         color: var(--panel-text, #2c3e50);">
                         Sötét mód
                     </button>
+                    <button id="btn-reset" onclick="Navigacio.resetMinden()" style="
+                        padding: 7px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
+                        border: 1px solid #bdc3c7;
+                        background: #c0392b;
+                        color: #ffffff;">
+                        Reset
+                    </button>
                 </div>
             </div>
         `;
@@ -71,6 +78,102 @@ const Navigacio = {
         document.getElementById('station-select').addEventListener('change', (e) => {
             this.ugras(e.target.value);
         });
+
+        // Szcenárió gombok késleltetve, megvárja a logika betöltését
+        setTimeout(() => this._init_szcenario_gombok(), 800);
+    },
+
+    _init_szcenario_gombok: function() {
+        if (!window.vasut_logika || !vasut_logika.get_szcenariok) return;
+
+        const szcenariok = vasut_logika.get_szcenariok();
+        if (!szcenariok || szcenariok.length === 0) return;
+
+        const kontener = document.getElementById('szimulacio_kontener');
+        if (!kontener) return;
+
+        szcenariok.forEach(sc => {
+            if (document.getElementById(`btn-sc-${sc.id}`)) return;
+
+            const btn = document.createElement('button');
+            btn.id = `btn-sc-${sc.id}`;
+            btn.textContent = sc.nev;
+            btn.style.cssText = `
+                position: absolute;
+                left: ${sc.gomb_x};
+                top: ${sc.gomb_y};
+                padding: 7px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 13px;
+                border: 1px solid #bdc3c7;
+                background: var(--btn-off-bg, #e0e0e0);
+                color: var(--panel-text, #2c3e50);
+                z-index: 9999;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            `;
+            btn.addEventListener('click', () => {
+                Navigacio._szcenario_lepes(sc.id);
+            });
+            kontener.appendChild(btn);
+        });
+    },
+
+    _szcenario_lepes: function(szcenario_id) {
+        if (!window.vasut_logika) return;
+        const szcenariok = vasut_logika.get_szcenariok();
+        const sc = szcenariok.find(s => s.id === szcenario_id);
+        if (!sc) return;
+
+        const lepesszam = vasut_logika.get_szcenario_lepesszam(szcenario_id);
+
+        // Ha a szcenárió végére ért: reset és újrakezd
+        if (lepesszam >= sc.lepesek.length) {
+            Navigacio.resetMinden();
+            return;
+        }
+
+        // Következő lépés végrehajtása
+        vasut_logika.alkalmaz_szcenario(szcenario_id);
+
+        // Gomb frissítése
+        const btn = document.getElementById(`btn-sc-${szcenario_id}`);
+        if (!btn) return;
+
+        const uj_lepesszam = vasut_logika.get_szcenario_lepesszam(szcenario_id);
+
+        if (uj_lepesszam >= sc.lepesek.length) {
+            // Utolsó lépés megtörtént
+            btn.style.background = '#27ae60';
+            btn.style.color = '#ffffff';
+            btn.textContent = `${sc.nev} ✓`;
+        } else {
+            // Folyamatban
+            btn.style.background = '#e67e00';
+            btn.style.color = '#ffffff';
+        }
+    },
+
+    resetMinden: function() {
+        if (!window.vasut_logika) return;
+        vasut_logika.reset_kapcsolok();
+
+        // Szcenárió gombok visszaállítása
+        if (vasut_logika.get_szcenariok) {
+            vasut_logika.get_szcenariok().forEach(sc => {
+                const btn = document.getElementById(`btn-sc-${sc.id}`);
+                if (btn) {
+                    btn.textContent = sc.nev;
+                    btn.style.background = 'var(--btn-off-bg, #e0e0e0)';
+                    btn.style.color = 'var(--panel-text, #2c3e50)';
+                }
+            });
+        }
+
+        // Jelző kikapcsolása ha be volt kapcsolva
+        if (this.jelzoKijelzesAktiv) {
+            this.toggleJelzo();
+        }
     },
 
     toggleJelzo: function() {

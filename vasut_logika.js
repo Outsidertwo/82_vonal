@@ -6,7 +6,10 @@ let Kapcsolo_Allapotok = {};
 let Szinek = {};                
 let Szcenariok = {};            
 let Grafika_Kezelo_Referencia;  
-let Topologiai_Oldal_Adatok = {}; 
+let Topologiai_Oldal_Adatok = {};
+let Szcenario_Adatok = [];
+let Szcenario_Lepesszamlalok = {};
+let Eredeti_Kapcsolo_Allapotok = {};
 
 // --- SEGÉDFÜGGVÉNYEK ---
 
@@ -35,6 +38,19 @@ async function init_adatok() {
             szinek_vilagos: topologia_json.szinek_vilagos || {},
             szinek_sotet:   topologia_json.szinek_sotet || {}
         };
+
+        // Eredeti kapcsolóállapotok mentése reset-hez
+        Eredeti_Kapcsolo_Allapotok = {};
+        Object.keys(Kapcsolo_Allapotok).forEach(id => {
+            Eredeti_Kapcsolo_Allapotok[id] = Kapcsolo_Allapotok[id];
+        });
+
+        // Szcenáriók betöltése
+        const szcenario_json = await betolt_json('szcenariok.json');
+        Szcenario_Adatok = szcenario_json;
+        Szcenario_Adatok.forEach(sc => {
+            Szcenario_Lepesszamlalok[sc.id] = 0;
+        });
         
         if (Grafika_Kezelo_Referencia) {
             Grafika_Kezelo_Referencia.init_grafika_kezelo(Szcenariok, Kapcsolo_Allapotok); 
@@ -141,7 +157,9 @@ function start_szimulacio() {
 
 function futtat_es_frissit() {
     const frissitett_szegmensek = szamol_feszultsegi_allapotok();
-    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(frissitett_szegmensek, Kapcsolo_Allapotok, Topologiai_Oldal_Adatok);
+    Grafika_Kezelo_Referencia.frissit_osszes_elem_megjelenitese(
+        frissitett_szegmensek, Kapcsolo_Allapotok, Topologiai_Oldal_Adatok
+    );
 }
 
 function szamol_feszultsegi_allapotok() {
@@ -179,7 +197,6 @@ function szamol_feszultsegi_allapotok() {
             if (!kapcsolo || kapcsolo.group !== 'szakaszolo') return;
 
             if (Kapcsolo_Allapotok[kapcsolo_id] === "closed") {
-                
                 kapcsolo.state = 'energized'; 
                 kapcsolo.fazis = propagation_fazis; 
                 
@@ -219,7 +236,58 @@ function kapcsolo_kezeles(kapcsolo_id) {
 }
 
 function alkalmaz_szcenario(szcenario_id) {
-    console.warn("Szcenárió alkalmazás ideiglenesen letiltva.");
+    const szcenario = Szcenario_Adatok.find(sc => sc.id === szcenario_id);
+    if (!szcenario) {
+        console.error(`Nem található szcenárió: ${szcenario_id}`);
+        return;
+    }
+
+    const aktualis_lepes = Szcenario_Lepesszamlalok[szcenario_id];
+
+    if (aktualis_lepes >= szcenario.lepesek.length) {
+        console.log(`A(z) "${szcenario.nev}" szcenárió végére ért.`);
+        return;
+    }
+
+    const lepes = szcenario.lepesek[aktualis_lepes];
+    Kapcsolo_Allapotok[lepes.kapcsolo] = lepes.allapot;
+    Szcenario_Lepesszamlalok[szcenario_id]++;
+
+    console.log(`[${szcenario.nev}] ${aktualis_lepes + 1}/${szcenario.lepesek.length}: ${lepes.kapcsolo} → ${lepes.allapot}`);
+
+    // Az utolsó lépésnél a jelzőt is bekapcsoljuk
+    if (Szcenario_Lepesszamlalok[szcenario_id] >= szcenario.lepesek.length) {
+        if (window.JelzoModul && szcenario.jelzo_layer) {
+            window.JelzoModul.setAktiv(true);
+            // Navigáció jelző gomb szinkronizálása
+            if (window.Navigacio) {
+                Navigacio.jelzoKijelzesAktiv = true;
+                const btnJelzo = document.getElementById('btn-jelzo');
+                if (btnJelzo) {
+                    btnJelzo.textContent = 'Jelzők: BE';
+                    btnJelzo.style.background = 'var(--btn-on-bg, #27ae60)';
+                    btnJelzo.style.color = '#ffffff';
+                }
+            }
+        }
+    }
+
+    futtat_es_frissit();
+}
+
+function reset_kapcsolok() {
+    // Kapcsolók visszaállítása
+    Object.keys(Eredeti_Kapcsolo_Allapotok).forEach(id => {
+        Kapcsolo_Allapotok[id] = Eredeti_Kapcsolo_Allapotok[id];
+    });
+
+    // Lépésszámlálók nullázása
+    Szcenario_Adatok.forEach(sc => {
+        Szcenario_Lepesszamlalok[sc.id] = 0;
+    });
+
+    futtat_es_frissit();
+    console.log("Reset: minden kapcsoló visszaállt az alapállapotba.");
 }
 
 // --- PUBLIKUS INTERFÉSZ ---
@@ -228,8 +296,11 @@ window.vasut_logika = {
     start_szimulacio: start_szimulacio,
     set_grafika_kezleo: set_grafika_kezleo,
     kapcsolo_kezeles: kapcsolo_kezeles,
-    alkalmaz_szcenario: alkalmaz_szcenario, 
+    alkalmaz_szcenario: alkalmaz_szcenario,
+    reset_kapcsolok: reset_kapcsolok,
     get_node_adatok: () => Logikai_Adatmodell_Graf,
     get_szinek: () => Szinek,
-    get_kapcsolo_allapotok: () => Kapcsolo_Allapotok
+    get_kapcsolo_allapotok: () => Kapcsolo_Allapotok,
+    get_szcenariok: () => Szcenario_Adatok,
+    get_szcenario_lepesszam: (id) => Szcenario_Lepesszamlalok[id] || 0
 };

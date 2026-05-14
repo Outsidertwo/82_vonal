@@ -1,0 +1,45 @@
+[
+  {
+    "id": "U5-7",
+    "nev": "Üzem 5-7",
+    "gomb_x": "11500px",
+    "gomb_y": "1150px",
+    "jelzo_layer": "U57",
+    "lepesek": [
+      { "kapcsolo": "s_U_Hv", "allapot": "open" },
+      { "kapcsolo": "s_U_Bpb", "allapot": "open" },
+      { "kapcsolo": "s_U_Ab", "allapot": "open" },
+      { "kapcsolo": "s_H1V", "allapot": "open" },
+      { "kapcsolo": "s_Alallomas_Bpb", "allapot": "open" },
+      { "kapcsolo": "s_Alallomas_Lob", "allapot": "open" },
+      { "kapcsolo": "s_JBH_Uv", "allapot": "open" },
+      { "kapcsolo": "s_g_lob", "allapot": "open" },
+      { "kapcsolo": "s_82_fhuv", "allapot": "closed" },
+      { "kapcsolo": "s_82_fhhv", "allapot": "closed" },
+      { "kapcsolo": "s_U_FhBpb", "allapot": "closed" },
+      { "kapcsolo": "s_U_FhLb", "allapot": "closed" }
+    ]
+  },
+  {
+    "id": "Ujszasz_tfm",
+    "nev": "TFM",
+    "gomb_x": "11600px",
+    "gomb_y": "1150px",
+    "jelzo_layer": "utfm",
+    "lepesek": [
+      { "kapcsolo": "s_Alallomas_Lob", "allapot": "open" },
+      { "kapcsolo": "s_Alallomas_Loj", "allapot": "open" },
+      { "kapcsolo": "s_A_Fh_Bpb", "allapot": "closed" },
+      { "kapcsolo": "s_A_Fh_Lob", "allapot": "closed" },
+      { "kapcsolo": "s_A_Fh_Bpj", "allapot": "closed" },
+      { "kapcsolo": "s_A_Fh_Loj", "allapot": "closed" },
+      { "kapcsolo": "s_U_U5", "allapot": "open" },
+      { "kapcsolo": "s_U_U6", "allapot": "open" },
+      { "kapcsolo": "s_U_U7", "allapot": "open" },
+      { "kapcsolo": "s_U_U8", "allapot": "open" },
+      { "kapcsolo": "s_U_U9", "allapot": "open" },
+      { "kapcsolo": "s_82_fhuv", "allapot": "closed" },
+      { "kapcsolo": "s_82_fhhv", "allapot": "closed" }
+    ]
+  }
+]
