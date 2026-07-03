@@ -20,6 +20,7 @@ const Navigacio = {
 
     jelzoKijelzesAktiv: false,
     sotetModAktiv: false,
+    szcenarioFeliratElemek: {},
 
     init: function() {
         if (document.getElementById('station-picker')) return;
@@ -119,6 +120,64 @@ const Navigacio = {
         });
     },
 
+    _szcenario_felirat_panel: function(sc) {
+        const kontener = document.getElementById('szimulacio_kontener');
+        if (!kontener) return null;
+
+        const panelId = `felirat-sc-${sc.id}`;
+        let panel = document.getElementById(panelId);
+
+        if (!panel) {
+            panel = document.createElement('div');
+            panel.id = panelId;
+            panel.style.cssText = `
+                position: absolute;
+                left: ${sc.felirat_x || sc.gomb_x};
+                top: ${sc.felirat_y || sc.gomb_y};
+                min-width: 260px;
+                max-width: 420px;
+                padding: 8px 10px;
+                background: var(--panel-bg, rgba(255,255,255,0.95));
+                color: var(--panel-text, #2c3e50);
+                z-index: 9998;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                line-height: 1.35;
+                pointer-events: none;
+            `;
+            kontener.appendChild(panel);
+            this.szcenarioFeliratElemek[sc.id] = panel;
+        }
+
+        return panel;
+    },
+
+    _frissit_szcenario_feliratok: function(sc, lepesszam) {
+        const panel = this._szcenario_felirat_panel(sc);
+        if (!panel) return;
+
+        const sorok = sc.lepesek
+            .slice(0, Math.min(lepesszam, 13))
+            .map(lepes => lepes.felirat || `${lepes.kapcsolo}: ${lepes.allapot}`);
+
+        panel.replaceChildren();
+        sorok.forEach(sor => {
+            const sorElem = document.createElement('div');
+            sorElem.textContent = sor;
+            panel.appendChild(sorElem);
+        });
+        panel.style.display = sorok.length > 0 ? 'block' : 'none';
+    },
+
+    _torol_szcenario_feliratok: function() {
+        Object.values(this.szcenarioFeliratElemek).forEach(panel => {
+            if (panel) {
+                panel.innerHTML = '';
+                panel.style.display = 'none';
+            }
+        });
+    },
+
     _szcenario_lepes: function(szcenario_id) {
         if (!window.vasut_logika) return;
         const szcenariok = vasut_logika.get_szcenariok();
@@ -141,6 +200,7 @@ const Navigacio = {
         if (!btn) return;
 
         const uj_lepesszam = vasut_logika.get_szcenario_lepesszam(szcenario_id);
+        Navigacio._frissit_szcenario_feliratok(sc, uj_lepesszam);
 
         if (uj_lepesszam >= sc.lepesek.length) {
             // Utolsó lépés megtörtént
@@ -157,6 +217,7 @@ const Navigacio = {
     resetMinden: function() {
         if (!window.vasut_logika) return;
         vasut_logika.reset_kapcsolok();
+        this._torol_szcenario_feliratok();
 
         // Szcenárió gombok visszaállítása
         if (vasut_logika.get_szcenariok) {
