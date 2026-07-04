@@ -1,0 +1,1233 @@
+{
+  
+  "mamarj": {
+    "munkavegzes_helye": "Maglód állomás, Maglód-Rákoshegy jobb",
+    "kikapcsolt_resz": [
+      "Maglód II., III., Maglód Áj, Bpj, Rákoshegy Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód I. vágány, Maglód-Rákoshegy bal, állomás előtti szakaszolások"
+    ]
+  },
+  "mamarb": {
+    "munkavegzes_helye": "Maglód állomás, Maglód-Rákoshegy bal",
+    "kikapcsolt_resz": [
+      "Maglód I., Maglód Áb, Bpb, Rákoshegy Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód II. vágány, Maglód-Rákoshegy jobb, állomás előtti szakaszolások"
+    ]
+  },
+  "maj": {
+    "munkavegzes_helye": "Maglód állomás",
+    "kikapcsolt_resz": [
+      "Maglód IV., V., Maglód Áj"
+    ],
+    "foldelesi_pontok": [
+      "01408, 02516, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód III. vágány, állomás előtti szakaszolások"
+    ]
+  },
+  "mamagyj": {
+    "munkavegzes_helye": "Maglód állomás, Maglód-Gyömrő jobb",
+    "kikapcsolt_resz": [
+      "Maglód IV., V., Maglód Áj, Löj, Gyömrő Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01408"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód III. vágány, Maglód-Gyömrő bal, állomás előtti szakaszolások"
+    ]
+  },
+  "mab": {
+    "munkavegzes_helye": "Maglód állomás",
+    "kikapcsolt_resz": [
+      "Maglód II., III., Maglód Áb"
+    ],
+    "foldelesi_pontok": [
+      "01407, 02515, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód IV. vágány, állomás előtti szakaszolások"
+    ]
+  },
+  "mamagyb": {
+    "munkavegzes_helye": "Maglód állomás, Maglód-Gyömrő bal",
+    "kikapcsolt_resz": [
+      "Maglód II., III., Maglód Áb, Löb, Gyömrő Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01407"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód IV. vágány, Maglód-Gyömrő jobb, állomás előtti szakaszolások"
+    ]
+  },
+  "magyj": {
+    "munkavegzes_helye": "Maglód-Gyömrő jobb",
+    "kikapcsolt_resz": [
+      "Maglód-Gyömrő jobb, Maglód Löj, Gyömrő Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01524"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód-Gyömrő bal, állomás előtti szakaszolások"
+    ]
+  },
+    "magyb": {
+    "munkavegzes_helye": "Maglód-Gyömrő bal",
+    "kikapcsolt_resz": [
+      "Maglód-Gyömrő bal, Maglód Löb, Gyömrő Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01525"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Maglód-Gyömrő jobb, állomás előtti szakaszolások"
+    ]
+  },
+    "magygyj": {
+    "munkavegzes_helye": "Gyömrő állomás, Maglód-Gyömrő jobb",
+    "kikapcsolt_resz": [
+      "Gyömrő II., III., Gyömrő Áj, Bpj, Maglód Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő I. vágány, Maglód-Gyömrő bal, állomás előtti szakaszolások"
+    ]
+  },
+    "magygyb": {
+    "munkavegzes_helye": "Gyömrő állomás, Maglód-Gyömrő bal",
+    "kikapcsolt_resz": [
+      "Gyömrő I., Gyömrő Áb, Bpb, Maglód Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő II. vágány, Maglód-Gyömrő jobb, állomás előtti szakaszolások"
+    ]
+  },
+    "gyj": {
+    "munkavegzes_helye": "Gyömrő állomás",
+    "kikapcsolt_resz": [
+      "Gyömrő II., III., Gyömrő Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+    "gyb": {
+    "munkavegzes_helye": "Gyömrő állomás",
+    "kikapcsolt_resz": [
+      "Gyömrő I., Gyömrő Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+    "gygymej": {
+    "munkavegzes_helye": "Gyömrő állomás, Gyömrő-Mende jobb",
+    "kikapcsolt_resz": [
+      "Gyömrő II., III., Gyömrő Áj, Löj, Mende Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő I. vágány, Gyömrő-Mende bal, állomás előtti szakaszolások"
+    ]
+  },
+    "gygymeb": {
+    "munkavegzes_helye": "Gyömrő állomás, Gyömrő-Mende bal",
+    "kikapcsolt_resz": [
+      "Gyömrő I., Gyömrő Áb, Löb, Mende Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő II. vágány, Gyömrő-Mende jobb, állomás előtti szakaszolások"
+    ]
+  },
+    "gymej": {
+    "munkavegzes_helye": "Gyömrő-Mende jobb",
+    "kikapcsolt_resz": [
+      "Gyömrő Löj, Mende Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő-Mende bal, állomás előtti szakaszolások"
+    ]
+  },
+  "gymeb": {
+    "munkavegzes_helye": "Gyömrő-Mende bal",
+    "kikapcsolt_resz": [
+      "Gyömrő Löb, Mende Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Gyömrő-Mende jobb, állomás előtti szakaszolások"
+    ]
+  },
+  "memegyj": {
+    "munkavegzes_helye": "Mende állomás, Gyömrő-Mende jobb",
+    "kikapcsolt_resz": [
+      "Mende II., III., Mende Áj, Bpj, Gyömrő Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende I. vágány, Gyömrő-Mende bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "memegyb": {
+    "munkavegzes_helye": "Mende állomás, Gyömrő-Mende bal",
+    "kikapcsolt_resz": [
+      "Mende I., Mende Áb, Bpb, Gyömrő Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende II. vágány, Gyömrő-Mende jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "mej": {
+    "munkavegzes_helye": "Mende állomás",
+    "kikapcsolt_resz": [
+      "Mende II., III., Mende Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "meb": {
+    "munkavegzes_helye": "Mende állomás",
+    "kikapcsolt_resz": [
+      "Mende I., Mende Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "memeyj": {
+    "munkavegzes_helye": "Mende állomás, Mende-Sülysáp jobb",
+    "kikapcsolt_resz": [
+      "Mende II., III., Mende Áj, Löj, Sülysáp Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende I. vágány, Mende-Sülysáp bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "memeyb": {
+    "munkavegzes_helye": "Mende állomás, Mende-Sülysáp bal",
+    "kikapcsolt_resz": [
+      "Mende I., Mende Áb, Löb, Sülysáp Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende II. vágány, Mende-Sülysáp jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "meyj": {
+    "munkavegzes_helye": "Mende-Sülysáp jobb",
+    "kikapcsolt_resz": [
+      "Mende Löj, Sülysáp Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende-Sülysáp bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "meyb": {
+    "munkavegzes_helye": "Mende-Sülysáp bal",
+    "kikapcsolt_resz": [
+      "Mende Löb, Sülysáp Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Mende-Sülysáp jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ymeyj": {
+    "munkavegzes_helye": "Sülysáp állomás, Mende-Sülysáp jobb",
+    "kikapcsolt_resz": [
+      "Sülysáp II., III., Sülysáp Áj, Bpj, Mende Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp I. vágány, Mende-Sülysáp bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ymeyb": {
+    "munkavegzes_helye": "Sülysáp állomás, Mende-Sülysáp bal",
+    "kikapcsolt_resz": [
+      "Sülysáp I., Sülysáp Áb, Bpb, Mende Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp II. vágány, Mende-Sülysáp jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "yj": {
+    "munkavegzes_helye": "Sülysáp állomás",
+    "kikapcsolt_resz": [
+      "Sülysáp II., III., Sülysáp Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "yb": {
+    "munkavegzes_helye": "Sülysáp állomás",
+    "kikapcsolt_resz": [
+      "Sülysáp I., Sülysáp Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "yycj": {
+    "munkavegzes_helye": "Sülysáp állomás, Sülysáp-Tápiószecső jobb",
+    "kikapcsolt_resz": [
+      "Sülysáp II., III., Sülysáp Áj, Löj, Tápiószecső Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp I. vágány, Sülysáp-Tápiószecső bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "yycb": {
+    "munkavegzes_helye": "Sülysáp állomás, Sülysáp-Tápiószecső bal",
+    "kikapcsolt_resz": [
+      "Sülysáp I., Sülysáp Áb, Löb, Tápiószecső Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp II. vágány, Sülysáp-Tápiószecső jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ycj": {
+    "munkavegzes_helye": "Sülysáp-Tápiószecső jobb",
+    "kikapcsolt_resz": [
+      "Sülysáp Löj, Tápiószecső Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp-Tápiószecső bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ycb": {
+    "munkavegzes_helye": "Sülysáp-Tápiószecső bal",
+    "kikapcsolt_resz": [
+      "Sülysáp Löb, Tápiószecső Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Sülysáp-Tápiószecső jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cycj": {
+    "munkavegzes_helye": "Tápiószecső állomás, Sülysáp-Tápiószecső jobb",
+    "kikapcsolt_resz": [
+      "Tápiószecső II., III., Tápiószecső Áj, Bpj, Sülysáp Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső I. vágány, Sülysáp-Tápiószecső bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cycb": {
+    "munkavegzes_helye": "Tápiószecső állomás, Sülysáp-Tápiószecső bal",
+    "kikapcsolt_resz": [
+      "Tápiószecső I., Tápiószecső Áb, Bpb, Sülysáp Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső II. vágány, Sülysáp-Tápiószecső jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cj": {
+    "munkavegzes_helye": "Tápiószecső állomás",
+    "kikapcsolt_resz": [
+      "Tápiószecső II., III., Tápiószecső Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cb": {
+    "munkavegzes_helye": "Tápiószecső állomás",
+    "kikapcsolt_resz": [
+      "Tápiószecső I., Tápiószecső Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cckj": {
+    "munkavegzes_helye": "Tápiószecső állomás, Tápiószecső-Nagykáta jobb",
+    "kikapcsolt_resz": [
+      "Tápiószecső II., III., Tápiószecső Áj, Löj, Nagykáta Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső I. vágány, Tápiószecső-Nagykáta bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "cckb": {
+    "munkavegzes_helye": "Tápiószecső állomás, Tápiószecső-Nagykáta bal",
+    "kikapcsolt_resz": [
+      "Tápiószecső I., Tápiószecső Áb, Löb, Nagykáta Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső II. vágány, Tápiószecső-Nagykáta jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ckj": {
+    "munkavegzes_helye": "Tápiószecső-Nagykáta jobb",
+    "kikapcsolt_resz": [
+      "Tápiószecső Löj, Nagykáta Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső-Nagykáta bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ckb": {
+    "munkavegzes_helye": "Tápiószecső-Nagykáta bal",
+    "kikapcsolt_resz": [
+      "Tápiószecső Löb, Nagykáta Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószecső-Nagykáta jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kkcj": {
+    "munkavegzes_helye": "Nagykáta állomás, Tápiószecső-Nagykáta jobb",
+    "kikapcsolt_resz": [
+      "Nagykáta II., III., Nagykáta Áj, Bpj, Tápiószecső Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta I. vágány, Tápiószecső-Nagykáta bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kkcb": {
+    "munkavegzes_helye": "Nagykáta állomás, Tápiószecső-Nagykáta bal",
+    "kikapcsolt_resz": [
+      "Nagykáta I., Nagykáta Áb, Bpb, Tápiószecső Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta II. vágány, Tápiószecső-Nagykáta jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kj": {
+    "munkavegzes_helye": "Nagykáta állomás",
+    "kikapcsolt_resz": [
+      "Nagykáta II., III., Nagykáta Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kb": {
+    "munkavegzes_helye": "Nagykáta állomás",
+    "kikapcsolt_resz": [
+      "Nagykáta I., Nagykáta Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kksj": {
+    "munkavegzes_helye": "Nagykáta állomás, Nagykáta-Tápiószele jobb",
+    "kikapcsolt_resz": [
+      "Nagykáta II., III., Nagykáta Áj, Löj, Tápiószele Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta I. vágány, Nagykáta-Tápiószele bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "kksb": {
+    "munkavegzes_helye": "Nagykáta állomás, Nagykáta-Tápiószele bal",
+    "kikapcsolt_resz": [
+      "Nagykáta I., Nagykáta Áb, Löb, Tápiószele Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta II. vágány, Nagykáta-Tápiószele jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ksj": {
+    "munkavegzes_helye": "Nagykáta-Tápiószele jobb",
+    "kikapcsolt_resz": [
+      "Nagykáta Löj, Tápiószele Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta-Tápiószele bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ksb": {
+    "munkavegzes_helye": "Nagykáta-Tápiószele bal",
+    "kikapcsolt_resz": [
+      "Nagykáta Löb, Tápiószele Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Nagykáta-Tápiószele jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sksj": {
+    "munkavegzes_helye": "Tápiószele állomás, Nagykáta-Tápiószele jobb",
+    "kikapcsolt_resz": [
+      "Tápiószele II., III., Tápiószele Áj, Bpj, Nagykáta Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele I. vágány, Nagykáta-Tápiószele bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sksb": {
+    "munkavegzes_helye": "Tápiószele állomás, Nagykáta-Tápiószele bal",
+    "kikapcsolt_resz": [
+      "Tápiószele I., Tápiószele Áb, Bpb, Nagykáta Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele II. vágány, Nagykáta-Tápiószele jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sj": {
+    "munkavegzes_helye": "Tápiószele állomás",
+    "kikapcsolt_resz": [
+      "Tápiószele II., III., Tápiószele Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sb": {
+    "munkavegzes_helye": "Tápiószele állomás",
+    "kikapcsolt_resz": [
+      "Tápiószele I., Tápiószele Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ssgj": {
+    "munkavegzes_helye": "Tápiószele állomás, Tápiószele-Tápiógyörgye jobb",
+    "kikapcsolt_resz": [
+      "Tápiószele II., III., Tápiószele Áj, Löj, Tápiógyörgye Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele I. vágány, Tápiószele-Tápiógyörgye bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ssgb": {
+    "munkavegzes_helye": "Tápiószele állomás, Tápiószele-Tápiógyörgye bal",
+    "kikapcsolt_resz": [
+      "Tápiószele I., Tápiószele Áb, Löb, Tápiógyörgye Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele II. vágány, Tápiószele-Tápiógyörgye jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sgj": {
+    "munkavegzes_helye": "Tápiószele-Tápiógyörgye jobb",
+    "kikapcsolt_resz": [
+      "Tápiószele Löj, Tápiógyörgye Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele-Tápiógyörgye bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "sgb": {
+    "munkavegzes_helye": "Tápiószele-Tápiógyörgye bal",
+    "kikapcsolt_resz": [
+      "Tápiószele Löb, Tápiógyörgye Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiószele-Tápiógyörgye jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ggsj": {
+    "munkavegzes_helye": "Tápiógyörgye állomás, Tápiószele-Tápiógyörgye jobb",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye II., III., Tápiógyörgye Áj, Bpj, Tápiószele Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye I. vágány, Tápiószele-Tápiógyörgye bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ggsb": {
+    "munkavegzes_helye": "Tápiógyörgye állomás, Tápiószele-Tápiógyörgye bal",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye I., Tápiógyörgye Áb, Bpb, Tápiószele Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye II. vágány, Tápiószele-Tápiógyörgye jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "gj": {
+    "munkavegzes_helye": "Tápiógyörgye állomás",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye II., III., Tápiógyörgye Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "gb": {
+    "munkavegzes_helye": "Tápiógyörgye állomás",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye I., Tápiógyörgye Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "gguj": {
+    "munkavegzes_helye": "Tápiógyörgye állomás, Tápiógyörgye-Újszász jobb",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye II., III., Tápiógyörgye Áj, Löj, Újszász Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye I. vágány, Tápiógyörgye-Újszász bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ggub": {
+    "munkavegzes_helye": "Tápiógyörgye állomás, Tápiógyörgye-Újszász bal",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye I., Tápiógyörgye Áb, Löb, Újszász Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye II. vágány, Tápiógyörgye-Újszász jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "guj": {
+    "munkavegzes_helye": "Tápiógyörgye-Újszász jobb",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye Löj, Újszász Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye-Újszász bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "gub": {
+    "munkavegzes_helye": "Tápiógyörgye-Újszász bal",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye Löb, Újszász Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Tápiógyörgye-Újszász jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uugj": {
+    "munkavegzes_helye": "Újszász állomás, Tápiógyörgye-Újszász jobb",
+    "kikapcsolt_resz": [
+      "Újszász II., III., Újszász Áj, Bpj, Tápiógyörgye Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász I. vágány, Tápiógyörgye-Újszász bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uugb": {
+    "munkavegzes_helye": "Újszász állomás, Tápiógyörgye-Újszász bal",
+    "kikapcsolt_resz": [
+      "Újszász I., Újszász Áb, Bpb, Tápiógyörgye Löb"
+    ],
+    "foldelesi_pontok": [
+      "01525, 01731, 01809, 01925"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász II. vágány, Tápiógyörgye-Újszász jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uuj": {
+    "munkavegzes_helye": "Újszász állomás, Jászboldogháza-Újszász jobb",
+    "kikapcsolt_resz": [
+      "Újszász II., III., Újszász Áj, Bpj, Jászboldogháza Uv"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+  "uj": {
+    "munkavegzes_helye": "Újszász állomás",
+    "kikapcsolt_resz": [
+      "Újszász II., III., Újszász Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász I. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ub": {
+    "munkavegzes_helye": "Újszász állomás",
+    "kikapcsolt_resz": [
+      "Újszász I., Újszász Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uuszj": {
+    "munkavegzes_helye": "Újszász állomás, Újszász-Szolnok jobb",
+    "kikapcsolt_resz": [
+      "Újszász II., III., Újszász Áj, Löj, Szolnok Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász I. vágány, Újszász-Szolnok bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uuszb": {
+    "munkavegzes_helye": "Újszász állomás, Újszász-Szolnok bal",
+    "kikapcsolt_resz": [
+      "Újszász I., Újszász Áb, Löb, Szolnok Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb, 01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász II. vágány, Újszász-Szolnok jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uszj": {
+    "munkavegzes_helye": "Újszász-Szolnok jobb",
+    "kikapcsolt_resz": [
+      "Újszász Löj, Szolnok Bpj"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász-Szolnok bal, állomás előtti szakaszolások"
+    ]
+  },
+
+  "uszb": {
+    "munkavegzes_helye": "Újszász-Szolnok bal",
+    "kikapcsolt_resz": [
+      "Újszász Löb, Szolnok Bpb"
+    ],
+    "foldelesi_pontok": [
+      "01929, 02113"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász-Szolnok jobb, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ptjb": {
+    "munkavegzes_helye": "Jászberény-Portelek",
+    "kikapcsolt_resz": [
+      "Portelek Hv, Jászberény Uv"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások, Portelek-Jászberény tápvezeték"
+    ]
+  },
+
+  "ptptjb": {
+    "munkavegzes_helye": "Portelek állomás, Jászberény-Portelek",
+    "kikapcsolt_resz": [
+      "Portelek II., Portelek Áj, Hv, Jászberény Uv"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Portelek III. vágány, állomás előtti szakaszolások, Portelek-Jászberény tápvezeték"
+    ]
+  },
+
+  "pb": {
+    "munkavegzes_helye": "Portelek állomás",
+    "kikapcsolt_resz": [
+      "Portelek III., Portelek Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Portelek II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "pj": {
+    "munkavegzes_helye": "Portelek állomás",
+    "kikapcsolt_resz": [
+      "Portelek II., Portelek Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Portelek III. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ptptj": {
+    "munkavegzes_helye": "Portelek állomás, Portelek-Jászboldogháza",
+    "kikapcsolt_resz": [
+      "Portelek II., Portelek Áj, Uv, Jászboldogháza Hv"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Portelek III. vágány, állomás előtti szakaszolások, Portelek-Jászboldogháza tápvezeték"
+    ]
+  },
+
+  "jpt": {
+    "munkavegzes_helye": "Portelek-Jászboldogháza",
+    "kikapcsolt_resz": [
+      "Jászboldogháza Hv, Portelek Uv"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Portelek-Jászboldogháza tápvezeték, állomás előtti szakaszolások"
+    ]
+  },
+
+  "jjpt": {
+    "munkavegzes_helye": "Jászboldogháza állomás, Portelek-Jászboldogháza",
+    "kikapcsolt_resz": [
+      "Jászboldogháza II., Jászboldogháza Áj, Hv; Portelek Uv"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Jászboldogháza III. vágány, Portelek-Jászboldogháza tápvezeték, állomás előtti szakaszolások"
+    ]
+  },
+
+  "jb": {
+    "munkavegzes_helye": "Jászboldogháza állomás",
+    "kikapcsolt_resz": [
+      "Jászboldogháza III., Jászboldogháza Áb"
+    ],
+    "foldelesi_pontok": [
+      "01807, 01923, kapcsolókert Áb"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Jászboldogháza II. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "jj": {
+    "munkavegzes_helye": "Jászboldogháza állomás",
+    "kikapcsolt_resz": [
+      "Jászboldogháza II., Jászboldogháza Áj"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Jászboldogháza III. vágány, állomás előtti szakaszolások"
+    ]
+  },
+
+  "jju": {
+    "munkavegzes_helye": "Jászboldogháza állomás, Jászboldogháza-Újszász",
+    "kikapcsolt_resz": [
+      "Jászboldogháza II., Jászboldogháza Áj, Uv, Újszász Hv"
+    ],
+    "foldelesi_pontok": [
+      "01808, 01924, kapcsolókert Áj, 01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Jászboldogháza III. vágány, Jászboldogháza-Újszász tápvezeték, állomás előtti szakaszolások"
+    ]
+  },
+
+  "ju": {
+    "munkavegzes_helye": "Jászboldogháza-Újszász",
+    "kikapcsolt_resz": [
+      "Jászboldogháza Uv, Újszász Hv"
+    ],
+    "foldelesi_pontok": [
+      "01930, 02114"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Jászboldogháza-Újszász tápvezeték, állomás előtti szakaszolások"
+    ]
+  },
+
+"matfm": {
+    "munkavegzes_helye": "Maglód állomás",
+    "kikapcsolt_resz": [
+      "Maglód Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"gytfm": {
+    "munkavegzes_helye": "Gyömrő állomás",
+    "kikapcsolt_resz": [
+      "Gyömrő Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"metfm": {
+    "munkavegzes_helye": "Mende állomás",
+    "kikapcsolt_resz": [
+      "Mende Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"ytfm": {
+    "munkavegzes_helye": "Sülysáp állomás",
+    "kikapcsolt_resz": [
+      "Sülysáp Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"ctfm": {
+    "munkavegzes_helye": "Tápiószecső állomás",
+    "kikapcsolt_resz": [
+      "Tápiószecső Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"ktfm": {
+    "munkavegzes_helye": "Nagykáta állomás",
+    "kikapcsolt_resz": [
+      "Nagykáta Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"stfm": {
+    "munkavegzes_helye": "Tápiószele állomás",
+    "kikapcsolt_resz": [
+      "Tápiószele Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"gtfm": {
+    "munkavegzes_helye": "Tápiógyörgye állomás",
+    "kikapcsolt_resz": [
+      "Tápiógyörgye Áj, Áb, Üzem 1, 2, 3, 4, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"utfm": {
+    "munkavegzes_helye": "Újszász állomás",
+    "kikapcsolt_resz": [
+      "Újszász Áj, Áb, áj, Üzem 5, 6, 7, 8, 9, megkerülő vezetékek"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"ptfm": {
+    "munkavegzes_helye": "Portelek állomás",
+    "kikapcsolt_resz": [
+      "Portelek Áj, Áb, Üzem 1, 2, megkerülő vezetékek, Jászboldogháza Ht, Jászberény Ut"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+
+"jtfm": {
+    "munkavegzes_helye": "Jászboldogháza állomás",
+    "kikapcsolt_resz": [
+      "Jászboldogháza Áj, Áb, Üzem 1, 2, megkerülő vezetékek, Újszász Ht, Portelek Ut"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "állomás előtti szakaszolások"
+    ]
+  },
+"U57": {
+    "munkavegzes_helye": "Újszász állomás, Tápiógyörgye-Újszász jobb",
+    "kikapcsolt_resz": [
+      "Újszász II., III., Újszász Áj, Bpj, Tápiógyörgye Löj"
+    ],
+    "foldelesi_pontok": [
+      "01524, 01730, 01808, 01924"
+    ],
+    "legkozelebbi_feszultseg_alatt": [
+      "Újszász I. vágány, Tápiógyörgye-Újszász bal, állomás előtti szakaszolások"
+    ]
+  }  
+
+}
