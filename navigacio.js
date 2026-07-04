@@ -70,6 +70,13 @@ const Navigacio = {
                         color: #ffffff;">
                         Reset
                     </button>
+                    <button id="btn-munkaengedely" type="button" style="
+                        padding: 7px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
+                        border: 1px solid #bdc3c7;
+                        background: var(--btn-off-bg, #e0e0e0);
+                        color: var(--panel-text, #2c3e50);">
+                        Munkaengedély
+                    </button>
                 </div>
             </div>
         `;
@@ -79,6 +86,11 @@ const Navigacio = {
         document.getElementById('station-select').addEventListener('change', (e) => {
             this.ugras(e.target.value);
         });
+
+        const munkaengedelyBtn = document.getElementById('btn-munkaengedely');
+        if (window.MunkaengedelyModul && munkaengedelyBtn) {
+            window.MunkaengedelyModul.regisztralGomb(munkaengedelyBtn);
+        }
 
         // Szcenárió gombok késleltetve, megvárja a logika betöltését
         setTimeout(() => this._init_szcenario_gombok(), 800);

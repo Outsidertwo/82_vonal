@@ -29,3 +29,95 @@
     #szimulacio_kontener {
     position: relative;
 }
+
+body.munkaengedely-nyitva {
+    overflow: hidden;
+}
+
+#btn-munkaengedely.munkaengedely-elerheto {
+    background: var(--btn-on-bg, #27ae60) !important;
+    color: #ffffff !important;
+}
+
+.munkaengedely-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    background: rgba(0, 0, 0, 0.72);
+    color: var(--panel-text, #2c3e50);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+    padding: 14px;
+    box-sizing: border-box;
+}
+
+.munkaengedely-overlay[hidden] {
+    display: none;
+}
+
+.munkaengedely-lap {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    min-height: calc(100vh - 28px);
+    background: var(--panel-bg, rgba(255, 255, 255, 0.95));
+    border: 2px solid var(--panel-border, #2c3e50);
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    box-sizing: border-box;
+}
+
+.munkaengedely-fejlec {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--panel-bg, rgba(255, 255, 255, 0.95));
+    border-bottom: 1px solid var(--panel-border, #2c3e50);
+    border-radius: 6px 6px 0 0;
+}
+
+.munkaengedely-fejlec h1 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.munkaengedely-bezar {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background: var(--btn-off-bg, #e0e0e0);
+    color: var(--panel-text, #2c3e50);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.munkaengedely-tartalom {
+    padding: 14px;
+}
+
+.munkaengedely-blokk {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(127, 140, 141, 0.45);
+}
+
+.munkaengedely-blokk:last-child {
+    border-bottom: 0;
+}
+
+.munkaengedely-blokk h2 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    line-height: 1.25;
+}
+
+.munkaengedely-blokk p {
+    margin: 4px 0 0;
+    font-size: 17px;
+    line-height: 1.35;
+}
