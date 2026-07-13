@@ -1,29 +1,29 @@
 {
   
   "mamarj": {
-    "munkavegzes_helye": "Maglód állomás jobb, Maglód-Rákoskert jobb",
+    "munkavegzes_helye": "Maglód állomás jobb, Maglód-Rákoshegy jobb",
     "kikapcsolt_resz": [
-      "Maglód IV., V., Maglód-Rákoskert jobb",
-      "Maglód Áj, Bpj, Rákoskert Löj"
+      "Maglód IV., V., Maglód-Rákoshegy jobb",
+      "Maglód Áj, Bpj, Rákoshegy Löj"
     ],
     "foldelesi_pontok": [
       "01330A, 01730, 01808, 01924"
     ],
     "legkozelebbi_feszultseg_alatt": [
-      "Maglód III. vágány, Maglód-Rákoskert bal, állomás előtti szakaszolások"
+      "Maglód III. vágány, Maglód-Rákoshegy bal, állomás előtti szakaszolások"
     ]
   },
   "mamarb": {
-    "munkavegzes_helye": "Maglód állomás bal, Maglód-Rákoskert bal",
+    "munkavegzes_helye": "Maglód állomás bal, Maglód-Rákoshegy bal",
     "kikapcsolt_resz": [
-      "Maglód II., III., Maglód-Rákoskert bal",
-      "Maglód Áb, Bpb, Rákoskert Löb"
+      "Maglód II., III., Maglód-Rákoshegy bal",
+      "Maglód Áb, Bpb, Rákoshegy Löb"
     ],
     "foldelesi_pontok": [
       "01525, 01731, 01809, 01925"
     ],
     "legkozelebbi_feszultseg_alatt": [
-      "Maglód IV. vágány, Maglód-Rákoskert jobb, állomás előtti szakaszolások"
+      "Maglód IV. vágány, Maglód-Rákoshegy jobb, állomás előtti szakaszolások"
     ]
   },
   "maj": {
